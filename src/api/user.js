@@ -9,7 +9,7 @@ export function login(data) {
   })
 }
 
-export function register(data) {
+export function register2(data) {
   return request({
     url: userEndpoint.userRegisterEndpoint,
     method: 'post',

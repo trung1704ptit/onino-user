@@ -6,7 +6,7 @@
         <img src="../../assets/img/onino-logo.png" class="login-logo"/>
       </div>
 
-      <el-form-item prop="username" class="el-form-item">
+      <!-- <el-form-item prop="username" class="el-form-item">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
@@ -18,7 +18,7 @@
           type="text"
           tabindex="1"
         />
-      </el-form-item>
+      </el-form-item> -->
 
         <el-form-item prop="email" class="el-form-item">
         <span class="svg-container">
@@ -34,19 +34,34 @@
         />
       </el-form-item>
 
-    <el-form-item prop="phone" class="el-form-item">
-        <span class="svg-container">
-          <i class="el-icon-phone" />
-        </span>
-        <el-input
-        ref="phone"
-        v-model="registerForm.phone"
-        :placeholder="$t('root.phone')"
-        name="phone"
-        type="text" 
-        tabindex="1"
-        />
-    </el-form-item>
+      <el-form-item prop="phone" class="el-form-item">
+          <span class="svg-container">
+            <i class="el-icon-phone" />
+          </span>
+          <el-input
+          ref="phone"
+          v-model="registerForm.phone"
+          :placeholder="$t('root.phone')"
+          name="phone"
+          type="text" 
+          tabindex="1"
+          />
+      </el-form-item>
+
+      <el-form-item class="el-form-item">
+        <label class="radio-label">Chọn Tên đăng nhập: </label>
+        <div style="display:inline-block;">
+          <el-radio-group v-model="registerForm.usernameOption">
+            <el-radio label="email" border>
+              Email
+            </el-radio>
+            <el-radio label="sms" border>
+              SMS
+            </el-radio>
+          </el-radio-group>
+        </div>
+      </el-form-item>
+
 
       <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
         <el-form-item prop="password" class="el-form-item">
@@ -110,6 +125,7 @@
 
 <script>
 import { isEmpty, validEmail } from '@/utils/validate'
+import codes from '@/utils/country-code'
 import LangSelect from '@/components/LangSelect'
 import i18n from '@/lang'
 
@@ -132,14 +148,14 @@ export default {
       }
     }
     const validateEmail = (rule, value, callback) => {
-      if (!validEmail(value)) {
+      if (this.registerForm.usernameOption === 'email' && !validEmail(value)) {
         callback(new Error(i18n.t('root.incorrectEmail')))
       } else {
         callback()
       }
     }
     const validatePhone = (rule, value, callback) => {
-      if (isEmpty(value)) {
+      if (this.registerForm.usernameOption === 'sms' && isEmpty(value)) {
         callback(new Error(i18n.t('root.emptyString')))
       } else {
         callback()
@@ -154,10 +170,10 @@ export default {
     }
     return {
       registerForm: {
-        username: '',
         password: '',
         confirmPassword: '',
-        email: ''
+        email: '',
+        usernameOption: 'email'
       },
       registerRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -226,7 +242,23 @@ export default {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/register', this.registerForm)
+          const registerForm = this.registerForm;
+          let username = registerForm.email;
+          let phone = '';
+          if (registerForm.phone) {
+            if (registerForm.phone.indexOf(codes.vn) == -1) {
+              phone = codes.vn + registerForm.phone.substr(1);
+            }
+          }
+          const registerData = {
+            ...registerForm,
+            username,
+            phone
+          }
+
+          console.log(registerData);
+
+          this.$store.dispatch('user/register', registerData)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
