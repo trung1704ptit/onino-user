@@ -1,26 +1,13 @@
 <template>
   <div class="auth-wrapper register-container">
     <lang-select class="set-language" />
-    <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" autocomplete="on" label-position="left">
+
+    <el-form v-if="isNotRegistered" ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" autocomplete="on" label-position="left">
       <div class="flex">
         <img src="../../assets/img/onino-logo.png" class="login-logo"/>
       </div>
 
-      <!-- <el-form-item prop="username" class="el-form-item">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="registerForm.username"
-          :placeholder="$t('login.username')"
-          name="username"
-          type="text"
-          tabindex="1"
-        />
-      </el-form-item> -->
-
-        <el-form-item prop="email" class="el-form-item">
+      <el-form-item prop="email" class="el-form-item">
         <span class="svg-container">
           <svg-icon icon-class="email" />
         </span>
@@ -120,6 +107,26 @@
       {{ $t('root.login') }}
       </router-link>
     </el-form>
+
+    <div class="app-container m-auto" v-if="!isNotRegistered">
+      <el-card class="box-card">
+
+        <div slot="header" class="header-success">
+          <span><i class="el-icon-success" /> {{ $t('register.registerSuccess') }}</span>
+        </div>
+        <div class="box-item">
+          {{ $t('register.finishRegister')}}
+        </div>
+        <br />
+        {{ $t('register.hasAccount') }}? <router-link
+          to="/login"
+          class="app-link"
+        >
+        {{ $t('root.login') }}
+        </router-link>
+        </el-card>
+    </div>
+
   </div>
 </template>
 
@@ -169,6 +176,7 @@ export default {
       }
     }
     return {
+      isNotRegistered: true,
       registerForm: {
         password: '',
         confirmPassword: '',
@@ -256,12 +264,11 @@ export default {
             phone
           }
 
-          console.log(registerData);
-
           this.$store.dispatch('user/register', registerData)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              // this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
+              this.isNotRegistered = false
             })
             .catch(() => {
               this.loading = false

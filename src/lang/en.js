@@ -104,6 +104,8 @@ export default {
     hasAccount: 'Has an account?',
     confirmPassword: 'Confirm password',
     confirmPasswordError: 'Confirm password is not correct',
+    finishRegister: 'Register successful, please check your email and follow the instrution.',
+    registerSuccess: 'Register successful'
   },
   documentation: {
     documentation: 'Documentation',

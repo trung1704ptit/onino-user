@@ -118,7 +118,7 @@ aside {
   }
 }
 
-//main-container全局样式
+//main-container
 .app-container {
   padding: 20px;
 }
@@ -195,4 +195,16 @@ aside {
 }
 .main-text{
   color: $main;
+}
+.m-auto {
+  margin: auto
+}
+.header-success {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  background: $green;
+  padding: 10px;
 }

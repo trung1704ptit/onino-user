@@ -104,6 +104,8 @@ export default {
     hasAccount: 'Đã có tài khoản',
     confirmPassword: 'Nhập lại mật khẩu',
     confirmPasswordError: 'Mật khẩu không khớp',
+    finishRegister: 'Để hoàn tất kích hoạt tài khoản vui lòng kiểm tra email của bạn và làm theo hướng dẫn.',
+    registerSuccess: 'Đăng ký thành công'
   },
   documentation: {
     documentation: 'Documentation',
