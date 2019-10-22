@@ -1,7 +1,7 @@
 <template>
   <div class="auth-wrapper login-container">
     <lang-select class="set-language" />
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="off" label-position="left">
       <div class="flex">
         <img src="../../assets/img/onino-logo.png" class="login-logo"/>
       </div>

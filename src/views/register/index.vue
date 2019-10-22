@@ -2,7 +2,7 @@
   <div class="auth-wrapper register-container">
     <lang-select class="set-language" />
 
-    <el-form v-if="isNotRegistered" ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" autocomplete="on" label-position="left">
+    <el-form v-if="isNotRegistered" ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" autocomplete="off" label-position="left">
       <div class="flex">
         <img src="../../assets/img/onino-logo.png" class="login-logo"/>
       </div>
@@ -31,7 +31,7 @@
           :placeholder="$t('root.phone')"
           name="phone"
           type="text" 
-          tabindex="1"
+          tabindex="2"
           />
       </el-form-item>
 
@@ -62,7 +62,7 @@
             :type="passwordType"
             :placeholder="$t('login.password')"
             name="password"
-            tabindex="2"
+            tabindex="3"
             @keyup.native="checkCapslock"
             @blur="capsTooltip = false"
             @keyup.enter.native="handleRegister"
@@ -85,7 +85,7 @@
               :type="passwordType"
               :placeholder="$t('register.confirmPassword')"
               name="confirmPassword"
-              tabindex="2"
+              tabindex="4"
               @keyup.native="checkCapslock"
               @blur="capsTooltip = false"
               @keyup.enter.native="handleRegister"
@@ -108,25 +108,40 @@
       </router-link>
     </el-form>
 
-    <div class="app-container m-auto" v-if="!isNotRegistered">
-      <el-card class="box-card">
 
+    <!-- Verify form -->
+    <el-form v-if="!isNotRegistered" ref="verifyForm" :model="verifyForm" :rules="verifyRules" autocomplete="off" label-position="left" class="app-container m-auto" >
+      <el-card class="box-card">
         <div slot="header" class="header-success">
-          <span><i class="el-icon-success" /> {{ $t('register.registerSuccess') }}</span>
+          <span><i class="el-icon-success" /> {{ $t('register.activateAccount') }}</span>
         </div>
         <div class="box-item">
-          {{ $t('register.finishRegister')}}
+          <p>{{ $t('register.verifyByCode')}}</p>
+
+          <el-form-item prop="verificationCode" class="el-form-item">
+            <el-input v-model="verifyForm.verificationCode"
+              ref="verificationCode"
+              name="verificationCode"
+              type="number"
+              :placeholder="$t('register.verificationCode')"
+              class="verify-code"
+            />
+          </el-form-item>
+
+          <el-button :loading="verifying" type="primary" style="width:100%;margin-bottom:20px;" @click.native.prevent="handleVerify">
+            {{ $t('register.activateAccount') }}
+          </el-button>
         </div>
-        <br />
+
         {{ $t('register.hasAccount') }}? <router-link
           to="/login"
           class="app-link"
         >
         {{ $t('root.login') }}
         </router-link>
-        </el-card>
-    </div>
-
+      </el-card>
+    </el-form>
+    <!-- end of verify form -->
   </div>
 </template>
 
@@ -140,13 +155,6 @@ export default {
   name: 'Register',
   components: { LangSelect },
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (isEmpty(value)) {
-        callback(new Error(i18n.t('root.emptyString')))
-      } else {
-        callback()
-      }
-    }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
         callback(new Error(i18n.t('login.passwordError1')))
@@ -175,24 +183,41 @@ export default {
         callback()
       }
     }
+    const validateVerificationCode = (rule, value, callback) => {
+      if (value.length !== 6) {
+        callback(new Error(i18n.t('register.verificationCodeError')))
+      } else {
+        callback()
+      }
+    }
+
     return {
       isNotRegistered: true,
+
       registerForm: {
+        username: '',
+        phone: '',
         password: '',
         confirmPassword: '',
         email: '',
         usernameOption: 'email'
       },
+      verifyForm: {
+        verificationCode: '',
+      },
       registerRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         email: [{ required: false, trigger: 'blur', validator: validateEmail }],
         phone: [{ required: false, trigger: 'blur', validator: validatePhone }],
         confirmPassword: [{ required: true, trigger: 'blur', validator: validateConfirmPassword }]
       },
+      verifyRules: {
+        verificationCode: [{ required: true, trigger: 'blur', validator: validateVerificationCode }],
+      },
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
+      verifying: false,
       showDialog: false,
       redirect: undefined,
       otherQuery: {}
@@ -214,10 +239,12 @@ export default {
     // window.addEventListener('storage', this.afterQRScan)
   },
   mounted() {
-    if (this.registerForm.username === '') {
-      this.$refs.username.focus()
-    } else if (this.registerForm.password === '') {
+    if (this.$refs.email && this.registerForm.email === '') {
+      this.$refs.email.focus()
+    } else if (this.$refs.password && this.registerForm.password === '') {
       this.$refs.password.focus()
+    } else if (this.$refs.verificationCode && this.verifyForm.verificationCode === '') {
+      this.$refs.verificationCode.focus();
     }
   },
   destroyed() {
@@ -258,6 +285,12 @@ export default {
               phone = codes.vn + registerForm.phone.substr(1);
             }
           }
+
+          this.registerForm = {
+            ...this.registerForm,
+            username,
+            phone
+          }
           const registerData = {
             ...registerForm,
             username,
@@ -275,6 +308,35 @@ export default {
             })
         } else {
           return false
+        }
+      })
+    },
+    handleVerify() {
+      this.$refs.verifyForm.validate(valid => {
+        if (valid) {
+          this.verifying = true;
+
+          const verifyData = {
+            username: this.registerForm.username,
+            verificationCode: this.verifyForm.verificationCode
+          }
+
+          this.$store.dispatch('user/verify', verifyData)
+          .then(() => {
+            this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+            this.$message({
+              message: i18n.t('register.verifySuccessful'),
+              type: 'success',
+              showClose: true,
+              duration: 4000
+            })
+            this.verifying = false
+          })
+          .catch(() => {
+            this.verifying = false
+          })
+        } else {
+          return false;
         }
       })
     },
@@ -310,6 +372,12 @@ export default {
 
 <style lang="scss">
 @import '../login/style.scss';
+.verify-code {
+  input {
+    text-align: center !important;
+    padding: 0 !important;
+  }
+}
 </style>
 
 <style lang="scss" scoped>

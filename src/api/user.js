@@ -17,6 +17,14 @@ export function register(data) {
   })
 }
 
+export function verify(data) {
+  return request({
+    url: userEndpoint.userVerifyEndpoint,
+    method: 'post',
+    data
+  })
+}
+
 export function getInfo(token) {
   return request({
     url: '/user/info',

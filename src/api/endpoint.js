@@ -6,4 +6,5 @@ export const userEndpoint = {
     userLoginEndpoint: `${baseEndpoint}/user/login`,
     updateUserProfileEndpoint: `${baseEndpoint}/user/updateUserProfile`,
     uploadAvatarEndpoint: `${baseEndpoint}/user/uploadAvatar`,
+    userVerifyEndpoint: `${baseEndpoint}/user/verify`,
 }

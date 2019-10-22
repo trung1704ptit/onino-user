@@ -70,7 +70,8 @@ export default {
     emptyString: 'Trường thông tin không được để trống',
     phone: 'Điện thoại',
     incorrectEmail: 'Địa chỉ email không hợp lệ',
-    somthingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau'
+    somthingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau',
+    activate: 'Kích hoạt'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -105,7 +106,12 @@ export default {
     confirmPassword: 'Nhập lại mật khẩu',
     confirmPasswordError: 'Mật khẩu không khớp',
     finishRegister: 'Để hoàn tất kích hoạt tài khoản vui lòng kiểm tra email của bạn và làm theo hướng dẫn.',
-    registerSuccess: 'Đăng ký thành công'
+    registerSuccess: 'Đăng ký thành công',
+    verifyByCode: 'Vui lòng nhập mã kích hoạt mà chúng tôi đã gửi cho bạn qua email.',
+    verificationCode: 'Mã kích hoạt',
+    activateAccount: 'Kích hoạt tài khoản',
+    verificationCodeError: 'Mã xác nhận phải có 6 chữ số',
+    verifySuccessful: 'Kích hoạt tài khoản thành công'
   },
   documentation: {
     documentation: 'Documentation',

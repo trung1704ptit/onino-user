@@ -78,7 +78,8 @@ export default {
     emptyString: 'This field canot be empty',
     phone: 'Phone',
     incorrectEmail: 'Incorrect email address',
-    somthingWentWrong: 'Something went wrong'
+    somthingWentWrong: 'Something went wrong',
+    activate: 'Activate'
   },
   login: {
     title: 'Login Form',
@@ -105,7 +106,12 @@ export default {
     confirmPassword: 'Confirm password',
     confirmPasswordError: 'Confirm password is not correct',
     finishRegister: 'Register successful, please check your email and follow the instrution.',
-    registerSuccess: 'Register successful'
+    registerSuccess: 'Register successful',
+    verifyByCode: 'Please enter the verification code that we sent to your email address.',
+    verificationCode: 'Verification code',
+    activateAccount: 'Activate account',
+    verificationCodeError: 'Activation code must be 6 numbers',
+    verifySuccessful: 'Activate account successful'
   },
   documentation: {
     documentation: 'Documentation',
