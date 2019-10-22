@@ -1,11 +1,15 @@
 import request from '@/utils/request'
-import { userEndpoint } from './endpoint';
+import { userEndpoint, authorizeHeader } from './endpoint';
 
 export function login(data) {
   return request({
-    url: '/user/login',
+    url: userEndpoint.userLoginEndpoint,
     method: 'post',
-    data
+    data,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${authorizeHeader}`
+    },
   })
 }
 
@@ -27,9 +31,9 @@ export function verify(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/user/info',
+    url: userEndpoint.userProfileEndpoint,
     method: 'get',
-    params: { token }
+    params: { access_token: token }
   })
 }
 
