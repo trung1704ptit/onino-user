@@ -6,7 +6,7 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="user.profile.avatarURL" :height="'200px'" :width="'200px'" :hoverable="false">
+        <pan-thumb :image="fileUploaded" :height="'200px'" :width="'200px'" :hoverable="false">
           <div>{{ $t('root.hello')}}</div>
           {{ user.profile.fullName }}
         </pan-thumb>
@@ -15,6 +15,9 @@
         <div class="user-name text-center">{{ user.profile.fullName }}</div>
         <!-- <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div> -->
       </div>
+
+      <input ref="avatar-upload-input" class="d-none" type="file" accept="image/*" @change="handleClickUpload">
+      <el-button size="mini" type="success" icon="el-icon-upload" class="box-center" @click="handleUpload">Thay đổi Avatar</el-button>
     </div>
 
     <!-- <div class="user-bio">
@@ -36,12 +39,22 @@ import PanThumb from '@/components/PanThumb'
 export default {
   components: { PanThumb },
   props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {}
-      }
+    user: {}
+  },
+  data() {
+    return {
+      fileUploaded: this.user.profile.avatarURL
     }
+  },
+  methods: {
+    handleUpload() {
+      this.$refs['avatar-upload-input'].click()
+    },
+    handleClickUpload(e) {
+      const avatar = e.target.files[0]
+      console.log(avatar);
+      this.fileUploaded = avatar;
+    },
   }
 }
 </script>

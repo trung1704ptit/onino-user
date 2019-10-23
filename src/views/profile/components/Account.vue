@@ -1,65 +1,93 @@
 <template>
-  <el-form ref="updateForm" :model="updateForm" :rules="updateRules" class="form-wrapper form-wrapper" autocomplete="off" label-position="left">
-    <el-form-item prop="fullName" class="el-form-item">
-      <span class="svg-container">
-        <svg-icon icon-class="user" />
-      </span>
-      <el-input
-        ref="fullName"
-        v-model="updateForm.fullName"
-        :placeholder="$t('root.fullName')"
-        name="fullName"
-        type="text"
-        tabindex="1"
-      />
-    </el-form-item>
+  <el-card style="margin-bottom:20px;">
+    <el-row :gutter="20">
+      <el-col :span="6" :xs="24">
+        <div slot="header" class="clearfix">
+          <span>{{ $t('navbar.userInfo')}}</span>
+        </div>
 
-    <el-form-item prop="phoneNumber" class="el-form-item">
-      <span class="svg-container">
-        <i class="el-icon-phone" />
-      </span>
-      <el-input
-        ref="phoneNumber"
-        v-model="updateForm.phoneNumber"
-        :placeholder="$t('root.phone')"
-        name="phoneNumber"
-        type="text"
-        tabindex="1"
-      />
-    </el-form-item>
+        <div class="user-profile">
+          <div class="box-center">
+            <pan-thumb :image="fileUploaded" :height="'200px'" :width="'200px'" :hoverable="false">
+              <div>{{ $t('root.hello')}}</div>
+              {{ user.profile.fullName }}
+            </pan-thumb>
+          </div>
+          <div class="box-center">
+            <div class="user-name text-center">{{ user.profile.fullName }}</div>
+            <!-- <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div> -->
+          </div>
 
-    <el-form-item prop="email" class="el-form-item">
-      <span class="svg-container">
-        <svg-icon icon-class="email" />
-      </span>
-      <el-input
-        ref="email"
-        v-model="updateForm.email"
-        placeholder="Email"
-        name="email"
-        type="text"
-        tabindex="1"
-      />
-    </el-form-item>
+          <input ref="avatar-upload-input" class="d-none" type="file" accept="image/*" @change="handleClickUpload">
+          <el-button size="mini" type="success" icon="el-icon-upload" class="box-center" @click="handleUpload">Thay đổi Avatar</el-button>
+        </div>
+      </el-col>
 
-    <el-form-item prop="address" class="el-form-item">
-      <span class="svg-container">
-        <i class="el-icon-location" />
-      </span>
-      <el-input
-        ref="address"
-        v-model="updateForm.address"
-        :placeholder="$t('root.address')"
-        name="address"
-        type="text"
-        tabindex="1"
-      />
-    </el-form-item>
+      <el-col :span="18" :xs="24">
+          <el-form ref="updateForm" :model="updateForm" :rules="updateRules" class="form-wrapper form-wrapper" autocomplete="off" label-position="left">
+        <el-form-item prop="fullName" class="el-form-item">
+          <span class="svg-container">
+            <svg-icon icon-class="user" />
+          </span>
+          <el-input
+            ref="fullName"
+            v-model="updateForm.fullName"
+            :placeholder="$t('root.fullName')"
+            name="fullName"
+            type="text"
+            tabindex="1"
+          />
+        </el-form-item>
 
-    <el-form-item>
-      <el-button :loading="updating" type="primary" @click.native.prevent="updateProfile">{{ $t('root.update')}}</el-button>
-    </el-form-item>
-  </el-form>
+        <el-form-item prop="phoneNumber" class="el-form-item">
+          <span class="svg-container">
+            <i class="el-icon-phone" />
+          </span>
+          <el-input
+            ref="phoneNumber"
+            v-model="updateForm.phoneNumber"
+            :placeholder="$t('root.phone')"
+            name="phoneNumber"
+            type="text"
+            tabindex="1"
+          />
+        </el-form-item>
+
+        <el-form-item prop="email" class="el-form-item">
+          <span class="svg-container">
+            <svg-icon icon-class="email" />
+          </span>
+          <el-input
+            ref="email"
+            v-model="updateForm.email"
+            placeholder="Email"
+            name="email"
+            type="text"
+            tabindex="1"
+          />
+        </el-form-item>
+
+        <el-form-item prop="address" class="el-form-item">
+          <span class="svg-container">
+            <i class="el-icon-location" />
+          </span>
+          <el-input
+            ref="address"
+            v-model="updateForm.address"
+            :placeholder="$t('root.address')"
+            name="address"
+            type="text"
+            tabindex="1"
+          />
+        </el-form-item>
+
+        <el-form-item>
+          <el-button :loading="updating" type="primary" @click.native.prevent="updateProfile">{{ $t('root.update')}}</el-button>
+        </el-form-item>
+      </el-form>
+    </el-col>
+    </el-row>
+  </el-card>
 </template>
 
 <script>
@@ -67,8 +95,10 @@ import { isEmpty, validEmail } from '@/utils/validate'
 import { updateProfile } from '@/api/user';
 import codes from '@/utils/country-code'
 import i18n from '@/lang'
+import PanThumb from '@/components/PanThumb'
 
 export default {
+  components: { PanThumb },
   props: {
     user: {}
   },
@@ -106,7 +136,8 @@ export default {
         fullName: [{ required: false, trigger: 'blur', validator: validateEmpty }],
         phoneNumber: [{ required: false, trigger: 'blur', validator: noValidate }],
         address: [{ required: false, trigger: 'blur', validator: noValidate }],
-      }
+      },
+      fileUploaded: this.user.profile.avatarURL
     }
   },
   methods: {
@@ -143,7 +174,74 @@ export default {
           return false;
         }
       })
-    }
+    },
+    handleUpload() {
+      this.$refs['avatar-upload-input'].click()
+    },
+    handleClickUpload(e) {
+      const avatar = e.target.files[0]
+      this.fileUploaded = avatar;
+    },
   }
 }
 </script>
+
+<style lang="scss" scoped>
+ .box-center {
+   margin: 0 auto;
+   display: table;
+ }
+
+ .text-muted {
+   color: #777;
+ }
+
+ .user-profile {
+   .user-name {
+     font-weight: bold;
+   }
+
+   .box-center {
+     padding-top: 10px;
+   }
+
+   .user-role {
+     padding-top: 10px;
+     font-weight: 400;
+     font-size: 14px;
+   }
+
+   .box-social {
+     padding-top: 30px;
+
+     .el-table {
+       border-top: 1px solid #dfe6ec;
+     }
+   }
+
+   .user-follow {
+     padding-top: 20px;
+   }
+ }
+
+ .user-bio {
+   margin-top: 20px;
+   color: #606266;
+
+   span {
+     padding-left: 4px;
+   }
+
+   .user-bio-section {
+     font-size: 14px;
+     padding: 15px 0;
+
+     .user-bio-section-header {
+       border-bottom: 1px solid #dfe6ec;
+       padding-bottom: 10px;
+       margin-bottom: 10px;
+       font-weight: bold;
+     }
+   }
+ }
+</style>
