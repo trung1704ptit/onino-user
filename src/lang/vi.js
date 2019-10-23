@@ -71,15 +71,21 @@ export default {
     phone: 'Điện thoại',
     incorrectEmail: 'Địa chỉ email không hợp lệ',
     somthingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau',
-    activate: 'Kích hoạt'
+    activate: 'Kích hoạt',
+    update: 'Cập nhật',
+    name: 'Tên',
+    fullName: 'Họ và tên',
+    address: 'Địa chỉ',
+    hello: 'Xin chào'
   },
   navbar: {
     dashboard: 'Dashboard',
     github: 'Github',
-    logOut: 'Log Out',
-    profile: 'Profile',
-    theme: 'Theme',
-    size: 'Global Size'
+    logOut: 'Đăng xuất',
+    profile: 'Hồ sơ',
+    theme: 'Mẫu',
+    size: 'Kích cỡ',
+    userInfo: 'Thông tin người dùng'
   },
   login: {
     title: 'Đăng nhập',
@@ -112,6 +118,9 @@ export default {
     activateAccount: 'Kích hoạt tài khoản',
     verificationCodeError: 'Mã xác nhận phải có 6 chữ số',
     verifySuccessful: 'Kích hoạt tài khoản thành công'
+  },
+  profile: {
+    updateProfileSuccess: 'Cập nhật thông tin người dùng thành công'
   },
   documentation: {
     documentation: 'Documentation',

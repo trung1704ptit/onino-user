@@ -1,7 +1,7 @@
 <template>
-  <div class="auth-wrapper login-container">
+  <div class="login-container">
     <lang-select class="set-language" />
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="off" label-position="left">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form form-wrapper" autocomplete="off" label-position="left">
       <div class="flex">
         <img src="../../assets/img/onino-logo.png" class="login-logo"/>
       </div>
@@ -173,31 +173,9 @@ export default {
         return acc
       }, {})
     }
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
   }
 }
 </script>
-
-<style lang="scss">
-@import './style.scss';
-</style>
 
 <style lang="scss" scoped>
 $dark_gray:#889aa4;
@@ -225,17 +203,6 @@ $light_gray:#eee;
     width: 150px;
     height: 50px;
     margin: 0 auto 40px auto;
-  }
-
-  .login-form {
-    position: relative;
-    min-width: 500px;
-    background-color: #FFF;
-    border-radius: 4px;
-    max-width: 100%;
-    padding: 50px 35px;
-    margin: auto;
-    overflow: hidden;
   }
 
   .tips {
@@ -285,12 +252,6 @@ $light_gray:#eee;
     position: absolute;
     right: 0;
     bottom: 6px;
-  }
-
-  @media only screen and (max-width: 470px) {
-    .login-form {
-      min-width: 90%
-    }
   }
 }
 </style>

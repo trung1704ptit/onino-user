@@ -1,8 +1,8 @@
 <template>
-  <div class="auth-wrapper register-container">
+  <div class="register-container">
     <lang-select class="set-language" />
 
-    <el-form v-if="isNotRegistered" ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" autocomplete="off" label-position="left">
+    <el-form v-if="isNotRegistered" ref="registerForm" :model="registerForm" :rules="registerRules" class="form-wrapper" autocomplete="off" label-position="left">
       <div class="flex">
         <img src="../../assets/img/onino-logo.png" class="login-logo"/>
       </div>
@@ -348,30 +348,11 @@ export default {
         return acc
       }, {})
     }
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
   }
 }
 </script>
 
 <style lang="scss">
-@import '../login/style.scss';
 .verify-code {
   input {
     text-align: center !important;
@@ -408,17 +389,6 @@ $light_gray:#eee;
     margin: 0 auto 40px auto;
   }
 
-  .login-form {
-    position: relative;
-    min-width: 500px;
-    background-color: #FFF;
-    border-radius: 4px;
-    max-width: 100%;
-    padding: 50px 35px;
-    margin: auto;
-    overflow: hidden;
-  }
-
   .tips {
     font-size: 14px;
     margin-bottom: 10px;
@@ -428,16 +398,6 @@ $light_gray:#eee;
         margin-right: 16px;
       }
     }
-  }
-
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    position: absolute;
-    width: 30px;
-    display: inline-block;
-    z-index: 1;
   }
 
   .title-container {
@@ -466,12 +426,6 @@ $light_gray:#eee;
     position: absolute;
     right: 0;
     bottom: 6px;
-  }
-
-  @media only screen and (max-width: 470px) {
-    .login-form {
-      min-width: 90%
-    }
   }
 }
 </style>

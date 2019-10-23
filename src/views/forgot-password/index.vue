@@ -1,7 +1,7 @@
 <template>
-    <div class="auth-wrapper forgot-password-container">
+    <div class="forgot-password-container">
         <lang-select class="set-language" />
-        <el-form ref="forgotPasswordForm" :model="forgotPasswordForm" :rules="forgotPasswordRules" class="forgot-password-form" aria-autocomplete="off" label-position="left">
+        <el-form ref="forgotPasswordForm" :model="forgotPasswordForm" :rules="forgotPasswordRules" class="form-wrapper forgot-password-form" aria-autocomplete="off" label-position="left">
             <div class="flex">
                 <img src="../../assets/img/onino-logo.png" class="onino-logo"/>
             </div>
@@ -86,10 +86,6 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-@import '../login/style.scss';
-</style>
 
 <style lang="scss" scoped>
 $dark_gray:#889aa4;

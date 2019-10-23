@@ -43,3 +43,19 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function updateProfile(data) {
+  return request({
+    url: userEndpoint.updateUserProfileEndpoint,
+    method: 'post',
+    data
+  })
+}
+
+export function uploadAvatar(avatar) {
+  return request({
+    url: userEndpoint.uploadAvatar,
+    method: 'post',
+    data: avatar
+  })
+}

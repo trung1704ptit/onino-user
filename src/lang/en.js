@@ -70,16 +70,22 @@ export default {
     logOut: 'Log Out',
     profile: 'Profile',
     theme: 'Theme',
-    size: 'Global Size'
+    size: 'Global Size',
+    userInfo: 'User information'
   },
   root: {
-    register: 'Đăng ký',
-    login: 'Đăng nhập',
+    register: 'Register',
+    login: 'Login',
     emptyString: 'This field canot be empty',
     phone: 'Phone',
     incorrectEmail: 'Incorrect email address',
     somthingWentWrong: 'Something went wrong',
-    activate: 'Activate'
+    activate: 'Activate',
+    update: 'Update',
+    name: 'Name',
+    fullName: 'Full name',
+    address: 'Address',
+    hello: 'Hello'
   },
   login: {
     title: 'Login Form',
@@ -94,6 +100,9 @@ export default {
     forgotPassword: 'Forgot password?',
     resetPassword: 'Reset password',
     register: 'Register'
+  },
+  profile: {
+    updateProfileSuccess: 'Update user profile successful'
   },
   forgotPassword: {
     incorrectEmail: 'Incorrect email address',
