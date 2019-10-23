@@ -1,4 +1,4 @@
-import { login, logout, getInfo, register, verify, updateProfile } from '@/api/user'
+import { login, logout, getInfo, register, verify, updateProfile, uploadAvatar } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -34,9 +34,6 @@ const mutations = {
   SET_EMAIL: (state, email) => {
     state.email = email
   },
-  SET_EMAIL: (state, email) => {
-    state.email = email
-  },
   SET_DATE_OF_BIRTH: (state, dateOfBirth) => {
     state.dateOfBirth = dateOfBirth
   },
@@ -44,14 +41,14 @@ const mutations = {
     state.roles = roles
   },
   SET_USER_PROFILE: (state, user) => {
-    state.name = user.fullName;
-    state.fullName = user.fullName;
-    state.address = user.address;
-    state.dateOfBirth = user.dateOfBirth;
-    state.email = user.email;
-    state.gender = user.gender;
-    state.phoneNumber = user.phoneNumber;
-    state.profile = user.profile;
+    state.name = user.fullName
+    state.fullName = user.fullName
+    state.address = user.address
+    state.dateOfBirth = user.dateOfBirth
+    state.email = user.email
+    state.gender = user.gender
+    state.phoneNumber = user.phoneNumber
+    state.profile = user.profile
   },
   SET_USER_INFO: (state, userInfo) => {
     state.userInfo = userInfo
@@ -63,7 +60,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      const user = `username=${username}&password=${password}&grant_type=password`;
+      const user = `username=${username}&password=${password}&grant_type=password`
 
       login(user).then(response => {
         commit('SET_TOKEN', response.access_token)
@@ -74,10 +71,10 @@ const actions = {
       })
     })
   },
-  register({ commit }, userInfo){
-    const { username, email, phone, password } = userInfo;
+  register({ commit }, userInfo) {
+    const { username, email, phone, password } = userInfo
     return new Promise((resolve, reject) => {
-      register({ username: username.trim(), password: password, role: "ROLE_USER" }).then(response => {
+      register({ username: username.trim(), password: password, role: 'ROLE_USER' }).then(response => {
         // const { data } = response
         resolve()
       }).catch(error => {
@@ -112,7 +109,7 @@ const actions = {
         commit('SET_ROLES', authorities)
         commit('SET_NAME', response.profile.fullName)
         commit('SET_AVATAR', response.profile.avatarURL)
-        commit('SET_USER_INFO', response);
+        commit('SET_USER_INFO', response)
         resolve(response)
       }).catch(error => {
         reject(error)
@@ -154,8 +151,8 @@ const actions = {
   updateProfile({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       updateProfile(userInfo).then(response => {
-        commit('SET_USER_PROFILE', response);
-        resolve();
+        commit('SET_USER_PROFILE', response)
+        resolve()
       }).catch(error => {
         reject(error)
       })
@@ -163,11 +160,11 @@ const actions = {
   },
 
   // upload avatar
-  uploadAvatar({ commit }, avatar) {
+  uploadAvatar({ commit }, formData) {
     return new Promise((resolve, reject) => {
-      this.uploadAvatar(avatar).then(response => {
-        commit('UPDATE_AVATAR', response.avatarURL);
-        resolve();
+      uploadAvatar(formData).then(response => {
+        commit('SET_AVATAR', response.avatarURL)
+        resolve()
       }).catch(error => {
         reject(error)
       })

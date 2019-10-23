@@ -1,5 +1,7 @@
 import request from '@/utils/request'
-import { userEndpoint, authorizeHeader } from './endpoint';
+import { userEndpoint, authorizeHeader } from './endpoint'
+import axios from 'axios'
+import { getToken } from '@/utils/auth'
 
 export function login(data) {
   return request({
@@ -9,7 +11,7 @@ export function login(data) {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': `Basic ${authorizeHeader}`
-    },
+    }
   })
 }
 
@@ -52,10 +54,15 @@ export function updateProfile(data) {
   })
 }
 
-export function uploadAvatar(avatar) {
-  return request({
-    url: userEndpoint.uploadAvatar,
-    method: 'post',
-    data: avatar
-  })
+export function uploadAvatar(formData) {
+  return axios.post(
+    userEndpoint.uploadAvatarEndpoint,
+    formData,
+    {
+      headers: {
+        'Authorization': `Bearer ${getToken()}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  )
 }

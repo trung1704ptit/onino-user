@@ -3,13 +3,13 @@
     <el-row :gutter="20">
       <el-col :span="6" :xs="24">
         <div slot="header" class="clearfix">
-          <span>{{ $t('navbar.userInfo')}}</span>
+          <span>{{ $t('navbar.userInfo') }}</span>
         </div>
 
         <div class="user-profile">
           <div class="box-center">
             <pan-thumb :image="fileUploaded" :height="'200px'" :width="'200px'" :hoverable="false">
-              <div>{{ $t('root.hello')}}</div>
+              <div>{{ $t('root.hello') }}</div>
               {{ user.profile.fullName }}
             </pan-thumb>
           </div>
@@ -24,75 +24,74 @@
       </el-col>
 
       <el-col :span="18" :xs="24">
-          <el-form ref="updateForm" :model="updateForm" :rules="updateRules" class="form-wrapper form-wrapper" autocomplete="off" label-position="left">
-        <el-form-item prop="fullName" class="el-form-item">
-          <span class="svg-container">
-            <svg-icon icon-class="user" />
-          </span>
-          <el-input
-            ref="fullName"
-            v-model="updateForm.fullName"
-            :placeholder="$t('root.fullName')"
-            name="fullName"
-            type="text"
-            tabindex="1"
-          />
-        </el-form-item>
+        <el-form ref="updateForm" :model="updateForm" :rules="updateRules" class="form-wrapper form-wrapper" autocomplete="off" label-position="left">
+          <el-form-item prop="fullName" class="el-form-item">
+            <span class="svg-container">
+              <svg-icon icon-class="user" />
+            </span>
+            <el-input
+              ref="fullName"
+              v-model="updateForm.fullName"
+              :placeholder="$t('root.fullName')"
+              name="fullName"
+              type="text"
+              tabindex="1"
+            />
+          </el-form-item>
 
-        <el-form-item prop="phoneNumber" class="el-form-item">
-          <span class="svg-container">
-            <i class="el-icon-phone" />
-          </span>
-          <el-input
-            ref="phoneNumber"
-            v-model="updateForm.phoneNumber"
-            :placeholder="$t('root.phone')"
-            name="phoneNumber"
-            type="text"
-            tabindex="1"
-          />
-        </el-form-item>
+          <el-form-item prop="phoneNumber" class="el-form-item">
+            <span class="svg-container">
+              <i class="el-icon-phone" />
+            </span>
+            <el-input
+              ref="phoneNumber"
+              v-model="updateForm.phoneNumber"
+              :placeholder="$t('root.phone')"
+              name="phoneNumber"
+              type="text"
+              tabindex="1"
+            />
+          </el-form-item>
 
-        <el-form-item prop="email" class="el-form-item">
-          <span class="svg-container">
-            <svg-icon icon-class="email" />
-          </span>
-          <el-input
-            ref="email"
-            v-model="updateForm.email"
-            placeholder="Email"
-            name="email"
-            type="text"
-            tabindex="1"
-          />
-        </el-form-item>
+          <el-form-item prop="email" class="el-form-item">
+            <span class="svg-container">
+              <svg-icon icon-class="email" />
+            </span>
+            <el-input
+              ref="email"
+              v-model="updateForm.email"
+              placeholder="Email"
+              name="email"
+              type="text"
+              tabindex="1"
+            />
+          </el-form-item>
 
-        <el-form-item prop="address" class="el-form-item">
-          <span class="svg-container">
-            <i class="el-icon-location" />
-          </span>
-          <el-input
-            ref="address"
-            v-model="updateForm.address"
-            :placeholder="$t('root.address')"
-            name="address"
-            type="text"
-            tabindex="1"
-          />
-        </el-form-item>
+          <el-form-item prop="address" class="el-form-item">
+            <span class="svg-container">
+              <i class="el-icon-location" />
+            </span>
+            <el-input
+              ref="address"
+              v-model="updateForm.address"
+              :placeholder="$t('root.address')"
+              name="address"
+              type="text"
+              tabindex="1"
+            />
+          </el-form-item>
 
-        <el-form-item>
-          <el-button :loading="updating" type="primary" @click.native.prevent="updateProfile">{{ $t('root.update')}}</el-button>
-        </el-form-item>
-      </el-form>
-    </el-col>
+          <el-form-item>
+            <el-button :loading="updating" type="primary" @click.native.prevent="updateProfile">{{ $t('root.update') }}</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
     </el-row>
   </el-card>
 </template>
 
 <script>
 import { isEmpty, validEmail } from '@/utils/validate'
-import { updateProfile } from '@/api/user';
 import codes from '@/utils/country-code'
 import i18n from '@/lang'
 import PanThumb from '@/components/PanThumb'
@@ -135,7 +134,7 @@ export default {
         email: [{ required: false, trigger: 'blur', validator: validateEmail }],
         fullName: [{ required: false, trigger: 'blur', validator: validateEmpty }],
         phoneNumber: [{ required: false, trigger: 'blur', validator: noValidate }],
-        address: [{ required: false, trigger: 'blur', validator: noValidate }],
+        address: [{ required: false, trigger: 'blur', validator: noValidate }]
       },
       fileUploaded: this.user.profile.avatarURL
     }
@@ -144,11 +143,11 @@ export default {
     updateProfile() {
       this.$refs.updateForm.validate(valid => {
         if (valid) {
-          const form = this.updateForm;
-          this.updating = true;
-          let phone = form.phoneNumber;
+          const form = this.updateForm
+          this.updating = true
+          let phone = form.phoneNumber
           if (phone.length > 7 && phone.indexOf(codes.vn) === -1) {
-            phone = codes.vn + phone.substr(1);
+            phone = codes.vn + phone.substr(1)
           }
 
           const data = {
@@ -161,7 +160,7 @@ export default {
             gender: form.gender
           }
           this.$store.dispatch('user/updateProfile', data).then(() => {
-            this.updating = false;
+            this.updating = false
             this.$message({
               message: i18n.t('profile.updateProfileSuccess'),
               type: 'success',
@@ -170,8 +169,8 @@ export default {
             })
           })
         } else {
-          this.updating = false;
-          return false;
+          this.updating = false
+          return false
         }
       })
     },
@@ -180,8 +179,14 @@ export default {
     },
     handleClickUpload(e) {
       const avatar = e.target.files[0]
-      this.fileUploaded = avatar;
-    },
+      this.fileUploaded = URL.createObjectURL(avatar)
+      const formData = new FormData()
+      formData.append('file', avatar)
+
+      this.$store.dispatch('user/uploadAvatar', formData).then((response) => {
+        console.log(response)
+      })
+    }
   }
 }
 </script>
