@@ -12,6 +12,12 @@ const roles = [
     routes: routes
   },
   {
+    key: 'ROLE_USER',
+    name: 'ROLE_USER',
+    description: 'Super Administrator. Have access to view all pages.',
+    routes: routes
+  },
+  {
     key: 'editor',
     name: 'editor',
     description: 'Normal Editor. Can see all pages except permission page',

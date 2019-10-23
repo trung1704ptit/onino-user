@@ -87,7 +87,7 @@ const actions = {
         commit('SET_NAME', response.profile.fullName)
         commit('SET_AVATAR', response.profile.avatarURL)
         commit('SET_INTRODUCTION', '')
-        resolve(data)
+        resolve(response)
       }).catch(error => {
         reject(error)
       })
@@ -95,34 +95,34 @@ const actions = {
   },
 
   // user logout
-  // logout({ commit, state, dispatch }) {
-  //   return new Promise((resolve, reject) => {
-  //     logout(state.token).then(() => {
-  //       commit('SET_TOKEN', '')
-  //       commit('SET_ROLES', [])
-  //       removeToken()
-  //       resetRouter()
+  logout({ commit, state, dispatch }) {
+    return new Promise((resolve, reject) => {
+      logout(state.token).then(() => {
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        removeToken()
+        resetRouter()
 
-  //       // reset visited views and cached views
-  //       // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-  //       dispatch('tagsView/delAllViews', null, { root: true })
+        // reset visited views and cached views
+        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
+        dispatch('tagsView/delAllViews', null, { root: true })
 
-  //       resolve()
-  //     }).catch(error => {
-  //       reject(error)
-  //     })
-  //   })
-  // },
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
 
   // remove token
-  // resetToken({ commit }) {
-  //   return new Promise(resolve => {
-  //     commit('SET_TOKEN', '')
-  //     commit('SET_ROLES', [])
-  //     removeToken()
-  //     resolve()
-  //   })
-  // },
+  resetToken({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      commit('SET_ROLES', [])
+      removeToken()
+      resolve()
+    })
+  },
 
   // dynamically modify permissions
   changeRoles({ commit, dispatch }, role) {
@@ -132,12 +132,12 @@ const actions = {
       commit('SET_TOKEN', token)
       setToken(token)
 
-      const { roles } = await dispatch('getInfo')
+      const { authorities } = await dispatch('getInfo')
 
       resetRouter()
 
       // generate accessible routes map based on roles
-      const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
+      const accessRoutes = await dispatch('permission/generateRoutes', authorities, { root: true })
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes)
