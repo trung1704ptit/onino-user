@@ -46,7 +46,7 @@ export function logout() {
 
 export function updateProfile(data) {
   return request({
-    url: userEndpoint.updateUserProfileEndpoint,
+    url: userEndpoint.updateProfileEndpoint,
     method: 'post',
     data
   })

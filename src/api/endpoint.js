@@ -5,7 +5,7 @@ export const baseEndpoint = `${oninoEndpoint}/base`;
 export const userEndpoint = {
     userRegisterEndpoint: `${baseEndpoint}/user/register`,
     userLoginEndpoint: `${oninoEndpoint}/uaa/oauth/token`,
-    updateUserProfileEndpoint: `${baseEndpoint}/user/updateUserProfile`,
+    updateProfileEndpoint: `${baseEndpoint}/user/updateProfile`,
     uploadAvatarEndpoint: `${baseEndpoint}/user/uploadAvatar`,
     userVerifyEndpoint: `${baseEndpoint}/user/verify`,
     userProfileEndpoint: `${baseEndpoint}/user/getRegistry`,

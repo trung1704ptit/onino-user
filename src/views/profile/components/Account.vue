@@ -57,13 +57,14 @@
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click.native.prevent="updateProfile">{{ $t('root.update')}}</el-button>
+      <el-button :loading="updating" type="primary" @click.native.prevent="updateProfile">{{ $t('root.update')}}</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
 import { isEmpty, validEmail } from '@/utils/validate'
+import { updateProfile } from '@/api/user';
 import codes from '@/utils/country-code'
 import i18n from '@/lang'
 
@@ -90,6 +91,7 @@ export default {
       callback()
     }
     return {
+      updating: false,
       updateForm: {
         fullName: this.user.profile.fullName,
         email: this.user.profile.email,
@@ -112,23 +114,32 @@ export default {
       this.$refs.updateForm.validate(valid => {
         if (valid) {
           const form = this.updateForm;
+          this.updating = true;
+          let phone = form.phoneNumber;
+          if (phone.length > 7 && phone.indexOf(codes.vn) === -1) {
+            phone = codes.vn + phone.substr(1);
+          }
 
           const data = {
             email: form.email,
             fullName: form.fullName,
             address: form.address,
-            phoneNumber: form.phoneNumber,
+            phoneNumber: phone,
             avatarURL: form.avatarURL,
             dateOfBirth: form.dateOfBirth,
             gender: form.gender
           }
-
-          this.$message({
-            message: i18n.t('profile.updateProfileSuccess'),
-            type: 'success',
-            duration: 5 * 1000
+          this.$store.dispatch('user/updateProfile', data).then(() => {
+            this.updating = false;
+            this.$message({
+              message: i18n.t('profile.updateProfileSuccess'),
+              type: 'success',
+              showClose: true,
+              duration: 4000
+            })
           })
         } else {
+          this.updating = false;
           return false;
         }
       })

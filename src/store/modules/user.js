@@ -154,7 +154,7 @@ const actions = {
   updateProfile({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       updateProfile(userInfo).then(response => {
-        commit('SET_USER_PROFILE', userInfo);
+        commit('SET_USER_PROFILE', response);
         resolve();
       }).catch(error => {
         reject(error)
