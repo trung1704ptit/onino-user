@@ -121,11 +121,11 @@ export const constantRoutes = [
   {
     path: '/profile',
     component: Layout,
-    redirect: '/profile/index',
+    redirect: '/profile',
     hidden: true,
     children: [
       {
-        path: 'index',
+        path: '',
         component: () => import('@/views/profile/index'),
         name: 'Profile',
         meta: { title: 'profile', icon: 'user', noCache: true }

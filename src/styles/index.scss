@@ -4,7 +4,6 @@
 @import './element-ui.scss';
 @import './sidebar.scss';
 @import './btn.scss';
-@import './responsive.scss';
 
 body {
   height: 100%;
@@ -263,3 +262,5 @@ aside {
 .d-none {
   display: none;
 }
+
+@import './responsive.scss';

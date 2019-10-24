@@ -232,6 +232,12 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+  .form-wrapper {
+    padding: 0;
+    @media screen and (max-width: 767px){
+      padding: 30px 0;
+    }
+  }
  .box-center {
    margin: 0 auto;
    display: table;
