@@ -108,9 +108,16 @@ const actions = {
 
         commit('SET_ROLES', authorities)
         commit('SET_NAME', response.profile.fullName)
-        commit('SET_AVATAR', response.profile.avatarURL)
-        commit('SET_USER_INFO', response)
-        resolve(response)
+        commit('SET_AVATAR', `${response.profile.avatarURL}?${new Date().getTime()}`)
+        const newResponse = {
+          ...response,
+          profile: {
+            ...response.profile,
+            avatarURL: `${response.profile.avatarURL}?${new Date().getTime()}`
+          }
+        }
+        commit('SET_USER_INFO', newResponse)
+        resolve(newResponse)
       }).catch(error => {
         reject(error)
       })
@@ -151,8 +158,13 @@ const actions = {
   updateProfile({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       updateProfile(userInfo).then(response => {
-        commit('SET_USER_PROFILE', response)
-        resolve()
+        console.log(response);
+        const newResponse = {
+          ...response,
+          avatarURL: `${response.avatarURL}?${new Date().getTime()}`
+        }
+        commit('SET_USER_PROFILE', newResponse)
+        resolve(newResponse)
       }).catch(error => {
         reject(error)
       })
@@ -163,8 +175,10 @@ const actions = {
   uploadAvatar({ commit }, formData) {
     return new Promise((resolve, reject) => {
       uploadAvatar(formData).then(response => {
-        commit('SET_AVATAR', response.avatarURL)
-        resolve()
+        if (response && response.data && response.data.avatarURL) {
+          commit('SET_AVATAR', response.data.avatarURL + '?' + new Date().getTime())
+        }
+        resolve(response)
       }).catch(error => {
         reject(error)
       })

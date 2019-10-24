@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      fileUploaded: this.user.profile.avatarURL
+      fileUploaded: this.user.profile.avatarURL + '?' + new Date().getTime()
     }
   },
   methods: {
@@ -52,7 +52,6 @@ export default {
     },
     handleClickUpload(e) {
       const avatar = e.target.files[0]
-      console.log(avatar);
       this.fileUploaded = avatar;
     },
   }

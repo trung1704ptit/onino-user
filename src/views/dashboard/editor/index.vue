@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-editor-container">
     <div class=" clearfix">
-      <pan-thumb :image="avatar" style="float: left">
+      <pan-thumb :image="userInfo.profile.avatarURL" style="float: left">
         Your roles:
         <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
       </pan-thumb>
@@ -33,7 +33,7 @@ export default {
   computed: {
     ...mapGetters([
       'name',
-      'avatar',
+      'userInfo',
       'roles'
     ])
   }

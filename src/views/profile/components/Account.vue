@@ -8,7 +8,7 @@
 
         <div class="user-profile">
           <div class="box-center">
-            <pan-thumb :image="fileUploaded" :height="'200px'" :width="'200px'" :hoverable="false">
+            <pan-thumb :image="avatarPreview" :height="'200px'" :width="'200px'" :hoverable="false">
               <div>{{ $t('root.hello') }}</div>
               {{ user.profile.fullName }}
             </pan-thumb>
@@ -136,12 +136,13 @@ export default {
         phoneNumber: [{ required: false, trigger: 'blur', validator: noValidate }],
         address: [{ required: false, trigger: 'blur', validator: noValidate }]
       },
-      fileUploaded: this.user.profile.avatarURL
+      avatarPreview: this.user.profile.avatarURL,
+      avatarUploaded: null
     }
   },
   methods: {
     updateProfile() {
-      this.$refs.updateForm.validate(valid => {
+      this.$refs.updateForm.validate(async valid => {
         if (valid) {
           const form = this.updateForm
           this.updating = true
@@ -150,7 +151,7 @@ export default {
             phone = codes.vn + phone.substr(1)
           }
 
-          const data = {
+          let data = {
             email: form.email,
             fullName: form.fullName,
             address: form.address,
@@ -158,6 +159,14 @@ export default {
             avatarURL: form.avatarURL,
             dateOfBirth: form.dateOfBirth,
             gender: form.gender
+          }
+
+          if (this.avatarUploaded) {
+            const formData = new FormData()
+            formData.append('file', this.avatarUploaded)
+
+            const response = await this.$store.dispatch('user/uploadAvatar', formData)
+            if (response && response.data && response.data.avatarURL) data.avatarURL = response.data.avatarURL
           }
           this.$store.dispatch('user/updateProfile', data).then(() => {
             this.updating = false
@@ -179,13 +188,8 @@ export default {
     },
     handleClickUpload(e) {
       const avatar = e.target.files[0]
-      this.fileUploaded = URL.createObjectURL(avatar)
-      const formData = new FormData()
-      formData.append('file', avatar)
-
-      this.$store.dispatch('user/uploadAvatar', formData).then((response) => {
-        console.log(response)
-      })
+      this.avatarPreview = URL.createObjectURL(avatar)
+      this.avatarUploaded = avatar;
     }
   }
 }
