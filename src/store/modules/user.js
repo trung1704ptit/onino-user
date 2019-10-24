@@ -14,7 +14,8 @@ const state = {
   phoneNumber: '',
   roles: [],
   user: {},
-  userInfo: {}
+  userInfo: {},
+  timestamp: new Date().getTime()
 }
 
 const mutations = {
@@ -108,12 +109,12 @@ const actions = {
 
         commit('SET_ROLES', authorities)
         commit('SET_NAME', response.profile.fullName)
-        commit('SET_AVATAR', `${response.profile.avatarURL}?${new Date().getTime()}`)
+        commit('SET_AVATAR', `${response.profile.avatarURL}?${state.timestamp}`)
         const newResponse = {
           ...response,
           profile: {
             ...response.profile,
-            avatarURL: `${response.profile.avatarURL}?${new Date().getTime()}`
+            avatarURL: `${response.profile.avatarURL}?${state.timestamp}`
           }
         }
         commit('SET_USER_INFO', newResponse)
@@ -158,12 +159,14 @@ const actions = {
   updateProfile({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       updateProfile(userInfo).then(response => {
-        console.log(response);
         const newResponse = {
-          ...response,
-          avatarURL: `${response.avatarURL}?${new Date().getTime()}`
+          ...state.userInfo,
+          profile: {
+            ...response,
+            avatarURL: `${response.avatarURL}?${state.timestamp}`
+          }
         }
-        commit('SET_USER_PROFILE', newResponse)
+        commit('SET_USER_INFO', newResponse)
         resolve(newResponse)
       }).catch(error => {
         reject(error)
@@ -176,7 +179,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       uploadAvatar(formData).then(response => {
         if (response && response.data && response.data.avatarURL) {
-          commit('SET_AVATAR', response.data.avatarURL + '?' + new Date().getTime())
+          commit('SET_AVATAR', `${response.data.avatarURL}?${state.timestamp}`)
         }
         resolve(response)
       }).catch(error => {

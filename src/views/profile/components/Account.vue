@@ -176,6 +176,7 @@ export default {
               showClose: true,
               duration: 4000
             })
+            location.reload();
           })
         } else {
           this.updating = false
