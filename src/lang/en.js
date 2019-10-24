@@ -85,7 +85,8 @@ export default {
     name: 'Name',
     fullName: 'Full name',
     address: 'Address',
-    hello: 'Hello'
+    hello: 'Hello',
+    viewAll: 'View all'
   },
   login: {
     title: 'Login Form',
@@ -220,5 +221,8 @@ export default {
   },
   lang: {
     switchLanguageSuccess: 'Switch language successful'
+  },
+  dashboard: {
+    cameraSecurity: 'Camera securirty'
   }
 }

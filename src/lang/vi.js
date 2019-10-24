@@ -76,7 +76,8 @@ export default {
     name: 'Tên',
     fullName: 'Họ và tên',
     address: 'Địa chỉ',
-    hello: 'Xin chào'
+    hello: 'Xin chào',
+    viewAll: 'Xem tất cả'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -220,5 +221,8 @@ export default {
   },
   lang: {
     switchLanguageSuccess: 'Chuyển đổi ngôn ngữ thành công'
+  },
+  dashboard: {
+    cameraSecurity: 'Camera an ninh'
   }
 }
