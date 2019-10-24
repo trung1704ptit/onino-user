@@ -17,9 +17,26 @@
             <div class="user-name text-center">{{ user.profile.fullName }}</div>
             <!-- <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div> -->
           </div>
+          <br />
 
-          <input ref="avatar-upload-input" class="d-none" type="file" accept="image/*" @change="handleClickUpload">
-          <el-button size="mini" type="success" icon="el-icon-upload" class="box-center" @click="handleUpload">Thay đổi Avatar</el-button>
+          <!-- <input ref="avatar-upload-input" class="d-none" type="file" accept="image/*" @change="handleClickUpload"> -->
+          <!-- <el-button size="mini" type="success" icon="el-icon-upload" class="box-center" @click="handleUpload">Thay đổi Avatar</el-button> -->
+          <image-uploader
+              :preview="false"
+              :className="['fileinput', { 'fileinput--loaded': hasImage }]"
+              capture="environment"
+              :debug="1"
+              :maxWidth="200"
+              doNotResize="gif"
+              :autoRotate="true"
+              outputFormat="verbose"
+              @input="setImage"
+            >
+              <label for="fileInput" slot="upload-label">
+                <el-button for="fileInput" slot="upload-label" size="mini" type="success" icon="el-icon-upload" class="box-center upload-caption" @click="handleClickUpload">Thay đổi Avatar</el-button>
+              </label>
+
+          </image-uploader>
         </div>
       </el-col>
 
@@ -95,6 +112,11 @@ import { isEmpty, validEmail } from '@/utils/validate'
 import codes from '@/utils/country-code'
 import i18n from '@/lang'
 import PanThumb from '@/components/PanThumb'
+import Vue from 'vue'
+import { dataURLtoFile } from '@/utils'
+import ImageUploader from "vue-image-upload-resize";
+
+Vue.use(ImageUploader);
 
 export default {
   components: { PanThumb },
@@ -120,6 +142,8 @@ export default {
       callback()
     }
     return {
+      hasImage: false,
+      image: null,
       updating: false,
       updateForm: {
         fullName: this.user.profile.fullName,
@@ -188,13 +212,24 @@ export default {
       this.$refs['avatar-upload-input'].click()
     },
     handleClickUpload(e) {
-      const avatar = e.target.files[0]
-      this.avatarPreview = URL.createObjectURL(avatar)
-      this.avatarUploaded = avatar;
-    }
+      // const avatar = e.target.files[0]
+      // this.avatarPreview = URL.createObjectURL(avatar)
+      // this.avatarUploaded = avatar;
+      document.getElementById("fileInput").click()
+    },
+    setImage: function(output) {
+      this.avatarPreview = output.dataUrl
+      this.avatarUploaded = dataURLtoFile(output.dataUrl, 'avatar-user.png');
+    },
   }
 }
 </script>
+
+<style>
+  #fileInput {
+    display: none;
+  }
+</style>
 
 <style lang="scss" scoped>
  .box-center {
