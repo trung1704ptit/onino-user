@@ -1,7 +1,5 @@
 <template>
   <div class="dashboard-editor-container">
-    <github-corner class="github-corner" />
-
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
@@ -10,17 +8,17 @@
 
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper box">
           <raddar-chart />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper box">
           <pie-chart />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
+        <div class="chart-wrapper box">
           <bar-chart />
         </div>
       </el-col>
@@ -37,11 +35,46 @@
         <box-card />
       </el-col>
     </el-row>
+
+    <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 2], [768, 3]]" :paginationEnabled="false">
+      <slide>
+        <div class="box p-15 camera">
+          <div class="title">
+            <span>Phòng Khách</span>
+          </div>
+          <img src="@/assets/img/camera-01.jpg" />
+        </div>
+      </slide>
+      <slide>
+        <div class="box p-15 camera">
+          <div class="title">
+            <span>Phòng Ngủ</span>
+          </div>
+          <img src="@/assets/img/camera-02.jpg" />
+        </div>
+      </slide>
+      <slide>
+        <div class="box p-15 camera">
+          <div class="title">
+            <span>Phòng Bếp</span>
+          </div>          
+          <img src="@/assets/img/camera-01.jpg" />
+        </div>
+      </slide>
+      <slide>
+        <div class="box p-15 camera">
+          <div class="title">
+            <span>Cửa Trước</span>
+          </div>          
+          <img src="@/assets/img/camera-01.jpg" />
+        </div>
+      </slide>
+    </carousel>
   </div>
 </template>
 
 <script>
-import GithubCorner from '@/components/GithubCorner'
+import Vue from 'vue'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
 import RaddarChart from './components/RaddarChart'
@@ -50,6 +83,9 @@ import BarChart from './components/BarChart'
 import TransactionTable from './components/TransactionTable'
 import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
+import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
+ 
+Vue.use(VueCarousel);
 
 const lineChartData = {
   newVisitis: {
@@ -73,7 +109,6 @@ const lineChartData = {
 export default {
   name: 'DashboardAdmin',
   components: {
-    GithubCorner,
     PanelGroup,
     LineChart,
     RaddarChart,
@@ -81,7 +116,9 @@ export default {
     BarChart,
     TransactionTable,
     TodoList,
-    BoxCard
+    BoxCard,
+    Carousel,
+    Slide
   },
   data() {
     return {
@@ -113,6 +150,26 @@ export default {
     background: #fff;
     padding: 16px 16px 0;
     margin-bottom: 32px;
+  }
+}
+.camera {
+  position: relative;
+  cursor: pointer;
+  img {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    padding: 2vw;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
   }
 }
 

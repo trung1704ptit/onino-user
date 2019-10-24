@@ -262,5 +262,20 @@ aside {
 .d-none {
   display: none;
 }
-
+.p-15 {
+  padding: 15px;
+}
+.p-10 {
+  padding: 10px;
+}
+.m-15 {
+  margin: 15px;
+}
+.m-10 {
+  margin: 10px;
+}
+.box {
+  background: #fff;
+  border-radius: 4px;
+}
 @import './responsive.scss';
