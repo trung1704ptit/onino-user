@@ -3,7 +3,7 @@
     <div>
       <svg-icon class-name="international-icon" icon-class="language" />
     </div>
-    <el-dropdown-menu slot="dropdown">
+    <el-dropdown-menu slot="dropdown" class="dropdown-header-menu">
       <el-dropdown-item :disabled="language==='vi'" command="vi">
         Tiếng Việt
       </el-dropdown-item>

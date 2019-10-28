@@ -227,5 +227,8 @@ export default {
   },
   dashboard: {
     cameraSecurity: 'Camera securirty'
+  },
+  notification: {
+    notification: 'Thông báo'
   }
 }
