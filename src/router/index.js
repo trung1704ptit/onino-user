@@ -135,6 +135,18 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/camera',
+    component: Layout,
+    redirect: '/camera/index',
+    children: [
+      {
+        path: '/camera',
+        component: () => import('@/views/camera/index'),
+        meta: { title: 'Camera', icon: 'eye-open', noCache: true }
+      }
+    ]
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile',

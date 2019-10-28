@@ -230,6 +230,9 @@ export default {
     roomList: 'Room list'
   },
   notification: {
-    notification: 'Thông báo'
+    notification: 'Notification'
+  },
+  camera: {
+    sensorHistory: 'Sensor history'
   }
 }

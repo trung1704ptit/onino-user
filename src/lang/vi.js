@@ -231,5 +231,8 @@ export default {
   },
   notification: {
     notification: 'Thông báo'
+  },
+  camera: {
+    sensorHistory: 'Lịch sử cảm biến'
   }
 }

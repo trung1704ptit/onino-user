@@ -14,36 +14,44 @@
         navigationPrevLabel='<i class="el-icon-arrow-left" />'
       >
         <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Phòng Khách</span>
+          <router-link to="/camera">
+            <div class="box p-15 camera">
+              <div class="title">
+                <span>Phòng Khách</span>
+              </div>
+              <img src="@/assets/img/camera-01.jpg"/>
             </div>
-            <img src="@/assets/img/camera-01.jpg"/>
-          </div>
+          </router-link>
         </slide>
         <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Phòng Ngủ</span>
+          <router-link to="/camera">
+            <div class="box p-15 camera">
+              <div class="title">
+                <span>Phòng Khách</span>
+              </div>
+              <img src="@/assets/img/camera-01.jpg"/>
             </div>
-            <img src="@/assets/img/camera-02.jpg" />
-          </div>
+          </router-link>
         </slide>
         <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Phòng Bếp</span>
-            </div>          
-            <img src="@/assets/img/camera-01.jpg" />
-          </div>
+          <router-link to="/camera">
+            <div class="box p-15 camera">
+              <div class="title">
+                <span>Phòng ăn</span>
+              </div>
+              <img src="@/assets/img/camera-01.jpg"/>
+            </div>
+          </router-link>
         </slide>
         <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Cửa Trước</span>
-            </div>          
-            <img src="@/assets/img/camera-01.jpg" />
-          </div>
+          <router-link to="/camera">
+            <div class="box p-15 camera">
+              <div class="title">
+                <span>Phòng Ngủ</span>
+              </div>
+              <img src="@/assets/img/camera-01.jpg"/>
+            </div>
+          </router-link>
         </slide>
       </carousel>
     </section>

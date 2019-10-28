@@ -40,7 +40,7 @@
       </el-col>
     </el-row>
 
-    <camera />
+    <camera-list />
   </div>
 </template>
 
@@ -56,7 +56,7 @@ import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
 import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
 import Weather from './components/Weather';
-import Camera from './components/Camera';
+import CameraList from './components/CameraList';
 import RoomList from './components/RoomList';
 
  
@@ -95,7 +95,7 @@ export default {
     Carousel,
     Slide,
     Weather,
-    Camera,
+    CameraList,
     RoomList
   },
   data() {
@@ -119,13 +119,6 @@ export default {
   padding: 15px;
   background-color: rgb(240, 242, 245);
   position: relative;
-
-  .github-corner {
-    position: absolute;
-    top: 0px;
-    border: 0;
-    right: 0;
-  }
 
   .chart-wrapper {
     background: #fff;

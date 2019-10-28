@@ -69,7 +69,4 @@ export default {
         border-radius: 50%;
         margin-right: 15px;
     }
-    .timestamp {
-        color: var(--dark-gray);
-    }
 </style>

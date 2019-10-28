@@ -14,7 +14,7 @@
         navigationPrevLabel='<i class="el-icon-arrow-left" />'
       >
         <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/bed.png" class="room-icon" />
             <div class="title">
                 <span>Phòng ngủ</span>
@@ -26,7 +26,7 @@
           </div>
         </slide>
         <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/bed.png" class="room-icon" />
             <div class="title">
                 <span>Phòng ngủ</span>
@@ -38,7 +38,7 @@
           </div>
         </slide>
         <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/shower.png" class="room-icon" />
             <div class="title">
                 <span>Phòng tắm</span>
@@ -50,7 +50,7 @@
           </div>
         </slide>
         <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/bed.png" class="room-icon" />
             <div class="title">
                 <span>Phòng ngủ</span>
@@ -62,7 +62,7 @@
           </div>
         </slide>
                 <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/shower.png" class="room-icon" />
             <div class="title">
                 <span>Phòng tắm</span>
@@ -74,7 +74,7 @@
           </div>
         </slide>
         <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/bed.png" class="room-icon" />
             <div class="title">
                 <span>Phòng ngủ</span>
@@ -86,7 +86,7 @@
           </div>
         </slide>
                 <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/shower.png" class="room-icon" />
             <div class="title">
                 <span>Phòng tắm</span>
@@ -98,7 +98,7 @@
           </div>
         </slide>
         <slide>
-          <div class="box p-15 block" @click="viewBlock">
+          <div class="box p-15 block">
             <img src="@/assets/img/bed.png" class="room-icon" />
             <div class="title">
                 <span>Phòng ngủ</span>
