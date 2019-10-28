@@ -137,12 +137,23 @@ export const constantRoutes = [
   {
     path: '/camera',
     component: Layout,
-    redirect: '/camera/CameraDetail',
+    redirect: '/camera/CameraSlide',
+    name: 'Camera',
+    meta: {
+      title: 'camera',
+      icon: 'example'
+    },
     children: [
       {
-        path: '/camera',
-        component: () => import('@/views/camera/index'),
-        meta: { title: 'Camera', icon: 'eye-open', noCache: true }
+        path: 'tat-ca',
+        component: () => import('@/views/camera/CameraGrid'),
+        meta: { title: 'camera', icon: 'eye-open', noCache: true }
+      },
+      {
+        path: 'chi-tiet',
+        component: () => import('@/views/camera/CameraDetail'),
+        meta: { title: 'camera', icon: 'eye-open', noCache: true },
+        hidden: true
       }
     ]
   },

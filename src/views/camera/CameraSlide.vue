@@ -14,7 +14,7 @@
         navigationPrevLabel='<i class="el-icon-arrow-left" />'
       >
         <slide>
-          <router-link to="/camera">
+          <router-link to="/camera/chi-tiet">
             <div class="box p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
@@ -24,7 +24,7 @@
           </router-link>
         </slide>
         <slide>
-          <router-link to="/camera">
+          <router-link to="/camera/chi-tiet">
             <div class="box p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
@@ -34,7 +34,7 @@
           </router-link>
         </slide>
         <slide>
-          <router-link to="/camera">
+          <router-link to="/camera/chi-tiet">
             <div class="box p-15 camera">
               <div class="title">
                 <span>Phòng ăn</span>
@@ -44,7 +44,7 @@
           </router-link>
         </slide>
         <slide>
-          <router-link to="/camera">
+          <router-link to="/camera/chi-tiet">
             <div class="box p-15 camera">
               <div class="title">
                 <span>Phòng Ngủ</span>

@@ -71,7 +71,7 @@
                                 <img src="@/assets/img/camera-02.jpg" class="camera-capture" />
                             </div>
                         </li>
-                                                <li>
+                        <li>
                             <div class="flex space-between content">
                                 <div class="flex">
                                     <img src="@/assets/img/walking.png" class="action-icon" />
@@ -123,7 +123,7 @@ export default {
         margin: 0 15px;
     }
     .action-icon {
-        width: 50px;
+        width: 50px !important;
         height: 50px;
     }
     .camera-capture {
