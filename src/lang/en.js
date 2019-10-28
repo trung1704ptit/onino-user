@@ -66,7 +66,8 @@ export default {
     register: 'Register',
     forgotPassword: 'Forgot password',
     login: 'Login',
-    camera: 'Camera'
+    camera: 'Camera',
+    notification: 'Notification'
   },
   navbar: {
     dashboard: 'Dashboard',

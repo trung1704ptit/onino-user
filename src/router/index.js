@@ -130,7 +130,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Thong bao',
-        meta: { title: 'guide', icon: 'guide', noCache: true }
+        meta: { title: 'notification', icon: 'bell', noCache: true }
       }
     ]
   },
@@ -161,7 +161,6 @@ export const constantRoutes = [
     path: '/profile',
     component: Layout,
     redirect: '/profile',
-    hidden: true,
     children: [
       {
         path: '',

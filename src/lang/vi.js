@@ -66,7 +66,8 @@ export default {
     register: 'Đăng ký',
     forgotPassword: 'Lấy lại mật khẩu',
     login: 'Đăng nhập',
-    camera: 'Camera'
+    camera: 'Camera',
+    notification: 'Thông báo'
   },
   root: {
     register: 'Đăng ký',
