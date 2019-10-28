@@ -137,7 +137,7 @@ export const constantRoutes = [
   {
     path: '/camera',
     component: Layout,
-    redirect: '/camera/index',
+    redirect: '/camera/CameraDetail',
     children: [
       {
         path: '/camera',

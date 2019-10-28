@@ -40,7 +40,7 @@
       </el-col>
     </el-row>
 
-    <camera-list />
+    <camera-slide />
   </div>
 </template>
 
@@ -56,7 +56,7 @@ import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
 import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
 import Weather from './components/Weather';
-import CameraList from './components/CameraList';
+import CameraSlide from '@/views/camera/CameraSlide';
 import RoomList from './components/RoomList';
 
  
@@ -95,7 +95,7 @@ export default {
     Carousel,
     Slide,
     Weather,
-    CameraList,
+    CameraSlide,
     RoomList
   },
   data() {
