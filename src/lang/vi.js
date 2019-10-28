@@ -62,7 +62,10 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
     externalLink: 'External Link',
-    profile: 'Hồ sơ'
+    profile: 'Hồ sơ',
+    register: 'Đăng ký',
+    forgotPassword: 'Lấy lại mật khẩu',
+    login: 'Đăng nhập'
   },
   root: {
     register: 'Đăng ký',

@@ -53,12 +53,14 @@ export const constantRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
-    hidden: true
+    hidden: true,
+    meta: { title: 'login', icon: 'login', noCache: true }
   },
   {
     path: '/forgot-password',
     component: () => import('@/views/forgot-password/index'),
-    hidden: true
+    hidden: true,
+    meta: { title: 'forgotPassword', icon: 'guide', noCache: true }
   },
   {
     path: '/auth-redirect',
@@ -68,7 +70,8 @@ export const constantRoutes = [
   {
     path: '/register',
     component: () => import('@/views/register/index'),
-    hidden: true
+    hidden: true,
+    meta: { title: 'register', icon: 'guide', noCache: true }
   },
   {
     path: '/404',
@@ -114,6 +117,19 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
+        meta: { title: 'guide', icon: 'guide', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/thong-bao',
+    component: Layout,
+    redirect: '/guide/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/guide/index'),
+        name: 'Thong bao',
         meta: { title: 'guide', icon: 'guide', noCache: true }
       }
     ]
