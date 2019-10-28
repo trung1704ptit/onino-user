@@ -4,7 +4,7 @@
           <div><svg-icon icon-class="international" /></div>
           <div>Hà Nội</div>
           <div>Nắng to</div>
-          <div>27 C</div>
+          <div>28°C</div>
           <div>Độ ẩm 50%</div>
           <div>{{ moment(new Date()).format("DD/MM/YYYY")   }}</div>
       </div>

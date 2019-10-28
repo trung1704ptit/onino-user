@@ -4,17 +4,17 @@
         <i class="el-icon-bell" />
         </div>
         <el-dropdown-menu slot="dropdown" class="dropdown-header-menu">
-        <el-dropdown-item v-for="item of notifications" :key="item.value" :disabled="size===item.value" :command="item.value">
-            <div class="p-15 notify-item">
-                <div class="flex">
-                    <img :src="item.icon" class="notify-icon"/>
-                    <div>
-                        <p class="m-0">{{ item.description }}</p>
-                        <i class="timestamp">{{ moment(item.timestamp).format('HH:MM DD/MM/YYYY') }}</i>
+            <el-dropdown-item v-for="item of notifications" :key="item.value" :disabled="size===item.value" :command="item.value">
+                <div class="p-15 notify-item">
+                    <div class="flex">
+                        <img :src="item.icon" class="notify-icon"/>
+                        <div>
+                            <p class="m-0">{{ item.description }}</p>
+                            <i class="timestamp">{{ moment(item.timestamp).format('HH:MM DD/MM/YYYY') }}</i>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </el-dropdown-item>
+            </el-dropdown-item>
         </el-dropdown-menu>
     </el-dropdown>
 </template>

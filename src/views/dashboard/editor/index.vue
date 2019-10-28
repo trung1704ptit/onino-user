@@ -8,6 +8,8 @@
       <line-chart :chart-data="lineChartData" />
     </el-row>
 
+    <room-list />
+
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper box">
@@ -38,46 +40,7 @@
       </el-col>
     </el-row>
 
-    <section class="box section">
-      <div class="p-15 flex space-between">
-        <span class="section-title">{{ $t('dashboard.cameraSecurity') }}</span>
-        <router-link to="/"><span class="view-more">Xem thêm</span></router-link>
-      </div>
-      <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 1], [768, 3]]" :paginationEnabled="false" navigationEnabled>
-        <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Phòng Khách</span>
-            </div>
-            <img src="@/assets/img/camera-01.jpg"/>
-          </div>
-        </slide>
-        <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Phòng Ngủ</span>
-            </div>
-            <img src="@/assets/img/camera-02.jpg" />
-          </div>
-        </slide>
-        <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Phòng Bếp</span>
-            </div>          
-            <img src="@/assets/img/camera-01.jpg" />
-          </div>
-        </slide>
-        <slide>
-          <div class="box p-15 camera" @click="viewCamera">
-            <div class="title">
-              <span>Cửa Trước</span>
-            </div>          
-            <img src="@/assets/img/camera-01.jpg" />
-          </div>
-        </slide>
-      </carousel>
-    </section>
+    <camera />
   </div>
 </template>
 
@@ -93,6 +56,9 @@ import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
 import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
 import Weather from './components/Weather';
+import Camera from './components/Camera';
+import RoomList from './components/RoomList';
+
  
 Vue.use(VueCarousel);
 
@@ -128,7 +94,9 @@ export default {
     BoxCard,
     Carousel,
     Slide,
-    Weather
+    Weather,
+    Camera,
+    RoomList
   },
   data() {
     return {
@@ -163,26 +131,6 @@ export default {
     background: #fff;
     padding: 16px 16px 0;
     margin-bottom: 32px;
-  }
-}
-.camera {
-  position: relative;
-  cursor: pointer;
-  img {
-    height: 300px;
-    object-fit: cover;
-    width: 100%;
-  }
-  .title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 4px;
-    padding: 2vw;
-    color: #fff;
-    background: rgba(0,0,0,0.5);
-    text-align: center;
   }
 }
 

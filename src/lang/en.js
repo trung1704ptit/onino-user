@@ -226,7 +226,8 @@ export default {
     switchLanguageSuccess: 'Switch language successful'
   },
   dashboard: {
-    cameraSecurity: 'Camera securirty'
+    cameraSecurity: 'Camera securirty',
+    roomList: 'Room list'
   },
   notification: {
     notification: 'Thông báo'
