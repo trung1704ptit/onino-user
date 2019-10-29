@@ -67,9 +67,22 @@
   overflow: unset;
 }
 .box-shadow {
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
 }
 .timestamp {
   color: var(--dark-gray);
   font-size: 12px;
+}
+.VueCarousel-navigation-button {
+  font-size: 35px !important;
+  background-color: rgba(0,0,0,.6) !important;
+  border-radius: 4px;
+  padding: unset !important;
+  color: #fff !important;
+}
+button.VueCarousel-navigation-next {
+  right: 60px !important;
+}
+button.VueCarousel-navigation-prev {
+  left: 60px !important;
 }

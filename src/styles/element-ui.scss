@@ -52,6 +52,13 @@
   left: 0;
   position: relative;
   margin: 0 auto;
+  width: 50%;
+  @media screen and (max-width: 767px) {
+    width: 90%;
+  }
+  .el-dialog__body {
+    padding: 15px 20px;
+  }
 }
 
 // refine element ui upload

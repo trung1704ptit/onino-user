@@ -67,7 +67,8 @@ export default {
     forgotPassword: 'Forgot password',
     login: 'Login',
     camera: 'Camera',
-    notification: 'Notification'
+    notification: 'Notification',
+    room: 'Room'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -91,7 +92,12 @@ export default {
     fullName: 'Full name',
     address: 'Address',
     hello: 'Hello',
-    viewAll: 'View all'
+    viewAll: 'View all',
+    delete: "Delete",
+    edit: "Edit",
+    cancel: 'Cancel',
+    accept: 'Accept',
+    confirm: 'Confirm'
   },
   login: {
     title: 'Login Form',
@@ -236,5 +242,9 @@ export default {
   },
   camera: {
     sensorHistory: 'Sensor history'
+  },
+  room: {
+    confirmDelete: 'Confirm delete room',
+    confirmDeleteMessage: 'Please confirm that you want to delete this room.'
   }
 }

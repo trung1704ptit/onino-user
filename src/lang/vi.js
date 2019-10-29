@@ -67,7 +67,8 @@ export default {
     forgotPassword: 'Lấy lại mật khẩu',
     login: 'Đăng nhập',
     camera: 'Camera',
-    notification: 'Thông báo'
+    notification: 'Thông báo',
+    room: 'Phòng'
   },
   root: {
     register: 'Đăng ký',
@@ -82,7 +83,12 @@ export default {
     fullName: 'Họ và tên',
     address: 'Địa chỉ',
     hello: 'Xin chào',
-    viewAll: 'Xem tất cả'
+    viewAll: 'Xem tất cả',
+    delete: "Xóa",
+    edit: "Sửa",
+    cancel: 'Thoát',
+    accept: 'Đồng ý',
+    confirm: 'Xác nhận'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -236,5 +242,9 @@ export default {
   },
   camera: {
     sensorHistory: 'Lịch sử cảm biến'
+  },
+  room: {
+    confirmDelete: 'Xác nhận xóa phòng',
+    confirmDeleteMessage: 'Vui lòng xác nhận rằng bạn muốn xóa phòng này.'
   }
 }

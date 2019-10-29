@@ -27,17 +27,15 @@ export default {
     return {
         notifications: [
             {
-                label: 'Default',
                 icon: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.userdata/5daebf23428cfd00010122f5?1572231646184',
-                value: 'default',
+                value: 'default1',
                 description: 'Nhiệt độ phòng đang là 33C, hệ thống điều hòa vừa được bật',
                 type:  'Kitchen',
                 timestamp: new Date()
             },
             {
-                label: 'Default',
                 icon: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.userdata/5daebf23428cfd00010122f5?1572231646184',
-                value: 'default',
+                value: 'default2',
                 description: 'Nhiệt độ phòng đang là 33C, hệ thống điều hòa vừa được bật',
                 type:  'Kitchen',
                 timestamp: new Date()

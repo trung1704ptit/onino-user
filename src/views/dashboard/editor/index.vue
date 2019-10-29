@@ -8,7 +8,7 @@
       <line-chart :chart-data="lineChartData" />
     </el-row>
 
-    <room-list />
+    <room-slide />
 
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
@@ -57,7 +57,7 @@ import BoxCard from './components/BoxCard'
 import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
 import Weather from './components/Weather';
 import CameraSlide from '@/views/camera/CameraSlide';
-import RoomList from './components/RoomList';
+import RoomSlide from '@/views/room/RoomSlide';
 
  
 Vue.use(VueCarousel);
@@ -96,7 +96,7 @@ export default {
     Slide,
     Weather,
     CameraSlide,
-    RoomList
+    RoomSlide
   },
   data() {
     return {

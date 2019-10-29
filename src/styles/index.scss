@@ -5,6 +5,7 @@
 @import './sidebar.scss';
 @import './btn.scss';
 @import './common.scss';
+@import './font-awesome.css';
 
 body {
   height: 100%;
@@ -42,8 +43,10 @@ html {
 }
 
 a:focus,
-a:active {
+a:active,
+a:visited {
   outline: none;
+  color: unset;
 }
 
 a,
@@ -63,14 +66,6 @@ div:focus {
 
 .fl {
   float: left;
-}
-
-.pr-5 {
-  padding-right: 5px;
-}
-
-.pl-5 {
-  padding-left: 5px;
 }
 
 .block {
@@ -216,6 +211,14 @@ aside {
 .p-15 {
   padding: 15px;
 }
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
 .p-10 {
   padding: 10px;
 }
@@ -231,14 +234,32 @@ aside {
 .mb-15 {
   margin-bottom: 15px;
 }
+.ml-15 {
+  margin-left: 15px;
+}
+.mr-15 {
+  margin-right: 15px;
+}
 .m-10 {
   margin: 10px;
+}
+.align-center {
+  text-align: center;
 }
 .space-between {
   justify-content: space-between;
 }
+.underline {
+  text-decoration: underline;
+}
+.text {
+  color: var(--main-color)
+}
 .box {
   background: #fff;
   border-radius: 4px;
+}
+.show {
+  display: block
 }
 @import './responsive.scss';

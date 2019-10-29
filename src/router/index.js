@@ -158,6 +158,29 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/room',
+    component: Layout,
+    redirect: '/room/RoomSlide',
+    name: 'Room',
+    meta: {
+      title: 'room',
+      icon: 'home'
+    },
+    children: [
+      {
+        path: 'tat-ca',
+        component: () => import('@/views/room/RoomGrid'),
+        meta: { title: 'room', icon: 'eye-open', noCache: true }
+      },
+      {
+        path: 'chi-tiet',
+        component: () => import('@/views/room/RoomDetail'),
+        meta: { title: 'room', icon: 'eye-open', noCache: true },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile',

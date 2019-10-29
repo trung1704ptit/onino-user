@@ -2,7 +2,7 @@
     <section class="box section">
       <div class="p-15 flex space-between">
         <span class="section-title">{{ $t('dashboard.cameraSecurity') }}</span>
-        <router-link to="/"><span class="view-more">Xem thêm</span></router-link>
+        <router-link to="/camera/tat-ca"><span class="view-more">{{ $t('root.viewAll')}}</span></router-link>
       </div>
       <carousel
         :per-page="1"
@@ -58,37 +58,24 @@
 </template>
 
 <style lang="scss">
-    .VueCarousel-navigation-button {
-        font-size: 35px !important;
-        background-color: rgba(0,0,0,.6) !important;
+  .camera {
+    position: relative;
+    cursor: pointer;
+    img {
+        height: 300px;
+        object-fit: cover;
+        width: 100%;
+    }
+    .title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         border-radius: 4px;
-        padding: unset !important;
-        color: #fff !important;
+        padding: 2vw;
+        color: #fff;
+        background: rgba(0,0,0,0.5);
+        text-align: center;
     }
-    button.VueCarousel-navigation-next {
-        right: 60px !important;
-    }
-    button.VueCarousel-navigation-prev {
-        left: 60px !important;
-    }
-    .camera {
-        position: relative;
-        cursor: pointer;
-        img {
-            height: 300px;
-            object-fit: cover;
-            width: 100%;
-        }
-        .title {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 4px;
-            padding: 2vw;
-            color: #fff;
-            background: rgba(0,0,0,0.5);
-            text-align: center;
-        }
-    }
+  }
 </style>
