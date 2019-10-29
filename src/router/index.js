@@ -125,16 +125,12 @@ export const constantRoutes = [
     path: '/thong-bao',
     component: Layout,
     redirect: '/guide/index',
-    meta: {
-      title: 'notification',
-      icon: 'bell'
-    },
     children: [
       {
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Thong bao',
-        meta: { title: 'notification', icon: 'bell', noCache: true }
+        meta: { title: 'notification', icon: 'guide', noCache: true }
       }
     ]
   },
@@ -151,12 +147,12 @@ export const constantRoutes = [
       {
         path: 'tat-ca',
         component: () => import('@/views/camera/CameraGrid'),
-        meta: { title: 'camera', icon: 'eye-open', noCache: true }
+        meta: { title: 'camera', icon: 'eye-open' }
       },
       {
         path: 'chi-tiet',
         component: () => import('@/views/camera/CameraDetail'),
-        meta: { title: 'camera', icon: 'eye-open', noCache: true },
+        meta: { title: 'camera', icon: 'eye-open' },
         hidden: true
       }
     ]
@@ -175,6 +171,11 @@ export const constantRoutes = [
         path: 'tat-ca',
         component: () => import('@/views/room/RoomGrid'),
         meta: { title: 'room', icon: 'eye-open', noCache: true }
+      },
+      {
+        path: 'them-moi',
+        component: () => import('@/views/room/CreateRoom'),
+        meta: { title: 'newRoom', icon: 'eye-open', noCache: true },
       },
       {
         path: 'chi-tiet',

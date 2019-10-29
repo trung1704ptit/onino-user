@@ -68,7 +68,8 @@ export default {
     login: 'Login',
     camera: 'Camera',
     notification: 'Notification',
-    room: 'Room'
+    room: 'Room',
+    newRoom: 'Add new room'
   },
   navbar: {
     dashboard: 'Dashboard',

@@ -68,7 +68,8 @@ export default {
     login: 'Đăng nhập',
     camera: 'Camera',
     notification: 'Thông báo',
-    room: 'Phòng'
+    room: 'Phòng',
+    newRoom: 'Thêm mới phòng'
   },
   root: {
     register: 'Đăng ký',
