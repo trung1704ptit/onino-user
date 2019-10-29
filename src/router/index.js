@@ -164,7 +164,7 @@ export const constantRoutes = [
     name: 'Room',
     meta: {
       title: 'room',
-      icon: 'home'
+      icon: 'eye-open'
     },
     children: [
       {

@@ -98,7 +98,8 @@ export default {
     edit: "Edit",
     cancel: 'Cancel',
     accept: 'Accept',
-    confirm: 'Confirm'
+    confirm: 'Confirm',
+    preview: 'Preview'
   },
   login: {
     title: 'Login Form',
@@ -246,6 +247,8 @@ export default {
   },
   room: {
     confirmDelete: 'Confirm delete room',
-    confirmDeleteMessage: 'Please confirm that you want to delete this room.'
+    confirmDeleteMessage: 'Please confirm that you want to delete this room.',
+    iconColor: 'Icon color',
+    bgColor: 'Background color'
   }
 }
