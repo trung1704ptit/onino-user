@@ -6,7 +6,7 @@
     </div>
     <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 2], [768, 6]]" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
         <slide v-for="(room, index) in rooms" :key="index">
-            <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="handleDelete" />
+            <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="handleDelete" class="box p-15 mb-15 block box-shadow"/>
         </slide>
     </carousel>
 

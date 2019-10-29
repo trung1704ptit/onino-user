@@ -125,6 +125,10 @@ export const constantRoutes = [
     path: '/thong-bao',
     component: Layout,
     redirect: '/guide/index',
+    meta: {
+      title: 'notification',
+      icon: 'bell'
+    },
     children: [
       {
         path: 'index',

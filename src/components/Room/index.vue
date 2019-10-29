@@ -1,6 +1,6 @@
 <template>
 <router-link to="/room/chi-tiet">
-    <div class="box p-15 block">
+    <div :class="room.class">
         <img src="@/assets/img/bed.png" class="room-icon" />
         <div class="title text mb-15">
             <span>{{ room.title }}</span>

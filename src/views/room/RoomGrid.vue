@@ -3,126 +3,94 @@
     <h4 class="section-title m-15">{{ $t('dashboard.roomList') }}</h4>
 
     <el-row :gutter="10">
-        <el-col :xs="24" :sm="6">
-            <router-link to="/room/chi-tiet">
-                <div class="box p-15 m-15 block box-shadow ">
-                    <img src="@/assets/img/bed.png" class="room-icon" />
-                    <div class="title text mb-15">
-                        <span>Phòng ngủ</span>
-                    </div>
-                    <div class="flex space-between text">
-                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28°C</span>
-                        <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                    </div>
-                    <div class="actions">
-                        <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')"></i>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
-                    </div>
-                </div>
-            </router-link>
-        </el-col>
-
-        <el-col :xs="24" :sm="6">
-            <router-link to="/room/chi-tiet">
-                <div class="box p-15 m-15 block box-shadow ">
-                    <img src="@/assets/img/bed.png" class="room-icon" />
-                    <div class="title text mb-15">
-                        <span>Phòng ngủ</span>
-                    </div>
-                    <div class="flex space-between text">
-                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28°C</span>
-                        <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                    </div>
-                    <div class="actions">
-                        <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')"></i>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
-                    </div>
-                </div>
-            </router-link>
-        </el-col>
-
-        <el-col :xs="24" :sm="6">
-            <router-link to="/room/chi-tiet">
-                <div class="box p-15 m-15 block box-shadow">
-                    <img src="@/assets/img/bed.png" class="room-icon" />
-                    <div class="title text mb-15">
-                        <span>Phòng ngủ</span>
-                    </div>
-                    <div class="flex space-between text">
-                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28°C</span>
-                        <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                    </div>
-                    <div class="actions">
-                        <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')"></i>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
-                    </div>
-                </div>
-            </router-link>
-        </el-col>
-
-        <el-col :xs="24" :sm="6">
-            <router-link to="/room/chi-tiet">
-                <div class="box p-15 m-15 block box-shadow">
-                    <img src="@/assets/img/bed.png" class="room-icon" />
-                    <div class="title text mb-15">
-                        <span>Phòng ngủ</span>
-                    </div>
-                    <div class="flex space-between text">
-                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28°C</span>
-                        <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                    </div>
-                    <div class="actions">
-                        <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')"></i>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
-                    </div>
-                </div>
-            </router-link>
-        </el-col>
-
-        <el-col :xs="24" :sm="6">
-            <router-link to="/room/chi-tiet">
-                <div class="box p-15 m-15 block box-shadow">
-                    <img src="@/assets/img/bed.png" class="room-icon" />
-                    <div class="title text mb-15">
-                        <span>Phòng ngủ</span>
-                    </div>
-                    <div class="flex space-between text">
-                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28°C</span>
-                        <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                    </div>
-                    <div class="actions">
-                        <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')"></i>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
-                    </div>
-                </div>
-            </router-link>
-        </el-col>
-
-        <el-col :xs="24" :sm="6">
-            <router-link to="/room/chi-tiet">
-                <div class="box p-15 m-15 block box-shadow">
-                    <img src="@/assets/img/bed.png" class="room-icon" />
-                    <div class="title text mb-15">
-                        <span>Phòng ngủ</span>
-                    </div>
-                    <div class="flex space-between text">
-                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28°C</span>
-                        <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                    </div>
-                    <div class="actions">
-                        <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')"></i>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
-                    </div>
-                </div>
-            </router-link>
+        <el-col :xs="24" :sm="6" v-for="(room, index) in rooms" :key="index">
+            <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="handleDelete" class="box p-15 block m-15 box-shadow" />
         </el-col>
     </el-row>
+
+    <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
+        <div>{{ $t('room.confirmDeleteMessage') }}</div>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogConfirmDelete = false">
+                {{ $t('root.cancel') }}
+            </el-button>
+            <el-button type="primary">
+                {{ $t('root.confirm') }}
+            </el-button>
+        </div>
+    </el-dialog>
 </section>
 </template>
 
+<script>
+import Room from '@/components/Room'
+
+export default {
+    data() {
+        return {
+            rooms: [{
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                },
+                {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                },
+                {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                },
+                {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                },
+                {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                },
+                {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                }, {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                },
+                {
+                    title: 'Phòng ngủ',
+                    icon: '@/assets/img/bed.png',
+                    temperature: 28,
+                    humidity: 80
+                }
+            ],
+            dialogConfirmDelete: false
+        }
+    },
+    components: {
+        Room
+    },
+    methods: {
+        handleDelete(e) {
+            e.preventDefault();
+            this.dialogConfirmDelete = true;
+        }
+    }
+}
+</script>
+
 <style lang="scss" scoped>
 @import './style.scss';
-.block .actions {
-    display: inline;
-}
 </style>
