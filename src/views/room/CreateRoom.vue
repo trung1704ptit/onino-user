@@ -10,11 +10,24 @@
         </el-col>
         <el-col :xs="24" :sm="18">
             <h4 class="mt-0">{{ $t('root.preview') }}</h4>
+
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': iconColor.hex, 'background': bgColor.hex, 'text-align': 'center'}" class="room-block">
+                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': iconColor.hex, 'background': bgColor.hex, 'text-align': 'center'}" class="room-block" :class="checked == icon ? 'active' : ''" @click="handleSelect(icon)">
                     <img :src="icon" class="preview-icon" />
                 </div>
             </div>
+
+            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
+                <el-form-item prop="roomName" class="el-form-item">
+                    <span class="svg-container">
+                        <svg-icon icon-class="user" />
+                    </span>
+                    <el-input ref="roomName" v-model="roomForm.roomName" :placeholder="$t('room.roomName')" name="roomName" type="text" tabindex="1" />
+                </el-form-item>
+                <el-button :loading="loading" type="primary" @click.native.prevent="handleCreateRoom">
+                    {{ $t('root.save') }}
+                </el-button>
+            </el-form>
         </el-col>
     </el-row>
 </section>
@@ -24,11 +37,23 @@
 import PickerColor from '@/components/PickerColor';
 import TintColor from '@/utils/tint-color';
 import {
+    isEmpty
+} from '@/utils/validate'
+import i18n from '@/lang'
+
+import {
     mapGetters
 } from 'vuex'
 
 export default {
     data() {
+        const validateRoomName = (rule, value, callback) => {
+            if (isEmpty(value)) {
+                callback(new Error(i18n.t('root.emptyString')))
+            } else {
+                callback()
+            }
+        }
         return {
             iconColor: {
                 hex: '#B13227'
@@ -37,7 +62,15 @@ export default {
                 hex: '#4CD7A9'
             },
             roomIcon: 'https://res.cloudinary.com/drcrre4xg/image/upload/c_scale,w_200/v1515227140/star-yellow_hjfybq.png',
-            groupIcons: []
+            groupIcons: [],
+            checked: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
+            roomForm: {
+                roomName: ''
+            },
+            roomRules: {
+                roomName: [{ required: true, trigger: 'blur', validator: validateRoomName }]
+            },
+            loading: false
         }
     },
 
@@ -83,20 +116,57 @@ export default {
         },
         updateBackground(value) {
             this.bgColor = value;
+        },
+        handleSelect(item) {
+            this.checked = item
+        },
+        handleCreateRoom() {
+            this.$refs.roomForm.validate(valid => {
+                if (valid) {
+                    this.loading = true;
+                } else {
+                    return false;
+                }
+            })
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
+.form-wrapper {
+    padding: 50px 0;
+    width: 50%;
+    margin: 0;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
 .room-block {
     border: 2px solid transparent;
     padding: 15px 30px;
     margin-right: 10px;
     border-radius: 4px;
-    display:inline-block;
+    margin-bottom: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 
-    &:hover {
+    &.active {
+        &:after {
+            position: absolute;
+            content: "\f058";
+            font-family: FontAwesome;
+            top: 5px;
+            right: 5px;
+            color: #85F271;
+        }
+    }
+
+    &:hover,
+    &.active {
         border: 2px solid var(--main-color)
     }
 }

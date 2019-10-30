@@ -90,7 +90,8 @@ export default {
     cancel: 'Thoát',
     accept: 'Đồng ý',
     confirm: 'Xác nhận',
-    preview: 'Xem trước'
+    preview: 'Xem trước',
+    save: 'Lưu lại'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -249,6 +250,7 @@ export default {
     confirmDelete: 'Xác nhận xóa phòng',
     confirmDeleteMessage: 'Vui lòng xác nhận rằng bạn muốn xóa phòng này.',
     iconColor: 'Màu biểu tượng',
-    bgColor: 'Màu nền'
+    bgColor: 'Màu nền',
+    roomName: 'Tên phòng'
   }
 }
