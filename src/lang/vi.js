@@ -77,7 +77,7 @@ export default {
     emptyString: 'Trường thông tin không được để trống',
     phone: 'Điện thoại',
     incorrectEmail: 'Địa chỉ email không hợp lệ',
-    somthingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau',
+    somethingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau',
     activate: 'Kích hoạt',
     update: 'Cập nhật',
     name: 'Tên',

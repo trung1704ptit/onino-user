@@ -48,7 +48,7 @@ service.interceptors.response.use(
     // if the custom code is not 200, it is judged as an error.
     if (response.status !== 200) {
       Message({
-        message: i18n.t('root.somthingWentWrong'),
+        message: i18n.t('root.somethingWentWrong'),
         type: 'error',
         duration: 5 * 1000
       })
@@ -73,7 +73,7 @@ service.interceptors.response.use(
   },
   error => {
     Message({
-      message: i18n.t('root.somthingWentWrong'),
+      message: i18n.t('root.somethingWentWrong'),
       type: 'error',
       duration: 5 * 1000
     })

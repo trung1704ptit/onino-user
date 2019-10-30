@@ -86,7 +86,7 @@ export default {
     emptyString: 'This field canot be empty',
     phone: 'Phone',
     incorrectEmail: 'Incorrect email address',
-    somthingWentWrong: 'Something went wrong',
+    somethingWentWrong: 'Something went wrong',
     activate: 'Activate',
     update: 'Update',
     name: 'Name',
