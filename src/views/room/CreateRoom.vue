@@ -10,7 +10,9 @@
         </el-col>
         <el-col :xs="24" :sm="2">
             <h4 class="mt-0">{{ $t('root.preview') }}</h4>
-            <div :style="{'color': iconColor.hex, 'background': bgColor.hex, 'padding': '20px', 'text-align': 'center'}">Text</div>
+            <div :style="{'color': iconColor.hex, 'background': bgColor.hex, 'padding': '20px', 'text-align': 'center'}">
+                <img :src="roomIcon" class="preview-icon" />
+            </div>
         </el-col>
     </el-row>
 </section>
@@ -18,12 +20,28 @@
 
 <script>
 import PickerColor from '@/components/PickerColor';
+import TintColor from '@/utils/tint-color';
 
 export default {
     data() {
         return {
-            iconColor: { hex: '#E8F0EB' },
-            bgColor: { hex: '#23ACAA' }
+            iconColor: { hex: '#B13227' },
+            bgColor: { hex: '#4CD7A9' },
+            roomIcon: 'https://res.cloudinary.com/drcrre4xg/image/upload/c_scale,w_200/v1515227140/star-yellow_hjfybq.png'
+        }
+    },
+    mounted() {
+        new TintColor(this.roomIcon, this.iconColor.hex).run().then(newImage => {
+            this.roomIcon =  newImage.url;
+        })
+    },
+    watch: {
+        iconColor: function (val, oldval) {
+            if (oldval !== val) {
+                new TintColor(this.roomIcon, this.iconColor.hex).run().then(newImage => {
+                    this.roomIcon =  newImage.url;
+                })
+            }
         }
     },
     components: {
@@ -46,19 +64,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.notify {
-    color: #fff;
-    background: var(--green)
-}
-
-.message {
-    margin-left: 15px;
-    padding-left: 15px;
-    border-left: 2px solid #fff;
-}
-
-.link {
-    color: #fff;
+<style lang="scss" scoped>
+.preview-icon {
+    width: 50px;
 }
 </style>
