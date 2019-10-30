@@ -1,4 +1,4 @@
-import { getGroupIcons, createRoom, getAllRoom } from '@/api/room'
+import { getGroupIcons, createRoom, getAllRoom, deleteRoom } from '@/api/room'
 import i18n from '@/lang';
 
 const state = {
@@ -46,6 +46,18 @@ const actions = {
             getAllRoom().then(response => {
                 resolve(response.groups);
                 commit('SET_ROOMS', response.groups)
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+    deleteRoom({ commit, state}, groupId) {
+        return new Promise((resolve, reject) => {
+            deleteRoom(groupId).then(response => {
+                const allRom = state.roomList;
+                const newRoomList= allRom.filter(room => room.id !== groupId);
+                commit('SET_ROOMS', newRoomList);
+                resolve(response);
             }).catch(error => {
                 reject(error)
             })

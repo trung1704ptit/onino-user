@@ -10,7 +10,7 @@
             <span><i class="fa fa-tint" aria-hidden="true"></i> {{ room.humidity }}%</span>
         </div>
         <div class="actions dark-text">
-            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click="handleDelete"></i>
+            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
             <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
         </div>
     </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import TintColor from '@/utils/tint-color';
+
 export default {
     props: {
         room: {
@@ -31,6 +33,13 @@ export default {
             default: false
         },
         handleDelete: Function
+    },
+    created() {
+        if (this.room) {
+            new TintColor(this.room.groupIconUrl, this.room.groupColor).run().then(newImage => {
+                this.room.groupIconUrl = newImage.url;
+            })
+        }
     }
 }
 </script>

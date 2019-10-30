@@ -252,6 +252,7 @@ export default {
     groupColor: 'Icon color',
     bgColor: 'Background color',
     roomName: 'Room name',
-    createRoomSuccess: 'Create room successful'
+    createRoomSuccess: 'Create room successful',
+    deleteRoomSuccess: 'Delete room successful'
   }
 }

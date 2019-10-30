@@ -6,7 +6,7 @@
     </div>
     <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 2], [768, 6]]" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
         <slide v-for="(room, index) in roomList" :key="index">
-            <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="handleDelete" class="box p-15 mb-15 block box-shadow"/>
+            <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 mb-15 block box-shadow" />
         </slide>
     </carousel>
 
@@ -16,7 +16,7 @@
             <el-button @click="dialogConfirmDelete = false">
                 {{ $t('root.cancel') }}
             </el-button>
-            <el-button type="primary">
+            <el-button :loading="deleting" type="primary" @click="handleDelete">
                 {{ $t('root.confirm') }}
             </el-button>
         </div>
@@ -26,12 +26,18 @@
 
 <script>
 import Room from '@/components/Room'
-import { mapGetters } from 'vuex';
+import {
+    mapGetters
+} from 'vuex';
+import i18n from '@/lang'
+
 export default {
     data() {
         return {
             dialogConfirmDelete: false,
-            roomList: []
+            roomList: [],
+            roomToDelete: '',
+            deleting: false
         }
     },
     computed: {
@@ -42,7 +48,6 @@ export default {
     mounted() {
         if (this.room.roomList.length === 0) {
             this.$store.dispatch('room/getAllRoom').then(response => {
-                console.log(response);
                 this.roomList = response;
             })
         }
@@ -51,9 +56,22 @@ export default {
         Room
     },
     methods: {
-        handleDelete(e) {
-            e.preventDefault();
-            this.dialogConfirmDelete =  true;
+        confirmDelete(groupId) {
+            this.roomToDelete = groupId;
+            this.dialogConfirmDelete = true;
+        },
+        handleDelete() {
+            this.deleting =  true;
+            this.$store.dispatch('room/deleteRoom', this.roomToDelete).then(response => {
+                this.$message({
+                    message: i18n.t('room.deleteRoomSuccess'),
+                    type: 'success',
+                    showClose: true,
+                    duration: 4000
+                });
+                this.dialogConfirmDelete = false;
+                this.deleting = false;
+            })
         }
     }
 }

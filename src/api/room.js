@@ -22,3 +22,11 @@ export function getAllRoom() {
         method: 'get'
     })
 }
+
+export function deleteRoom(groupId){
+    return request({
+        url: roomEndpoint.deleteRoomEndpoint,
+        method: 'delete',
+        params: { groupId } 
+    })
+}

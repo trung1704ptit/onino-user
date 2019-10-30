@@ -15,7 +15,8 @@ export const userEndpoint = {
 export const roomEndpoint = {
     groupIconsEndpoint: `${publicEndpoint}/groupIconsList`,
     createRoomEndpoint: `${baseEndpoint}/group/create`,
-    getAllRoomEndpoint: `${baseEndpoint}/group/getAll`
+    getAllRoomEndpoint: `${baseEndpoint}/group/getAll`,
+    deleteRoomEndpoint: `${baseEndpoint}/group/delete`
 }
 
 export const authorizeHeader = 'YnJvd3NlcjoxMjM0';
