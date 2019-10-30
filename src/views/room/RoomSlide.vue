@@ -50,6 +50,8 @@ export default {
             this.$store.dispatch('room/getAllRoom').then(response => {
                 this.roomList = response;
             })
+        } else {
+            this.roomList = this.room.roomList;
         }
     },
     components: {
@@ -61,7 +63,7 @@ export default {
             this.dialogConfirmDelete = true;
         },
         handleDelete() {
-            this.deleting =  true;
+            this.deleting = true;
             this.$store.dispatch('room/deleteRoom', this.roomToDelete).then(response => {
                 this.$message({
                     message: i18n.t('room.deleteRoomSuccess'),
