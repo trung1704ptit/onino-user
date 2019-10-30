@@ -265,4 +265,7 @@ aside {
 .show {
   display: block
 }
+.dark-text {
+  color: var(--grey);
+}
 @import './responsive.scss';

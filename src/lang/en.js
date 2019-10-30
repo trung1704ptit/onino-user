@@ -249,8 +249,9 @@ export default {
   room: {
     confirmDelete: 'Confirm delete room',
     confirmDeleteMessage: 'Please confirm that you want to delete this room.',
-    iconColor: 'Icon color',
+    groupColor: 'Icon color',
     bgColor: 'Background color',
-    roomName: 'Room name'
+    roomName: 'Room name',
+    createRoomSuccess: 'Create room successful'
   }
 }

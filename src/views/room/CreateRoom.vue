@@ -2,8 +2,8 @@
 <section class="box section box-shadow m-15 p-15">
     <el-row :gutter="10">
         <el-col :xs="24" :sm="4">
-            <h4 class="mt-0">{{ $t('room.iconColor') }}</h4>
-            <picker-color :colors="iconColor" :updateColor="updateColor" />
+            <h4 class="mt-0">{{ $t('room.groupColor') }}</h4>
+            <picker-color :colors="groupColor" :updateColor="updateColor" />
 
             <h4>{{ $t('room.bgColor') }}</h4>
             <picker-color :colors="bgColor" :updateColor="updateBackground" />
@@ -12,7 +12,7 @@
             <h4 class="mt-0">{{ $t('root.preview') }}</h4>
 
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': iconColor.hex, 'background': bgColor.hex, 'text-align': 'center'}" class="room-block" :class="checked == icon ? 'active' : ''" @click="handleSelect(icon)">
+                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': groupColor.hex, 'background': bgColor.hex, 'text-align': 'center'}" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
                     <img :src="icon" class="preview-icon" />
                 </div>
             </div>
@@ -20,11 +20,11 @@
             <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
                 <el-form-item prop="roomName" class="el-form-item">
                     <span class="svg-container">
-                        <svg-icon icon-class="user" />
+                        <i class="fa fa-home" aria-hidden="true"></i>
                     </span>
                     <el-input ref="roomName" v-model="roomForm.roomName" :placeholder="$t('room.roomName')" name="roomName" type="text" tabindex="1" />
                 </el-form-item>
-                <el-button :loading="loading" type="primary" @click.native.prevent="handleCreateRoom">
+                <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
                     {{ $t('root.save') }}
                 </el-button>
             </el-form>
@@ -55,22 +55,21 @@ export default {
             }
         }
         return {
-            iconColor: {
+            groupColor: {
                 hex: '#B13227'
             },
             bgColor: {
                 hex: '#4CD7A9'
             },
-            roomIcon: 'https://res.cloudinary.com/drcrre4xg/image/upload/c_scale,w_200/v1515227140/star-yellow_hjfybq.png',
             groupIcons: [],
-            checked: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
+            groupIconUrl: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
             roomForm: {
                 roomName: ''
             },
             roomRules: {
                 roomName: [{ required: true, trigger: 'blur', validator: validateRoomName }]
             },
-            loading: false
+            creating: false
         }
     },
 
@@ -88,15 +87,15 @@ export default {
                 this.groupIcons = response;
             })
         }
-        new TintColor(this.roomIcon, this.iconColor.hex).run().then(newImage => {
-            this.roomIcon = newImage.url;
+        new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
+            this.groupIconUrl = newImage.url;
         })
     },
     watch: {
-        iconColor: function (val, oldval) {
+        groupColor: function (val, oldval) {
             if (oldval !== val) {
-                new TintColor(this.roomIcon, this.iconColor.hex).run().then(newImage => {
-                    this.roomIcon = newImage.url;
+                new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
+                    this.groupIconUrl = newImage.url;
                 })
             }
         }
@@ -112,18 +111,33 @@ export default {
             console.log('cancel')
         },
         updateColor(value) {
-            this.iconColor = value
+            this.groupColor = value
         },
         updateBackground(value) {
             this.bgColor = value;
         },
         handleSelect(item) {
-            this.checked = item
+            this.groupIconUrl = item
         },
         handleCreateRoom() {
             this.$refs.roomForm.validate(valid => {
                 if (valid) {
-                    this.loading = true;
+                    this.creating = true
+                    const data = {
+                        groupBackGroundUrl: this.bgColor.hex,
+                        groupColor: this.groupColor.hex,
+                        groupIconUrl: this.groupIconUrl,
+                        groupName: this.roomForm.roomName
+                    }
+                    this.$store.dispatch('room/createRoom', data).then(() => {
+                        this.$message({
+                            message: i18n.t('room.createRoomSuccess'),
+                            type: 'success',
+                            showClose: true,
+                            duration: 4000
+                        });
+                        this.creating = false;
+                    })
                 } else {
                     return false;
                 }

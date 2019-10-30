@@ -5,7 +5,7 @@
         <router-link to="/room/tat-ca"><span class="view-more">{{ $t('root.viewAll')}}</span></router-link>
     </div>
     <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 2], [768, 6]]" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
-        <slide v-for="(room, index) in rooms" :key="index">
+        <slide v-for="(room, index) in roomList" :key="index">
             <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="handleDelete" class="box p-15 mb-15 block box-shadow"/>
         </slide>
     </carousel>
@@ -26,59 +26,25 @@
 
 <script>
 import Room from '@/components/Room'
-
+import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            rooms: [{
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                },
-                {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                },
-                {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                },
-                {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                },
-                {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                },
-                {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                }, {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                },
-                {
-                    title: 'Phòng ngủ',
-                    icon: '@/assets/img/bed.png',
-                    temperature: 28,
-                    humidity: 80
-                }
-            ],
-            dialogConfirmDelete: false
+            dialogConfirmDelete: false,
+            roomList: []
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'room'
+        ])
+    },
+    mounted() {
+        if (this.room.roomList.length === 0) {
+            this.$store.dispatch('room/getAllRoom').then(response => {
+                console.log(response);
+                this.roomList = response;
+            })
         }
     },
     components: {
@@ -92,7 +58,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-@import './style.scss';
-</style>

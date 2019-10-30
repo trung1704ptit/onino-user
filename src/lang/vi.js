@@ -249,8 +249,9 @@ export default {
   room: {
     confirmDelete: 'Xác nhận xóa phòng',
     confirmDeleteMessage: 'Vui lòng xác nhận rằng bạn muốn xóa phòng này.',
-    iconColor: 'Màu biểu tượng',
+    groupColor: 'Màu biểu tượng',
     bgColor: 'Màu nền',
-    roomName: 'Tên phòng'
+    roomName: 'Tên phòng',
+    createRoomSuccess: 'Tạo mới phòng thành công'
   }
 }

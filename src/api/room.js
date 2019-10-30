@@ -7,3 +7,18 @@ export function getGroupIcons() {
         method: 'get'
     })
 }
+
+export function createRoom(data) {
+    return request({
+        url: roomEndpoint.createRoomEndpoint,
+        method: 'post',
+        data
+    })
+}
+
+export function getAllRoom() {
+    return request({
+        url: roomEndpoint.getAllRoomEndpoint,
+        method: 'get'
+    })
+}
