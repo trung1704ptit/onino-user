@@ -70,7 +70,8 @@ export default {
     notification: 'Thông báo',
     room: 'Phòng',
     roomList: 'Danh sách phòng',
-    newRoom: 'Thêm mới phòng'
+    newRoom: 'Thêm mới phòng',
+    update: 'Cập nhật'
   },
   root: {
     register: 'Đăng ký',
@@ -258,6 +259,7 @@ export default {
     roomName: 'Tên phòng',
     createRoomSuccess: 'Tạo mới phòng thành công',
     deleteRoomSuccess: 'Xóa phòng thành công',
-    groupIcon: 'Biểu tượng phòng'
+    groupIcon: 'Biểu tượng phòng',
+    update: 'Cập nhật'
   }
 }

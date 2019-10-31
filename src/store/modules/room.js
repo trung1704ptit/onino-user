@@ -1,4 +1,4 @@
-import { getGroupIcons, createRoom, getAllRoom, deleteRoom } from '@/api/room'
+import { getGroupIcons, createRoom, getAllRoom, deleteRoom, getInfo, updateRoom } from '@/api/room'
 import i18n from '@/lang';
 
 const state = {
@@ -65,6 +65,26 @@ const actions = {
                 resolve(response);
             }).catch(error => {
                 reject(error)
+            })
+        })
+    },
+    getInfo({ commit, state }, groupId) {
+        return new Promise((resolve, reject) => {
+            getInfo(groupId).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    },
+    updateRoom({ commit, state }, data) {
+        return new Promise((resolve, reject) => {
+            const groupId = data.id;
+            delete data.id;
+            updateRoom(data, groupId).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
             })
         })
     }

@@ -70,7 +70,8 @@ export default {
     notification: 'Notification',
     room: 'Room',
     roomList: 'Room list',
-    newRoom: 'Add new room'
+    newRoom: 'Add new room',
+    update: 'Update'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -258,6 +259,7 @@ export default {
     roomName: 'Room name',
     createRoomSuccess: 'Create room successful',
     deleteRoomSuccess: 'Delete room successful',
-    groupIcon: 'Room icon'
+    groupIcon: 'Room icon',
+    update: 'Update'
   }
 }

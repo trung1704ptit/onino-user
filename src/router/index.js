@@ -182,6 +182,12 @@ export const constantRoutes = [
         component: () => import('@/views/room/RoomDetail'),
         meta: { title: 'room', icon: 'eye-open', noCache: true },
         hidden: true
+      },
+      {
+        path: 'cap-nhat/:id',
+        component: () => import('@/views/room/EditRoom'),
+        meta: { title: 'update', icon: 'eye-open', noCache: true },
+        hidden: true
       }
     ]
   },

@@ -25,12 +25,12 @@
                 </div>
             </div>
 
-            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
-                <el-form-item prop="roomName" class="el-form-item">
+            <el-form ref="roomDetail" :model="roomDetail" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
+                <el-form-item prop="name" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-home" aria-hidden="true"></i>
                     </span>
-                    <el-input ref="roomName" v-model="roomForm.roomName" :placeholder="$t('room.roomName')" name="roomName" type="text" tabindex="1" />
+                    <el-input ref="name" v-model="roomDetail.name" :placeholder="$t('room.roomName')" name="name" type="text" tabindex="1" />
                 </el-form-item>
                 <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
                     {{ $t('root.save') }}
@@ -55,7 +55,7 @@ import {
 
 export default {
     data() {
-        const validateRoomName = (rule, value, callback) => {
+        const validateName = (rule, value, callback) => {
             if (isEmpty(value)) {
                 callback(new Error(i18n.t('root.emptyString')))
             } else {
@@ -73,15 +73,15 @@ export default {
                 hex: '#CBDC63'
             },
             groupIcons: [],
-            groupIconUrl: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
-            roomForm: {
-                roomName: ''
+            groupIconUrl: '',
+            roomDetail: {
+                name: ''
             },
             roomRules: {
-                roomName: [{
+                name: [{
                     required: true,
                     trigger: 'blur',
-                    validator: validateRoomName
+                    validator: validateName
                 }]
             },
             creating: false
@@ -96,19 +96,63 @@ export default {
             return this.bgColor1.hex + ',' + this.bgColor2.hex
         }
     },
+
     created() {
         this.groupIcons = this.room.groupIcons;
     },
+
     mounted() {
+        new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
+            this.groupIconUrl = newImage.url;
+        })
+        const roomList = this.$store.state.room.roomList;
+        const roomId = this.$route.params.id;
+
         if (this.room.groupIcons.length == 0) {
             this.$store.dispatch('room/getGroupIcons').then(response => {
                 this.groupIcons = response;
             })
         }
-        new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
-            this.groupIconUrl = newImage.url;
-        })
+
+        if (roomList && roomList.length > 0) {
+            const roomDetail = roomList.filter(item => item.id === roomId)[0];
+
+            if (roomDetail) {
+                this.roomDetail = roomDetail;
+                this.bgColor1 = {
+                    hex: roomDetail.groupBackGroundUrl.split(',')[0]
+                };
+                this.bgColor2 = {
+                    hex: roomDetail.groupBackGroundUrl.split(',')[1]
+                };
+                this.bgColor = roomDetail.groupBackGroundUrl;
+                this.groupColor = {
+                    hex: roomDetail.groupColor
+                };
+                this.groupIconUrl = roomDetail.groupIconUrl;
+            }
+        } else {
+            this.$store.dispatch('room/getAllRoom').then(response => {
+                const roomDetail = response.filter(item => item.id === roomId)[0];
+
+                if (roomDetail) {
+                    this.roomDetail = roomDetail;
+                    this.bgColor1 = {
+                        hex: roomDetail.groupBackGroundUrl.split(',')[0]
+                    };
+                    this.bgColor2 = {
+                        hex: roomDetail.groupBackGroundUrl.split(',')[1]
+                    };
+                    this.bgColor = roomDetail.groupBackGroundUrl;
+                    this.groupColor = {
+                        hex: roomDetail.groupColor
+                    };
+                    this.groupIconUrl = roomDetail.groupIconUrl;
+                }
+            })
+        }
     },
+
     watch: {
         groupColor: function (val, oldval) {
             if (oldval !== val) {
@@ -122,12 +166,6 @@ export default {
         PickerColor
     },
     methods: {
-        onOk() {
-            console.log('ok')
-        },
-        onCancel() {
-            console.log('cancel')
-        },
         updateColor(value) {
             this.groupColor = value
         },
@@ -141,16 +179,17 @@ export default {
             this.groupIconUrl = item
         },
         handleCreateRoom() {
-            this.$refs.roomForm.validate(valid => {
+            this.$refs.roomDetail.validate(valid => {
                 if (valid) {
                     this.creating = true
                     const data = {
                         groupBackGroundUrl: this.bgColor,
                         groupColor: this.groupColor.hex,
                         groupIconUrl: this.groupIconUrl,
-                        groupName: this.roomForm.roomName
+                        groupName: this.roomDetail.name,
+                        id: this.roomDetail.id
                     }
-                    this.$store.dispatch('room/createRoom', data).then(() => {
+                    this.$store.dispatch('room/updateRoom', data).then(() => {
                         this.$message({
                             message: i18n.t('room.createRoomSuccess'),
                             type: 'success',

@@ -11,7 +11,7 @@
         </div>
         <div class="actions dark-text">
             <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
-            <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
+            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
         </div>
     </div>
 </router-link>

@@ -30,3 +30,19 @@ export function deleteRoom(groupId){
         params: { groupId } 
     })
 }
+
+export function getInfo(groupId){
+    return request({
+        url: roomEndpoint.groupEndpoint + '/' + groupId + '/getInfo',
+        method: 'get',
+    })
+}
+
+export function updateRoom(data, groupId){
+    return request({
+        url: roomEndpoint.updateRoomEndpoint,
+        method: 'put',
+        data,
+        params: { groupId }
+    })
+}
