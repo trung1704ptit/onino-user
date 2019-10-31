@@ -257,6 +257,7 @@ export default {
     bgColor: 'Màu nền',
     roomName: 'Tên phòng',
     createRoomSuccess: 'Tạo mới phòng thành công',
-    deleteRoomSuccess: 'Xóa phòng thành công'
+    deleteRoomSuccess: 'Xóa phòng thành công',
+    groupIcon: 'Biểu tượng phòng'
   }
 }

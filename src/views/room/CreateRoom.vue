@@ -1,18 +1,26 @@
 <template>
 <section class="box section box-shadow m-15 p-15">
     <el-row :gutter="10">
-        <el-col :xs="24" :sm="4">
-            <h4 class="mt-0">{{ $t('room.groupColor') }}</h4>
+        <el-col :xs="24" :sm="7" :lg="4">
+            <h4>{{ $t('room.groupColor') }}</h4>
             <picker-color :colors="groupColor" :updateColor="updateColor" />
-
-            <h4>{{ $t('room.bgColor') }}</h4>
-            <picker-color :colors="bgColor" :updateColor="updateBackground" />
         </el-col>
+
+        <el-col :xs="24" :sm="7" :lg="4">
+            <h4>{{ $t('room.bgColor') }} 1</h4>
+            <picker-color :colors="bgColor1" :updateColor="updateBackground1" />
+        </el-col>
+
+        <el-col :xs="24" :sm="7" :lg="4">
+            <h4>{{ $t('room.bgColor') }} 2</h4>
+            <picker-color :colors="bgColor2" :updateColor="updateBackground2" />
+        </el-col>
+
         <el-col :xs="24" :sm="18">
-            <h4 class="mt-0">{{ $t('root.preview') }}</h4>
+            <h4>{{ $t('room.groupIcon') }}</h4>
 
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': groupColor.hex, 'background': bgColor.hex, 'text-align': 'center'}" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
+                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': groupColor.hex, 'background-image': 'linear-gradient(' + bgColor + ')', 'text-align': 'center'}" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
                     <img :src="icon" class="preview-icon" />
                 </div>
             </div>
@@ -58,8 +66,11 @@ export default {
             groupColor: {
                 hex: '#B13227'
             },
-            bgColor: {
-                hex: '#4CD7A9'
+            bgColor1: {
+                hex: '#D5FFB5'
+            },
+            bgColor2: {
+                hex: '#CBDC63'
             },
             groupIcons: [],
             groupIconUrl: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
@@ -67,7 +78,11 @@ export default {
                 roomName: ''
             },
             roomRules: {
-                roomName: [{ required: true, trigger: 'blur', validator: validateRoomName }]
+                roomName: [{
+                    required: true,
+                    trigger: 'blur',
+                    validator: validateRoomName
+                }]
             },
             creating: false
         }
@@ -76,7 +91,10 @@ export default {
     computed: {
         ...mapGetters([
             'room'
-        ])
+        ]),
+        bgColor: function () {
+            return this.bgColor1.hex + ',' + this.bgColor2.hex
+        }
     },
     created() {
         this.groupIcons = this.room.groupIcons;
@@ -113,8 +131,11 @@ export default {
         updateColor(value) {
             this.groupColor = value
         },
-        updateBackground(value) {
-            this.bgColor = value;
+        updateBackground1(value) {
+            this.bgColor1 = value;
+        },
+        updateBackground2(value) {
+            this.bgColor2 = value;
         },
         handleSelect(item) {
             this.groupIconUrl = item
@@ -124,7 +145,7 @@ export default {
                 if (valid) {
                     this.creating = true
                     const data = {
-                        groupBackGroundUrl: this.bgColor.hex,
+                        groupBackGroundUrl: this.bgColor,
                         groupColor: this.groupColor.hex,
                         groupIconUrl: this.groupIconUrl,
                         groupName: this.roomForm.roomName
@@ -136,6 +157,9 @@ export default {
                             showClose: true,
                             duration: 4000
                         });
+                        if (this.room.roomListLoaded) {
+                            this.$store.dispatch('room/getAllRoom');
+                        }
                         this.creating = false;
                     })
                 } else {
@@ -146,6 +170,12 @@ export default {
     },
 }
 </script>
+
+<style>
+.vc-chrome {
+    width: 100% !important;
+}
+</style>
 
 <style lang="scss" scoped>
 .form-wrapper {
@@ -159,7 +189,6 @@ export default {
 }
 
 .room-block {
-    border: 2px solid transparent;
     padding: 15px 30px;
     margin-right: 10px;
     border-radius: 4px;
@@ -181,7 +210,7 @@ export default {
 
     &:hover,
     &.active {
-        border: 2px solid var(--main-color)
+        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.3)
     }
 }
 

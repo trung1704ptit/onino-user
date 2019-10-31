@@ -4,11 +4,16 @@ import i18n from '@/lang';
 const state = {
     groupIcons: [],
     roomList: [],
+    roomListLoaded: false
 }
 
 const mutations = {
     SET_GROUP_ICONS: (state, groupIcons) => {
         state.groupIcons = groupIcons
+    },
+    GET_ALL_ROOMS: (state, roomList) => {
+        state.roomList = roomList
+        state.roomListLoaded =  true
     },
     SET_ROOMS: (state, roomList) => {
         state.roomList = roomList
@@ -45,7 +50,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             getAllRoom().then(response => {
                 resolve(response.groups);
-                commit('SET_ROOMS', response.groups)
+                commit('GET_ALL_ROOMS', response.groups)
             }).catch(error => {
                 reject(error)
             })
