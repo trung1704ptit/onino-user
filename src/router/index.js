@@ -178,7 +178,7 @@ export const constantRoutes = [
         meta: { title: 'newRoom', icon: 'eye-open', noCache: true },
       },
       {
-        path: 'chi-tiet',
+        path: 'chi-tiet/:id',
         component: () => import('@/views/room/RoomDetail'),
         meta: { title: 'room', icon: 'eye-open', noCache: true },
         hidden: true
