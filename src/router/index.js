@@ -170,7 +170,7 @@ export const constantRoutes = [
       {
         path: 'tat-ca',
         component: () => import('@/views/room/RoomGrid'),
-        meta: { title: 'room', icon: 'eye-open', noCache: true }
+        meta: { title: 'roomList', icon: 'eye-open', noCache: true }
       },
       {
         path: 'them-moi',

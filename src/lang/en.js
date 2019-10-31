@@ -69,6 +69,7 @@ export default {
     camera: 'Camera',
     notification: 'Notification',
     room: 'Room',
+    roomList: 'Room list',
     newRoom: 'Add new room'
   },
   navbar: {
@@ -102,7 +103,8 @@ export default {
     preview: 'Preview',
     save: 'Save',
     sessionTimeOut: 'Your working session has been expired, please login again.',
-    noPermission: 'You have no permission to access this page, thank you'
+    noPermission: 'You have no permission to access this page, thank you',
+    emptyList: 'Empty list'
   },
   login: {
     title: 'Login Form',

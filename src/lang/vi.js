@@ -69,6 +69,7 @@ export default {
     camera: 'Camera',
     notification: 'Thông báo',
     room: 'Phòng',
+    roomList: 'Danh sách phòng',
     newRoom: 'Thêm mới phòng'
   },
   root: {
@@ -93,7 +94,8 @@ export default {
     preview: 'Xem trước',
     save: 'Lưu lại',
     sessionTimeOut: 'Phiên đăng nhập của bạn đã hết, vui lòng đăng nhập lại',
-    noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.'
+    noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.',
+    emptyList: 'Danh sách rỗng'
   },
   navbar: {
     dashboard: 'Dashboard',
