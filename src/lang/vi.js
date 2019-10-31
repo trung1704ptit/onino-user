@@ -91,7 +91,9 @@ export default {
     accept: 'Đồng ý',
     confirm: 'Xác nhận',
     preview: 'Xem trước',
-    save: 'Lưu lại'
+    save: 'Lưu lại',
+    sessionTimeOut: 'Phiên đăng nhập của bạn đã hết, vui lòng đăng nhập lại',
+    noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.'
   },
   navbar: {
     dashboard: 'Dashboard',

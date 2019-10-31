@@ -100,7 +100,9 @@ export default {
     accept: 'Accept',
     confirm: 'Confirm',
     preview: 'Preview',
-    save: 'Save'
+    save: 'Save',
+    sessionTimeOut: 'Your working session has been expired, please login again.',
+    noPermission: 'You have no permission to access this page, thank you'
   },
   login: {
     title: 'Login Form',
