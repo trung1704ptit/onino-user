@@ -263,6 +263,7 @@ export default {
     update: 'Cập nhật',
     addDevice: 'Thêm thiết bị',
     roomDetail: 'Chi tiết phòng',
-    deviceSerial: 'Số serial của thiết bị'
+    deviceSerial: 'Số serial của thiết bị',
+    deviceName: 'Tên thiết bị'
   }
 }

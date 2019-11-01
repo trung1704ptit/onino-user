@@ -46,7 +46,7 @@
             </div>
 
             <div class="mt-15 mb-15">
-                <router-link to="/room/chi-tiet">
+                <router-link to="/room/chi-tiet/thiet-bi/123">
                     <div class="box p-15 mr-15 box-shadow device-block">
                         <img :src="roomDetail.groupIconUrl" class="device-icon" />
                         <h5 class="title dark-text">Ổ cắm</h5>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </router-link>
-                <router-link to="/room/chi-tiet">
+                <router-link to="/room/chi-tiet/thiet-bi/123">
                     <div class="box p-15 mr-15 box-shadow device-block">
                         <img :src="roomDetail.groupIconUrl" class="device-icon" />
                         <h5 class="title dark-text">Ổ cắm</h5>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </router-link>
-                <router-link to="/room/chi-tiet">
+                <router-link to="/room/chi-tiet/thiet-bi/123">
                     <div class="box p-15 mr-15 box-shadow device-block">
                         <img :src="roomDetail.groupIconUrl" class="device-icon" />
                         <h5 class="title dark-text">Ổ cắm</h5>
@@ -230,7 +230,9 @@ export default {
     display: inline-block;
     min-width: 200px;
     margin-bottom: 15px;
-    background: #E9EFE4;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(144, 236, 210, 1) 0%, rgba(241, 244, 178, 1) 88%);
+
     @media only screen and (max-width: 480px) {
         min-width: 100%
     }
@@ -262,10 +264,12 @@ export default {
 .form-wrapper {
     padding: 30px 0;
 }
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 768px) {
     .device-block {
         min-width: calc(50% - 20px);
     }
+
     .delete-btn {
         margin: 15px 0;
     }

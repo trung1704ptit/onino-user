@@ -268,5 +268,8 @@ aside {
 .dark-text {
   color: var(--grey);
 }
+.align-left {
+  text-align: left;
+}
 
 @import './responsive.scss';

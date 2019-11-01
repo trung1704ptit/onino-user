@@ -263,6 +263,7 @@ export default {
     update: 'Update',
     addDevice: 'Add device',
     roomDetail: 'Room detail',
-    deviceSerial: 'Device serial'
+    deviceSerial: 'Device serial',
+    deviceName: 'Device name'
   }
 }

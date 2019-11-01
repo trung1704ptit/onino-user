@@ -184,6 +184,12 @@ export const constantRoutes = [
         hidden: true
       },
       {
+        path: 'chi-tiet/thiet-bi/:id',
+        component: () => import('@/views/room/DeviceDetail'),
+        meta: { title: 'room', icon: 'eye-open', noCache: true },
+        hidden: true
+      },
+      {
         path: 'cap-nhat/:id',
         component: () => import('@/views/room/EditRoom'),
         meta: { title: 'update', icon: 'eye-open', noCache: true },

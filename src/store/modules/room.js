@@ -2,10 +2,10 @@ import { getGroupIcons, createRoom, getAllRoom, deleteRoom, getInfo, updateRoom,
 import i18n from '@/lang';
 
 const state = {
-    groupIcons: null,
-    roomList: null,
+    groupIcons: [],
+    roomList: [],
     roomListLoaded: false,
-    roomDevices: null
+    roomDevices: []
 }
 
 const mutations = {
