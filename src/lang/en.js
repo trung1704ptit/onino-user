@@ -260,6 +260,8 @@ export default {
     createRoomSuccess: 'Create room successful',
     deleteRoomSuccess: 'Delete room successful',
     groupIcon: 'Room icon',
-    update: 'Update'
+    update: 'Update',
+    addDevice: 'Add device',
+    roomDetail: 'Room detail'
   }
 }

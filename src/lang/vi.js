@@ -260,6 +260,8 @@ export default {
     createRoomSuccess: 'Tạo mới phòng thành công',
     deleteRoomSuccess: 'Xóa phòng thành công',
     groupIcon: 'Biểu tượng phòng',
-    update: 'Cập nhật'
+    update: 'Cập nhật',
+    addDevice: 'Thêm thiết bị',
+    roomDetail: 'Chi tiết phòng'
   }
 }

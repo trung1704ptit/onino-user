@@ -33,7 +33,10 @@
                     <el-input ref="name" v-model="roomDetail.name" :placeholder="$t('room.roomName')" name="name" type="text" tabindex="1" />
                 </el-form-item>
                 <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
-                    {{ $t('root.save') }}
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
+                </el-button>
+                <el-button :loading="creating" type="primary" @click.native.prevent="handleViewDetail(roomDetail.id)">
+                    <i class="el-icon-info" /> {{ $t('room.roomDetail') }}
                 </el-button>
             </el-form>
         </el-col>
@@ -205,6 +208,9 @@ export default {
                     return false;
                 }
             })
+        },
+        handleViewDetail(id) {
+            this.$router.push(`/room/chi-tiet/${id}`)
         }
     },
 }

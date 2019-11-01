@@ -4,7 +4,28 @@
         <el-col :xs="24" :sm="6">
             <div class="align-center">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
-                <h4 class="section-title m-15">Phòng ngủ</h4>
+                <h4 class="section-title m-15">{{ roomDetail.name }}</h4>
+
+                <div class="m-15">
+                    <el-button type="primary" @click="handleEditRoom(roomDetail.id)">
+                        <i class="el-icon-edit" /> {{ $t('root.edit') }}
+                    </el-button>
+                    <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting">
+                        <i class="el-icon-delete" /> {{ $t('root.delete') }}
+                    </el-button>
+                </div>
+
+                <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
+                    <div>{{ $t('room.confirmDeleteMessage') }}</div>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button @click="dialogConfirmDelete = false">
+                            {{ $t('root.cancel') }}
+                        </el-button>
+                        <el-button :loading="deleting" type="primary" @click="handleDelete">
+                            {{ $t('root.confirm') }}
+                        </el-button>
+                    </div>
+                </el-dialog>
             </div>
         </el-col>
 
@@ -18,33 +39,16 @@
                 </div>
             </div>
 
-            <div class="flex space-between mt-15 text">
+            <div class="flex space-between mt-15 mb-15 text">
                 <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
                 <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
                 <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
                 <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
             </div>
 
-            <div class="button-list">
-                <el-button type="primary" @click="handleEditRoom(roomDetail.id)">
-                    <i class="el-icon-edit" /> {{ $t('root.edit') }}
-                </el-button>
-                <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting">
-                    <i class="el-icon-delete" /> {{ $t('root.delete') }}
-                </el-button>
-            </div>
-
-            <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
-                <div>{{ $t('room.confirmDeleteMessage') }}</div>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogConfirmDelete = false">
-                        {{ $t('root.cancel') }}
-                    </el-button>
-                    <el-button :loading="deleting" type="primary" @click="handleDelete">
-                        {{ $t('root.confirm') }}
-                    </el-button>
-                </div>
-            </el-dialog>
+            <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
+                <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
+            </el-button>
         </el-col>
     </el-row>
 </section>
@@ -112,7 +116,6 @@ export default {
             this.$router.push(`/room/cap-nhat/${id}`)
         },
         confirmDelete(groupId) {
-            console.log(groupId);
             this.roomToDelete = groupId;
             this.dialogConfirmDelete = true;
         },
@@ -135,8 +138,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button-list {
-    margin-top: 50px;
+.room-icon {
+    width: 120px;
 }
 </style>
 <style lang="scss">

@@ -28,12 +28,12 @@
             <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
                 <el-form-item prop="roomName" class="el-form-item">
                     <span class="svg-container">
-                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <i class="fa fa-keyboard-o" aria-hidden="true"></i>
                     </span>
                     <el-input ref="roomName" v-model="roomForm.roomName" :placeholder="$t('room.roomName')" name="roomName" type="text" tabindex="1" />
                 </el-form-item>
                 <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
-                    {{ $t('root.save') }}
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
                 </el-button>
             </el-form>
         </el-col>
