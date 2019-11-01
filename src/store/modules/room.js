@@ -1,10 +1,11 @@
-import { getGroupIcons, createRoom, getAllRoom, deleteRoom, getInfo, updateRoom } from '@/api/room'
+import { getGroupIcons, createRoom, getAllRoom, deleteRoom, getInfo, updateRoom, getRoomDevices } from '@/api/room'
 import i18n from '@/lang';
 
 const state = {
-    groupIcons: [],
-    roomList: [],
-    roomListLoaded: false
+    groupIcons: null,
+    roomList: null,
+    roomListLoaded: false,
+    roomDevices: null
 }
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
     },
     SET_ROOMS: (state, roomList) => {
         state.roomList = roomList
+    },
+    SET_ROOM_DEVICES: (state, roomDevices) => {
+        state.roomDevices = roomDevices
     }
 }
 
@@ -82,6 +86,17 @@ const actions = {
             const groupId = data.id;
             delete data.id;
             updateRoom(data, groupId).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        })
+    },
+    getRoomDevices({ commit, state}, groupId) {
+        return new Promise((resolve, reject) => {
+            getRoomDevices(groupId).then(response => {
+                console.log(response);
+                commit('SET_ROOM_DEVICES', response)
                 resolve(response);
             }).catch(error => {
                 reject(error);

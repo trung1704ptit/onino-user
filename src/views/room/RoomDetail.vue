@@ -5,7 +5,7 @@
             <div class="align-center">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15">{{ roomDetail.name }}</h4>
-                <p class="dark-text m-0" style="font-size: 14px"><i>(3 thiết bị đang hoạt động)</i></p>
+                <p class="dark-text m-0" style="font-size: 14px"><i>({{ numberOfDevices }} thiết bị đang hoạt động)</i></p>
 
                 <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
                     <i class="el-icon-edit" /> {{ $t('root.edit') }}
@@ -132,7 +132,9 @@ export default {
                     trigger: 'blur',
                     validator: validateSerial
                 }]
-            }
+            },
+            roomDevices: [],
+            numberOfDevices: 0
         }
     },
 
@@ -144,6 +146,7 @@ export default {
 
     mounted() {
         const roomList = this.$store.state.room.roomList;
+        const roomDevices = this.$store.state.room.roomDevices;
         const roomId = this.$route.params.id;
 
         if (roomList && roomList.length > 0) {
@@ -169,6 +172,14 @@ export default {
                 } else {
                     this.$router.push('/room/tat-ca')
                 }
+            })
+        }
+        if (roomDevices) {
+            this.roomDevices = roomDevices;
+        } else {
+            this.$store.dispatch('room/getRoomDevices', roomId).then(response => {
+                this.roomDevices = response.devices;
+                this.numberOfDevices = reponse.numberOfDevices;
             })
         }
     },

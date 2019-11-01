@@ -18,7 +18,8 @@ export const roomEndpoint = {
     getAllRoomEndpoint: `${baseEndpoint}/group/getAll`,
     deleteRoomEndpoint: `${baseEndpoint}/group/delete`,
     groupEndpoint: `${baseEndpoint}/group`,
-    updateRoomEndpoint: `${baseEndpoint}/group/update`
+    updateRoomEndpoint: `${baseEndpoint}/group/update`,
+    getRoomDevicesEndpoint: `${baseEndpoint}/group/update`,
 }
 
 export const authorizeHeader = 'YnJvd3NlcjoxMjM0';
