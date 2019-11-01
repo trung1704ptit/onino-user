@@ -3,7 +3,7 @@
     <el-row :gutter="10">
         <el-col :xs="24" :sm="6">
             <div class="align-center">
-                <img src="@/assets/img/bed.png" class="room-icon" />
+                <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15">Phòng ngủ</h4>
             </div>
         </el-col>
@@ -78,9 +78,6 @@ export default {
     },
 
     mounted() {
-        new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
-            this.groupIconUrl = newImage.url;
-        })
         const roomList = this.$store.state.room.roomList;
         const roomId = this.$route.params.id;
 
@@ -89,6 +86,9 @@ export default {
 
             if (roomDetail) {
                 this.roomDetail = roomDetail;
+                new TintColor(roomDetail.groupIconUrl, roomDetail.groupColor).run().then(newImage => {
+                    this.roomDetail.groupIconUrl = newImage.url;
+                })
             } else {
                 this.$router.push('/room/tat-ca')
             }
@@ -98,6 +98,9 @@ export default {
 
                 if (roomDetail) {
                     this.roomDetail = roomDetail;
+                    new TintColor(roomDetail.groupIconUrl, roomDetail.groupColor).run().then(newImage => {
+                        this.roomDetail.groupIconUrl = newImage.url;
+                    })
                 } else {
                     this.$router.push('/room/tat-ca')
                 }
