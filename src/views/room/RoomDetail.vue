@@ -19,32 +19,54 @@
             </div>
 
             <div class="flex space-between mt-15 text">
-                <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28C</span>
-                <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
+                <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
+                <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
                 <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
                 <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
             </div>
 
-            <el-button type="primary" @click="this.$router.push(`/room/cap-nhat/${room.id}`)">
-                {{ $t('root.edit') }}
-            </el-button>
-            <el-button type="danger">
-                {{ $t('root.delete') }}
-            </el-button>
+            <div class="button-list">
+                <el-button type="primary" @click="handleEditRoom(roomDetail.id)">
+                    <i class="el-icon-edit" /> {{ $t('root.edit') }}
+                </el-button>
+                <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting">
+                    <i class="el-icon-delete" /> {{ $t('root.delete') }}
+                </el-button>
+            </div>
+
+            <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
+                <div>{{ $t('room.confirmDeleteMessage') }}</div>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogConfirmDelete = false">
+                        {{ $t('root.cancel') }}
+                    </el-button>
+                    <el-button :loading="deleting" type="primary" @click="handleDelete">
+                        {{ $t('root.confirm') }}
+                    </el-button>
+                </div>
+            </el-dialog>
         </el-col>
     </el-row>
 </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {
+    mapGetters
+} from 'vuex';
 import PickerColor from '@/components/PickerColor';
+import TintColor from '@/utils/tint-color';
+import i18n from '@/lang'
 
 export default {
     data() {
         return {
-            roomDetail: {
-                name: ''
+            dialogConfirmDelete: false,
+            roomToDelete: '',
+            deleting: false,
+            roomDetail: {},
+            groupColor: {
+                hex: '#435sd3'
             }
         }
     },
@@ -62,17 +84,13 @@ export default {
         const roomList = this.$store.state.room.roomList;
         const roomId = this.$route.params.id;
 
-        if (this.room.groupIcons.length == 0) {
-            this.$store.dispatch('room/getGroupIcons').then(response => {
-                this.groupIcons = response;
-            })
-        }
-
         if (roomList && roomList.length > 0) {
             const roomDetail = roomList.filter(item => item.id === roomId)[0];
 
             if (roomDetail) {
                 this.roomDetail = roomDetail;
+            } else {
+                this.$router.push('/room/tat-ca')
             }
         } else {
             this.$store.dispatch('room/getAllRoom').then(response => {
@@ -80,13 +98,44 @@ export default {
 
                 if (roomDetail) {
                     this.roomDetail = roomDetail;
+                } else {
+                    this.$router.push('/room/tat-ca')
                 }
+            })
+        }
+    },
+    methods: {
+        handleEditRoom(id) {
+            this.$router.push(`/room/cap-nhat/${id}`)
+        },
+        confirmDelete(groupId) {
+            console.log(groupId);
+            this.roomToDelete = groupId;
+            this.dialogConfirmDelete = true;
+        },
+        handleDelete() {
+            this.deleting = true;
+            this.$store.dispatch('room/deleteRoom', this.roomToDelete).then(response => {
+                this.$message({
+                    message: i18n.t('room.deleteRoomSuccess'),
+                    type: 'success',
+                    showClose: true,
+                    duration: 4000
+                });
+                this.dialogConfirmDelete = false;
+                this.deleting = false;
+                this.$router.push('/room/tat-ca')
             })
         }
     }
 }
 </script>
 
+<style lang="scss" scoped>
+.button-list {
+    margin-top: 50px;
+}
+</style>
 <style lang="scss">
 .notify {
     color: #fff;
