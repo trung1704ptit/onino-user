@@ -262,6 +262,7 @@ export default {
     groupIcon: 'Room icon',
     update: 'Update',
     addDevice: 'Add device',
-    roomDetail: 'Room detail'
+    roomDetail: 'Room detail',
+    deviceSerial: 'Device serial'
   }
 }

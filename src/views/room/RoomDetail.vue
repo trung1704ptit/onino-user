@@ -5,15 +5,14 @@
             <div class="align-center">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15">{{ roomDetail.name }}</h4>
+                <p class="dark-text m-0" style="font-size: 14px"><i>(3 thiết bị đang hoạt động)</i></p>
 
-                <div class="m-15">
-                    <el-button type="primary" @click="handleEditRoom(roomDetail.id)">
-                        <i class="el-icon-edit" /> {{ $t('root.edit') }}
-                    </el-button>
-                    <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting">
-                        <i class="el-icon-delete" /> {{ $t('root.delete') }}
-                    </el-button>
-                </div>
+                <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
+                    <i class="el-icon-edit" /> {{ $t('root.edit') }}
+                </el-button>
+                <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting" class="mt-15 delete-btn">
+                    <i class="el-icon-delete" /> {{ $t('root.delete') }}
+                </el-button>
 
                 <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
                     <div>{{ $t('room.confirmDeleteMessage') }}</div>
@@ -39,16 +38,58 @@
                 </div>
             </div>
 
-            <div class="flex space-between mt-15 mb-15 text">
+            <div class="flex space-between text section">
                 <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
                 <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
                 <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
                 <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
             </div>
 
-            <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
-                <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
-            </el-button>
+            <div class="mt-15 mb-15">
+                <router-link to="/room/chi-tiet">
+                    <div class="box p-15 mr-15 box-shadow device-block">
+                        <img :src="roomDetail.groupIconUrl" class="device-icon" />
+                        <h5 class="title dark-text">Ổ cắm</h5>
+                        <div class="actions">
+                            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
+                            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
+                        </div>
+                    </div>
+                </router-link>
+                <router-link to="/room/chi-tiet">
+                    <div class="box p-15 mr-15 box-shadow device-block">
+                        <img :src="roomDetail.groupIconUrl" class="device-icon" />
+                        <h5 class="title dark-text">Ổ cắm</h5>
+                        <div class="actions">
+                            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
+                            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
+                        </div>
+                    </div>
+                </router-link>
+                <router-link to="/room/chi-tiet">
+                    <div class="box p-15 mr-15 box-shadow device-block">
+                        <img :src="roomDetail.groupIconUrl" class="device-icon" />
+                        <h5 class="title dark-text">Ổ cắm</h5>
+                        <div class="actions">
+                            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
+                            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
+                        </div>
+                    </div>
+                </router-link>
+            </div>
+
+            <el-form class="form-wrapper" :model="deviceForm" :rules="formRules" ref="deviceForm">
+                <el-form-item prop="serialNumber" class="el-form-item">
+                    <span class="svg-container">
+                        <i class="fa fa-indent" aria-hidden="true"></i>
+                    </span>
+                    <el-input v-model="deviceForm.serialNumber" :placeholder="$t('room.deviceSerial')" name="serialNumber" type="text" tabindex="1" />
+                </el-form-item>
+
+                <el-button type="primary" @click.native.prevent="handleScanDevice">
+                    <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
+                </el-button>
+            </el-form>
         </el-col>
     </el-row>
 </section>
@@ -60,17 +101,37 @@ import {
 } from 'vuex';
 import PickerColor from '@/components/PickerColor';
 import TintColor from '@/utils/tint-color';
-import i18n from '@/lang'
+import i18n from '@/lang';
+import {
+    isEmpty
+} from '@/utils/validate'
 
 export default {
     data() {
+        const validateSerial = (rule, value, callback) => {
+            if (isEmpty(value)) {
+                callback(new Error(i18n.t('root.emptyString')))
+            } else {
+                callback()
+            }
+        }
         return {
             dialogConfirmDelete: false,
+            roomDetail: {},
             roomToDelete: '',
             deleting: false,
-            roomDetail: {},
             groupColor: {
                 hex: '#435sd3'
+            },
+            deviceForm: {
+                serialNumber: ''
+            },
+            formRules: {
+                serialNumber: [{
+                    required: true,
+                    trigger: 'blur',
+                    validator: validateSerial
+                }]
             }
         }
     },
@@ -132,6 +193,13 @@ export default {
                 this.deleting = false;
                 this.$router.push('/room/tat-ca')
             })
+        },
+        handleScanDevice() {
+            this.$refs.deviceForm.validate(valid => {
+                if (valid) {} else {
+                    return false;
+                }
+            })
         }
     }
 }
@@ -140,6 +208,56 @@ export default {
 <style lang="scss" scoped>
 .room-icon {
     width: 120px;
+}
+
+.device-icon {
+    width: 50px;
+}
+
+.device-block {
+    position: relative;
+    display: inline-block;
+    min-width: 200px;
+    margin-bottom: 15px;
+    background: #E9EFE4;
+    @media only screen and (max-width: 480px) {
+        min-width: 100%
+    }
+    .title {
+        margin-bottom: 0;
+    }
+
+    .actions {
+        position: absolute;
+        display: inline-grid;
+        top: 10px;
+        right: 10px;
+
+        .fa {
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .fa.fa-trash-o {
+            color: var(--red)
+        }
+
+        .fa.fa-pencil-square-o {
+            color: var(--main-color)
+        }
+    }
+}
+
+.form-wrapper {
+    padding: 30px 0;
+}
+@media screen and (max-width: 768px){
+    .device-block {
+        min-width: calc(50% - 20px);
+    }
+    .delete-btn {
+        margin: 15px 0;
+    }
 }
 </style>
 <style lang="scss">

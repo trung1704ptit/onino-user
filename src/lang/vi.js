@@ -262,6 +262,7 @@ export default {
     groupIcon: 'Biểu tượng phòng',
     update: 'Cập nhật',
     addDevice: 'Thêm thiết bị',
-    roomDetail: 'Chi tiết phòng'
+    roomDetail: 'Chi tiết phòng',
+    deviceSerial: 'Số serial của thiết bị'
   }
 }
