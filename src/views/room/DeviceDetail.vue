@@ -22,9 +22,6 @@
         <el-col :xs="24" :sm="18">
             <div class="mb-15">
                 <room-device-detail :handleEditRoom="handleEditRoom" />
-                <room-device-detail :handleEditRoom="handleEditRoom" />
-                <room-device-detail :handleEditRoom="handleEditRoom" />
-                <room-device-detail :handleEditRoom="handleEditRoom" />
             </div>
         </el-col>
     </el-row>

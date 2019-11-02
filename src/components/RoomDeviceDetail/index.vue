@@ -1,12 +1,14 @@
 <template>
-<div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
-    <img src="https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/device/common_television.png" class="device-icon" />
-    <h5 class="title dark-text">Ổ cắm</h5>
-    <div class="actions">
-        <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')" @click="handleEditRoom(123)"></i>
+<router-link :to="'thiet-bi/' + device.deviceId">
+    <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
+        <img :src="device.deviceIconUrl" class="device-icon" />
+        <h5 class="title dark-text">{{ device.deviceName }}</h5>
+        <div class="actions">
+            <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')" @click.prevent.stop="handleEditDevice(device)"></i>
+        </div>
+        <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch"/>
     </div>
-    <el-switch v-model="switchValue" class="switch" />
-</div>
+</router-link>
 </template>
 
 <script>
@@ -23,11 +25,12 @@ import {
 export default {
     props: {
         handleDelete: Function,
-        handleEditRoom: Function,
+        handleEditDevice: Function,
         editRoomDevice: {
             type: Boolean,
             default: false
         },
+        device: Object
     },
     data() {
         return {
@@ -37,8 +40,7 @@ export default {
     methods: {
         toggleSwitch(e) {
             e.preventDefault();
-            this.editRoomDevice = true;
-        }
+        },
     },
     watch: {
         switchValue: function (val, oldval) {
@@ -79,7 +81,7 @@ export default {
     .actions {
         position: absolute;
         display: inline-grid;
-        top: 10px;
+        top: 35px;
         right: 15px;
 
         .fa {
@@ -98,7 +100,7 @@ export default {
 
     .switch {
         position: absolute;
-        bottom: 15px;
+        top: 15px;
         right: 15px;
     }
 }

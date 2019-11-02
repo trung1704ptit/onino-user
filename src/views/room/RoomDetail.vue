@@ -46,15 +46,9 @@
             </div>
 
             <div class="mt-15 mb-15">
-                <router-link :to="'/room/chi-tiet/thiet-bi/' + device.deviceId" v-for="device in roomDevices" :key="device.deviceId">
-                    <div class="box p-15 mr-15 box-shadow device-block">
-                        <img :src="device.deviceIconUrl" class="device-icon" />
-                        <h5 class="title dark-text">{{ device.deviceName }}</h5>
-                        <div class="actions">
-                            <router-link :to="'/room/cap-nhat/' + device.deviceId"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
-                        </div>
-                    </div>
-                </router-link>
+                <span v-for="device in roomDevices" :key="device.deviceId">
+                    <room-device-detail :handleEditDevice="handleEditDevice" :device="device" />
+                </span>
             </div>
 
             <el-form class="form-wrapper" :model="deviceForm" :rules="formRules" ref="deviceForm">
@@ -71,6 +65,28 @@
             </el-form>
         </el-col>
     </el-row>
+
+    <!-- dialog for edit device -->
+    <el-dialog :visible.sync="editRoomDevice" v-if="editRoomDevice">
+        <el-row :gutter="10">
+            <el-col :xs="24" :sm="6">
+                <img src="@/assets/img/o-cam.png" class="room-icon" />
+            </el-col>
+
+            <el-col :xs="24" :sm="18">
+                <el-input :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="1" v-model="editRoomDevice.deviceName" />
+
+                <div class="mt-15 align-left">
+                    <el-button :loading="deleting" type="primary">
+                        {{ $t('root.save') }}
+                    </el-button>
+                    <el-button @click="editRoomDevice = null">
+                        {{ $t('root.cancel') }}
+                    </el-button>
+                </div>
+            </el-col>
+        </el-row>
+    </el-dialog>
 </section>
 </template>
 
@@ -84,8 +100,12 @@ import i18n from '@/lang';
 import {
     isEmpty
 } from '@/utils/validate'
+import RoomDeviceDetail from '@/components/RoomDeviceDetail'
 
 export default {
+    components: {
+        RoomDeviceDetail
+    },
     data() {
         const validateSerial = (rule, value, callback) => {
             if (isEmpty(value)) {
@@ -113,7 +133,9 @@ export default {
                 }]
             },
             roomDevices: [],
-            numberOfDevices: 0
+            numberOfDevices: 0,
+            deviceList: [],
+            editRoomDevice: null
         }
     },
 
@@ -153,17 +175,18 @@ export default {
                 }
             })
         }
-        if (roomDevices) {
-            this.roomDevices = roomDevices;
-        } else {
-            this.$store.dispatch('room/getRoomDevices', roomId).then(response => {
-                this.roomDevices = response.devices;
-            })
-        }
+
+        this.$store.dispatch('room/getRoomDevices', roomId).then(response => {
+            this.roomDevices = response.devices;
+        })
+
+        this.$store.dispatch('device/getDeviceList').then(response => {
+            this.deviceList = response.devices;
+        })
     },
     methods: {
-        handleEditRoom(id) {
-            this.$router.push(`/room/cap-nhat/${id}`)
+        handleEditDevice(device) {
+            this.editRoomDevice = device;
         },
         confirmDelete(groupId) {
             this.roomToDelete = groupId;
@@ -199,56 +222,11 @@ export default {
     width: 120px;
 }
 
-.device-icon {
-    width: 50px;
-}
-
-.device-block {
-    position: relative;
-    display: inline-block;
-    min-width: 200px;
-    margin-bottom: 15px;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(144, 236, 210, 1) 0%, rgba(241, 244, 178, 1) 88%);
-
-    @media only screen and (max-width: 480px) {
-        min-width: 100%
-    }
-
-    .title {
-        margin-bottom: 0;
-    }
-
-    .actions {
-        position: absolute;
-        display: inline-grid;
-        top: 10px;
-        right: 10px;
-
-        .fa {
-            margin-top: 8px;
-            cursor: pointer;
-        }
-
-        .fa.fa-trash-o {
-            color: var(--red)
-        }
-
-        .fa.fa-pencil-square-o {
-            color: var(--main-color)
-        }
-    }
-}
-
 .form-wrapper {
     padding: 30px 0;
 }
 
 @media screen and (max-width: 768px) {
-    .device-block {
-        min-width: calc(50% - 20px);
-    }
-
     .delete-btn {
         margin: 15px 0;
     }

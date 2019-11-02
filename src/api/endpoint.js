@@ -1,6 +1,6 @@
 export const oninoEndpoint = 'https://api-stg.onino.vn';
 export const baseEndpoint = `${oninoEndpoint}/base`;
-export const publicEndpoint = `${baseEndpoint}/public`;
+export const publicBaseEndpoint = `${baseEndpoint}/public`;
 
 // user
 export const userEndpoint = {
@@ -13,13 +13,22 @@ export const userEndpoint = {
 }
 
 export const roomEndpoint = {
-    groupIconsEndpoint: `${publicEndpoint}/groupIconsList`,
+    groupIconsEndpoint: `${publicBaseEndpoint}/groupIconsList`,
     createRoomEndpoint: `${baseEndpoint}/group/create`,
     getAllRoomEndpoint: `${baseEndpoint}/group/getAll`,
     deleteRoomEndpoint: `${baseEndpoint}/group/delete`,
     groupEndpoint: `${baseEndpoint}/group`,
     updateRoomEndpoint: `${baseEndpoint}/group/update`,
     getRoomDevicesEndpoint: `${baseEndpoint}/group/update`,
+}
+
+export const publicEndpoint = {
+    deviceIconsEndpoint: `${publicBaseEndpoint}/deviceIconsList`,
+    groupIconsEndpoint: `${publicBaseEndpoint}/groupIconsList`,
+}
+
+export const deviceEndpoint = {
+    deviceListEndpoint: `${baseEndpoint}/device/getAll`
 }
 
 export const authorizeHeader = 'YnJvd3NlcjoxMjM0';
