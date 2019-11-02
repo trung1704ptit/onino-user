@@ -50,7 +50,6 @@ export function updateRoom(data, groupId){
 export function getRoomDevices(groupId){
     return request({
         url: roomEndpoint.groupEndpoint + '/' + groupId + '/getAllDevices',
-        method: 'get',
-        params: { groupId }
+        method: 'get'
     })
 }

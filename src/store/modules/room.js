@@ -5,7 +5,7 @@ const state = {
     groupIcons: [],
     roomList: [],
     roomListLoaded: false,
-    roomDevices: []
+    roomDevices: null
 }
 
 const mutations = {
@@ -95,8 +95,7 @@ const actions = {
     getRoomDevices({ commit, state}, groupId) {
         return new Promise((resolve, reject) => {
             getRoomDevices(groupId).then(response => {
-                console.log(response);
-                commit('SET_ROOM_DEVICES', response)
+                commit('SET_ROOM_DEVICES', response.devices)
                 resolve(response);
             }).catch(error => {
                 reject(error);

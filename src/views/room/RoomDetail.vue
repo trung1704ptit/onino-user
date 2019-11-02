@@ -5,7 +5,7 @@
             <div class="align-center">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15">{{ roomDetail.name }}</h4>
-                <p class="dark-text m-0" style="font-size: 14px"><i>({{ numberOfDevices }} thiết bị đang hoạt động)</i></p>
+                <p class="dark-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
 
                 <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
                     <i class="el-icon-edit" /> {{ $t('root.edit') }}
@@ -46,33 +46,12 @@
             </div>
 
             <div class="mt-15 mb-15">
-                <router-link to="/room/chi-tiet/thiet-bi/123">
+                <router-link :to="'/room/chi-tiet/thiet-bi/' + device.deviceId" v-for="device in roomDevices" :key="device.deviceId">
                     <div class="box p-15 mr-15 box-shadow device-block">
-                        <img :src="roomDetail.groupIconUrl" class="device-icon" />
-                        <h5 class="title dark-text">Ổ cắm</h5>
+                        <img :src="device.deviceIconUrl" class="device-icon" />
+                        <h5 class="title dark-text">{{ device.deviceName }}</h5>
                         <div class="actions">
-                            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
-                            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
-                        </div>
-                    </div>
-                </router-link>
-                <router-link to="/room/chi-tiet/thiet-bi/123">
-                    <div class="box p-15 mr-15 box-shadow device-block">
-                        <img :src="roomDetail.groupIconUrl" class="device-icon" />
-                        <h5 class="title dark-text">Ổ cắm</h5>
-                        <div class="actions">
-                            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
-                            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
-                        </div>
-                    </div>
-                </router-link>
-                <router-link to="/room/chi-tiet/thiet-bi/123">
-                    <div class="box p-15 mr-15 box-shadow device-block">
-                        <img :src="roomDetail.groupIconUrl" class="device-icon" />
-                        <h5 class="title dark-text">Ổ cắm</h5>
-                        <div class="actions">
-                            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="handleDelete(room.id)"></i>
-                            <router-link :to="'/room/cap-nhat/' + room.id"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
+                            <router-link :to="'/room/cap-nhat/' + device.deviceId"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
                         </div>
                     </div>
                 </router-link>
@@ -179,7 +158,6 @@ export default {
         } else {
             this.$store.dispatch('room/getRoomDevices', roomId).then(response => {
                 this.roomDevices = response.devices;
-                this.numberOfDevices = reponse.numberOfDevices;
             })
         }
     },
@@ -236,6 +214,7 @@ export default {
     @media only screen and (max-width: 480px) {
         min-width: 100%
     }
+
     .title {
         margin-bottom: 0;
     }
