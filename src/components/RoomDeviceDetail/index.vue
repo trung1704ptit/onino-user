@@ -67,7 +67,7 @@ export default {
 .device-block {
     position: relative;
     display: inline-block;
-    min-width: 200px;
+    min-width: 220px;
     margin: 15px 15px 15px 0;
 
     @media only screen and (max-width: 480px) {

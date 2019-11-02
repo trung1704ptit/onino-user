@@ -51,7 +51,11 @@
                 </span>
             </div>
 
-            <el-form class="form-wrapper" :model="deviceForm" :rules="formRules" ref="deviceForm">
+            <el-button type="primary" @click.native.prevent="addDeviceForm = true" v-if="!addDeviceForm">
+                <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
+            </el-button>
+
+            <el-form class="form-wrapper" :model="deviceForm" :rules="formRules" ref="deviceForm" v-if="addDeviceForm">
                 <el-form-item prop="serialNumber" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-indent" aria-hidden="true"></i>
@@ -59,10 +63,26 @@
                     <el-input v-model="deviceForm.serialNumber" :placeholder="$t('room.deviceSerial')" name="serialNumber" type="text" tabindex="1" />
                 </el-form-item>
 
-                <el-button type="primary" @click.native.prevent="handleScanDevice">
-                    <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
+                <el-button type="primary" @click="getDeviceInfo">
+                    <i class="el-icon-search" /> {{ $t('root.getInfo') }}
                 </el-button>
             </el-form>
+
+            <el-dialog :title="$t('room.addDevice')" :visible.sync="deviceScanned">
+                <div class="box box-shadow p-15 text-center inline-block add-device-form" v-for="(form, index) in formAdded" :key="index">
+                    <img :src="roomDetail.groupIconUrl" class="room-icon" />
+                    <el-input :placeholder="$t('root.name')" name="serialNumber" type="text" tabindex="1" v-model="form.deviceName"/>
+                </div>
+
+                <div class="mt-15" style="text-align: right">
+                    <el-button type="primary" @click.native.prevent="handleScanDevice">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
+                    </el-button>
+                    <el-button @click.native.prevent="deviceScanned = false">
+                        <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
+                    </el-button>
+                </div>
+            </el-dialog>
         </el-col>
     </el-row>
 
@@ -133,9 +153,12 @@ export default {
                 }]
             },
             roomDevices: [],
-            numberOfDevices: 0,
+            numberOfDevices: 3,
             deviceList: [],
-            editRoomDevice: null
+            editRoomDevice: null,
+            addDeviceForm: false,
+            deviceScanned: false,
+            formAdded: []
         }
     },
 
@@ -212,6 +235,18 @@ export default {
                     return false;
                 }
             })
+        },
+        handleEditRoom(id) {
+            this.$router.push(`/room/cap-nhat/${id}`)
+        },
+        getDeviceInfo() {
+            this.deviceScanned = true;
+            this.formAdded = [];
+            const form = [];
+            for(let i = 0; i < 3; i++) {
+                form.push({ deviceIconUrl: '', deviceName: ''})
+            }
+            this.formAdded = form;
         }
     }
 }
@@ -224,6 +259,9 @@ export default {
 
 .form-wrapper {
     padding: 30px 0;
+}
+.add-device-form {
+    margin: 15px 0 15px 15px;
 }
 
 @media screen and (max-width: 768px) {

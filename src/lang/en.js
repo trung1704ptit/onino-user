@@ -105,7 +105,8 @@ export default {
     save: 'Save',
     sessionTimeOut: 'Your working session has been expired, please login again.',
     noPermission: 'You have no permission to access this page, thank you',
-    emptyList: 'Empty list'
+    emptyList: 'Empty list',
+    getInfo: 'Get information'
   },
   login: {
     title: 'Login Form',

@@ -1,11 +1,11 @@
 <template>
-<section class="box section">
-    <h4 class="section-title m-15">{{ $t('dashboard.roomList') }}</h4>
+<section class="box p-15 m-15 box-shadow section">
+    <h4 class="section-title">{{ $t('dashboard.roomList') }}</h4>
 
     <div v-if="roomList.length > 0">
         <el-row :gutter="10">
             <el-col :xs="24" :sm="6" v-for="(room, index) in roomList" :key="index">
-                <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 block m-15 box-shadow" />
+                <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 block box-shadow" />
             </el-col>
         </el-row>
 

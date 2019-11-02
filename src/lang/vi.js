@@ -96,7 +96,8 @@ export default {
     save: 'Lưu lại',
     sessionTimeOut: 'Phiên đăng nhập của bạn đã hết, vui lòng đăng nhập lại',
     noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.',
-    emptyList: 'Danh sách rỗng'
+    emptyList: 'Danh sách rỗng',
+    getInfo: 'Lấy thông tin'
   },
   navbar: {
     dashboard: 'Dashboard',

@@ -13,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: myriad-pro, Helvetica;
+  background: #f1f1f1;
 }
 
 label {
@@ -271,5 +272,7 @@ aside {
 .align-left {
   text-align: left;
 }
-
+.inline-block {
+  display: inline-block;
+}
 @import './responsive.scss';
