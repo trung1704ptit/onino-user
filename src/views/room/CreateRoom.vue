@@ -92,8 +92,11 @@ export default {
         ...mapGetters([
             'room'
         ]),
-        bgColor: function () {
-            return this.bgColor1.hex + ',' + this.bgColor2.hex
+        bgColor:{
+            get: function (){
+                return this.bgColor1.hex + ',' + this.bgColor2.hex
+            },
+            set: function () {}
         }
     },
     created() {

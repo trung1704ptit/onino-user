@@ -52,8 +52,11 @@ export default {
         }
     },
     computed: {
-        roomList() {
-            return this.$store.state.room.roomList;
+        roomList: {
+            get: function () {
+                return this.$store.state.room.roomList; 
+            },
+            set: function() {}
         }
     },
     methods: {
