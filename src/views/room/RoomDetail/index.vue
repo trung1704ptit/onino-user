@@ -50,7 +50,7 @@
             <!-- List of devices -->
             <div class="mt-15 mb-15">
                 <span v-for="device in roomDevices" :key="device.deviceId">
-                    <room-device-detail :handleEditDevice="handleEditDevice" :device="device" />
+                    <room-device-detail :handleEditDevice="handleClickEditDevice" :device="device" />
                 </span>
             </div>
 
@@ -100,21 +100,21 @@
     </el-row>
 
     <!-- dialog for edit device -->
-    <el-dialog :visible.sync="editRoomDevice" v-if="editRoomDevice">
+    <el-dialog :visible.sync="deviceEdited" v-if="deviceEdited">
         <el-row :gutter="10">
             <el-col :xs="24" :sm="6">
-                <img src="@/assets/img/o-cam.png" class="room-icon" />
+                <img :src="deviceEdited.deviceIconUrl" class="room-icon" />
             </el-col>
 
             <el-col :xs="24" :sm="18">
-                <el-input :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="1" v-model="editRoomDevice.deviceName" />
+                <el-input :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="1" v-model="deviceEdited.deviceName" />
 
-                <div class="mt-15 align-left">
-                    <el-button :loading="deleting" type="primary">
-                        {{ $t('root.save') }}
+                <div class="section align-left">
+                    <el-button :loading="deleting" type="primary" @click="handleUpdateDevice">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
                     </el-button>
-                    <el-button @click="editRoomDevice = null">
-                        {{ $t('root.cancel') }}
+                    <el-button @click="deviceEdited = null">
+                        <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
                     </el-button>
                 </div>
             </el-col>
@@ -178,7 +178,7 @@ export default {
             roomDevices: [],
             numberOfDevices: 3,
             deviceList: [],
-            editRoomDevice: null,
+            deviceEdited: null,
             addDeviceForm: false,
             deviceRegistered: false,
             formAdded: [],
@@ -228,8 +228,32 @@ export default {
         })
     },
     methods: {
-        handleEditDevice(device) {
-            this.editRoomDevice = device;
+        handleClickEditDevice(device) {
+            this.deviceEdited = device;
+        },
+        handleUpdateDevice() {
+            const data = [{
+                assignedGroupId: this.roomDetail.id,
+                deviceIconUrl: this.deviceEdited.deviceIconUrl,
+                deviceId: this.deviceEdited.deviceId,
+                deviceName: this.deviceEdited.deviceName
+            }]
+
+            this.$store.dispatch('device/updateDevice', data).then(response => {
+                this.$message({
+                    message: i18n.t('room.updateDeviceSuccess'),
+                    type: 'success',
+                    showClose: true,
+                    duration: 4000
+                });
+                const roomId = this.$route.params.id;
+                this.$store.dispatch('room/getRoomDevices', roomId).then(response => {
+                    this.roomDevices = response.devices;
+                })
+                this.deviceRegistered = false;
+            }).then(error => {
+                console.log(error)
+            })
         },
         confirmDelete(groupId) {
             this.roomToDelete = groupId;
@@ -304,6 +328,7 @@ export default {
 .room-icon {
     width: 120px;
     height: 120px;
+    object-fit: contain;
     cursor: pointer;
 }
 
