@@ -97,7 +97,8 @@ export default {
     sessionTimeOut: 'Phiên đăng nhập của bạn đã hết, vui lòng đăng nhập lại',
     noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.',
     emptyList: 'Danh sách rỗng',
-    getInfo: 'Lấy thông tin'
+    getInfo: 'Lấy thông tin',
+    device: 'Thiết bị'
   },
   navbar: {
     dashboard: 'Dashboard',

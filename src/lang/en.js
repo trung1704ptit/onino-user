@@ -106,7 +106,8 @@ export default {
     sessionTimeOut: 'Your working session has been expired, please login again.',
     noPermission: 'You have no permission to access this page, thank you',
     emptyList: 'Empty list',
-    getInfo: 'Get information'
+    getInfo: 'Get information',
+    device: 'Device'
   },
   login: {
     title: 'Login Form',

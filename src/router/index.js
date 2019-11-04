@@ -179,7 +179,7 @@ export const constantRoutes = [
       },
       {
         path: 'chi-tiet/:id',
-        component: () => import('@/views/room/RoomDetail'),
+        component: () => import('@/views/room/RoomDetail/index'),
         meta: { title: 'room', icon: 'eye-open', noCache: true },
         hidden: true
       },
