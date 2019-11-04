@@ -7,3 +7,11 @@ export function getDeviceList() {
         method: 'get'
     })
 }
+
+export function updateDevice(data) {
+    return request({
+        url: deviceEndpoint.updateDeviceEndpoint,
+        method: 'put',
+        data
+    })
+}
