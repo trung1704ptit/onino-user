@@ -98,7 +98,8 @@ export default {
     noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.',
     emptyList: 'Danh sách rỗng',
     getInfo: 'Lấy thông tin',
-    device: 'Thiết bị'
+    device: 'Thiết bị',
+    loading: 'Đang tải'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -266,6 +267,8 @@ export default {
     addDevice: 'Thêm thiết bị',
     roomDetail: 'Chi tiết phòng',
     deviceSerial: 'Số serial của thiết bị',
-    deviceName: 'Tên thiết bị'
+    deviceName: 'Tên thiết bị',
+    updateDeviceSuccess: 'Cập nhật thiết bị thành công',
+    clickToChangeDeviceIcon: 'Nhấn để thay đổi biểu tượng của thiết bị'
   }
 }

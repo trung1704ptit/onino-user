@@ -29,7 +29,10 @@ export const publicEndpoint = {
 
 export const deviceEndpoint = {
     deviceListEndpoint: `${baseEndpoint}/device/getAll`,
-    updateDeviceEndpoint: `${baseEndpoint}/update`
+    getDeviceByGroupEndpoint: `${baseEndpoint}/device/getByGroup`,
+    getDeviceByIdEndpoint: `${baseEndpoint}/device/getById`,
+    updateDeviceEndpoint: `${baseEndpoint}/device/update`,
+    registerDeviceEndpoint: `${baseEndpoint}/device/register`
 }
 
 export const authorizeHeader = 'YnJvd3NlcjoxMjM0';

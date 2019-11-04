@@ -107,7 +107,8 @@ export default {
     noPermission: 'You have no permission to access this page, thank you',
     emptyList: 'Empty list',
     getInfo: 'Get information',
-    device: 'Device'
+    device: 'Device',
+    loading: 'Loading'
   },
   login: {
     title: 'Login Form',
@@ -266,6 +267,8 @@ export default {
     addDevice: 'Add device',
     roomDetail: 'Room detail',
     deviceSerial: 'Device serial',
-    deviceName: 'Device name'
+    deviceName: 'Device name',
+    updateDeviceSuccess: 'Update device successful',
+    clickToChangeDeviceIcon: 'Click to change device icon'
   }
 }

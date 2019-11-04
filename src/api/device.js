@@ -15,3 +15,11 @@ export function updateDevice(data) {
         data
     })
 }
+
+export function registerDevice(data) {
+    return request({
+        url: deviceEndpoint.registerDeviceEndpoint,
+        method: 'post',
+        data
+    })
+}

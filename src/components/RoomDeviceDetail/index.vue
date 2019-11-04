@@ -6,7 +6,7 @@
         <div class="actions">
             <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')" @click.prevent.stop="handleEditDevice(device)"></i>
         </div>
-        <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch"/>
+        <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch" />
     </div>
 </router-link>
 </template>
@@ -62,6 +62,8 @@ export default {
 
 .device-icon {
     width: 50px;
+    height: 50px;
+    object-fit: contain;
 }
 
 .device-block {

@@ -1,13 +1,17 @@
-import { getDeviceList, updateDevice } from '@/api/device'
+import { getDeviceList, updateDevice, registerDevice } from '@/api/device'
 import i18n from '@/lang';
 
 const state = {
     deviceList: [],
+    deviceRegistered: []
 }
 
 const mutations = {
     SET_DEVICE_LIST: (state, deviceList) => {
         state.deviceList = deviceList
+    },
+    SET_DEVICE_REGISTERED: (state, deviceRegistered) => {
+        state.deviceRegistered = deviceRegistered
     }
 }
 
@@ -25,13 +29,23 @@ const actions = {
             })
         })
     },
-    updateDevice({ commit, state }) {
+    updateDevice({ commit, state }, data) {
         return new Promise((resolve, reject) => {
-            updateDevice().then(response => {
+            updateDevice(data).then(response => {
                 resolve(response)
             }).catch(error => {
                 reject(error)
             })
+        })
+    },
+    registerDevice({ commit, state}, data) {
+        return new Promise((resolve, reject) => {
+            registerDevice(data).then(response => {
+                commit('SET_DEVICE_REGISTERED', response.devices)
+                resolve(response);
+            }).catch(error => {
+                reject(error)
+            }) 
         })
     }
 }

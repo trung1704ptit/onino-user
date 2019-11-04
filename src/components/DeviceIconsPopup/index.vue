@@ -1,13 +1,16 @@
 <template>
 <el-dialog :title="$t('room.addDevice')" :visible.sync="isOpenPopup">
-    <div v-for="(icon, index) in deviceIcons" :key="index" class="device-icon" :class="iconChecked === icon && 'active'" @click="handleClick(icon)">
-        <img :src="icon" alt="device icon" />
+    <div v-if="allIconsLoaded">
+        <div v-for="(icon, index) in deviceIcons" :key="index" class="device-icon" :class="iconChecked === icon && 'active'" @click="handleClick(icon)">
+            <img :src="icon" alt="device icon" />
+        </div>
+        <div style="text-align:right;">
+            <el-button type="primary" @click="handleSave">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
+            </el-button>
+        </div>
     </div>
-    <div style="text-align:right;">
-        <el-button type="primary" @click="handleSave">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
-        </el-button>
-    </div>
+    <div v-if="!allIconsLoaded" class="text-center">{{ $t('root.loading') }}...</div>
 </el-dialog>
 </template>
 
@@ -25,7 +28,8 @@ export default {
     data() {
         return {
             deviceIcons: [],
-            iconChecked: ''
+            iconChecked: '',
+            allIconsLoaded: false
         }
     },
     mounted() {
@@ -33,9 +37,11 @@ export default {
 
         if (deviceIcons && deviceIcons.length > 0) {
             this.deviceIcons = deviceIcons;
+            this.allIconsLoaded = true;
         } else {
             this.$store.dispatch('public/getDeviceIcons').then(response => {
                 this.deviceIcons = response;
+                this.allIconsLoaded = true;
             })
         }
     },
@@ -47,6 +53,17 @@ export default {
         handleSave: function () {
             this.handleClose();
             this.iconChecked = '';
+            this.isOpenPopup = !this.isOpenPopup;
+        },
+        handleHidePopup() {
+            this.handleClose();
+        }
+    },
+    watch: {
+        isOpenPopup: function (val, oldVal) {
+            if (!val) {
+                this.handleClose();
+            }
         }
     }
 }
