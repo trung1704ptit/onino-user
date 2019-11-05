@@ -18,7 +18,7 @@
                     <div>{{ $t('room.confirmDeleteMessage') }}</div>
                     <div slot="footer" class="dialog-footer">
                         <el-button @click="dialogConfirmDelete = false">
-                            {{ $t('root.cancel') }}
+                            <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
                         </el-button>
                         <el-button :loading="deleting" type="primary" @click="handleDelete">
                             {{ $t('root.confirm') }}

@@ -23,3 +23,11 @@ export function registerDevice(data) {
         data
     })
 }
+
+export function getDeviceById(id) {
+    return request({
+        url: deviceEndpoint.getDeviceByIdEndpoint,
+        methods: 'get',
+        params: { deviceId: id }
+    })
+}

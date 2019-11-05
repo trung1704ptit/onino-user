@@ -1,5 +1,5 @@
 <template>
-<router-link :to="'thiet-bi/' + device.deviceId">
+<router-link :to="'/room/thiet-bi/' + device.deviceId">
     <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
         <img :src="device.deviceIconUrl" class="device-icon" />
         <h5 class="title dark-text">{{ device.deviceName }}</h5>
@@ -26,10 +26,6 @@ export default {
     props: {
         handleDelete: Function,
         handleEditDevice: Function,
-        editRoomDevice: {
-            type: Boolean,
-            default: false
-        },
         device: Object
     },
     data() {

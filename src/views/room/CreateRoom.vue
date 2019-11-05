@@ -45,7 +45,7 @@
 import PickerColor from '@/components/PickerColor';
 import TintColor from '@/utils/tint-color';
 import {
-    isEmpty
+    isEmpty, validateEmpty
 } from '@/utils/validate'
 import i18n from '@/lang'
 
@@ -55,13 +55,6 @@ import {
 
 export default {
     data() {
-        const validateRoomName = (rule, value, callback) => {
-            if (isEmpty(value)) {
-                callback(new Error(i18n.t('root.emptyString')))
-            } else {
-                callback()
-            }
-        }
         return {
             groupColor: {
                 hex: '#B13227'
@@ -81,7 +74,7 @@ export default {
                 roomName: [{
                     required: true,
                     trigger: 'blur',
-                    validator: validateRoomName
+                    validator: validateEmpty
                 }]
             },
             creating: false

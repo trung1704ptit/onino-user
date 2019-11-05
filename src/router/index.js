@@ -184,8 +184,8 @@ export const constantRoutes = [
         hidden: true
       },
       {
-        path: 'chi-tiet/thiet-bi/:id',
-        component: () => import('@/views/room/DeviceDetail'),
+        path: 'thiet-bi/:id',
+        component: () => import('@/views/room/RoomDetail/DeviceDetail'),
         meta: { title: 'room', icon: 'eye-open', noCache: true },
         hidden: true
       },
