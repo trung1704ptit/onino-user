@@ -52,7 +52,7 @@
       overflow: hidden;
     }
 
-    .svg-icon {
+    .svg-icon,.custom-menu-icon {
       margin-right: 16px;
     }
 
@@ -60,6 +60,10 @@
       border: none;
       height: 100%;
       width: 100% !important;
+    }
+
+    .el-submenu__title i {
+      color: inherit;
     }
 
     // menu hover

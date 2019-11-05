@@ -141,13 +141,13 @@ export const constantRoutes = [
     name: 'Camera',
     meta: {
       title: 'camera',
-      icon: 'example'
+      icon: 'fa fa-camera'
     },
     children: [
       {
         path: 'tat-ca',
         component: () => import('@/views/camera/CameraGrid'),
-        meta: { title: 'camera', icon: 'eye-open' }
+        meta: { title: 'camera' }
       },
       {
         path: 'chi-tiet',
@@ -164,18 +164,18 @@ export const constantRoutes = [
     name: 'Room',
     meta: {
       title: 'room',
-      icon: 'eye-open'
+      icon: 'fa fa-windows'
     },
     children: [
       {
         path: 'tat-ca',
         component: () => import('@/views/room/RoomGrid'),
-        meta: { title: 'roomList', icon: 'eye-open', noCache: true }
+        meta: { title: 'roomList', icon: 'fa fa-th', noCache: true }
       },
       {
         path: 'them-moi',
         component: () => import('@/views/room/CreateRoom'),
-        meta: { title: 'newRoom', icon: 'eye-open', noCache: true },
+        meta: { title: 'newRoom', icon: 'fa fa-plus-square', noCache: true },
       },
       {
         path: 'chi-tiet/:id',

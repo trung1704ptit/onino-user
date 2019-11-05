@@ -2835,7 +2835,7 @@
     background-color:#e9e9ea
 }
 .custom-theme .el-menu-item i{
-    color:#878d99
+    color: inherit
 }
 .custom-theme .el-menu-item.is-active{
     color:#262729
