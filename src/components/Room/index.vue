@@ -2,7 +2,7 @@
 <router-link :to="base + 'chi-tiet/' + room.id" :style="{'background-image': 'linear-gradient(' + room.groupBackGroundUrl + ')'}">
     <div :class="room.class">
         <img :src="room.groupIconUrl" class="room-icon" :style="{'color': room.groupColor}" />
-        <div class="title mb-15 dark-text">
+        <div class="title mb-15 dark-text uppercase">
             <span>{{ room.name }}</span>
         </div>
         <div class="flex space-between dark-text">

@@ -1,6 +1,6 @@
 <template>
 <section class="box p-15 m-15 box-shadow section">
-    <h4 class="section-title">{{ $t('dashboard.roomList') }}</h4>
+    <h4 class="section-title uppercase">{{ $t('dashboard.roomList') }}</h4>
 
     <div v-if="roomList.length > 0">
         <el-row :gutter="10">

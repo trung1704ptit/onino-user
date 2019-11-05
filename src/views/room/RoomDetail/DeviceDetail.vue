@@ -5,7 +5,6 @@
             <div class="align-center box mt-15 p-15 box-shadow">
                 <img :src="iconSelected || deviceDetail.deviceIconUrl" class="room-icon mb-15" @click="isOpenDeviceIconsPopup = true" />
                 <h4 class="section-title m-15">{{ deviceDetail.deviceName }}</h4>
-
                 <p class="guide-change" @click="isOpenDeviceIconsPopup = true"><i>({{ $t('room.clickToChangeDeviceIcon') }})</i></p>
 
                 <el-form ref="deviceDetail" :model="deviceDetail" :rules="deviceRules" autocomplete="off" label-position="left">
@@ -108,8 +107,30 @@ export default {
         handleEditDevice() {
             this.$refs.deviceDetail.validate(valid => {
                 if (valid) {
-                    this.updating =  true;
-                    console.log(this.deviceDetail);
+                    this.updating = true;
+                    const data = [{
+                        assignedGroupId: this.deviceDetail.assignedGroup,
+                        deviceIconUrl: this.deviceDetail.deviceIconUrl,
+                        deviceId: this.deviceDetail.deviceId,
+                        deviceName: this.deviceDetail.deviceName
+                    }]
+
+                    this.$store.dispatch('device/updateDevice', data).then(response => {
+                        this.$message({
+                            message: i18n.t('room.updateDeviceSuccess'),
+                            type: 'success',
+                            showClose: true,
+                            duration: 4000
+                        });
+
+                        this.$store.dispatch('room/getRoomDevices', this.deviceDetail.assignedGroup).then(response => {
+                            this.roomDevices = response.devices;
+                        })
+                        this.updating = false;
+                    }).then(error => {
+                        console.log(error)
+                    })
+
                 } else {
                     return false;
                 }

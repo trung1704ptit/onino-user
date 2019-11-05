@@ -275,4 +275,10 @@ aside {
 .inline-block {
   display: inline-block;
 }
+.dialog-w-50 .el-dialog {
+  width: 50%;
+}
+.uppercase {
+  text-transform: uppercase;
+}
 @import './responsive.scss';

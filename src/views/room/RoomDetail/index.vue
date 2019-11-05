@@ -4,7 +4,7 @@
         <el-col :xs="24" :sm="6">
             <div class="align-center">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
-                <h4 class="section-title m-15">{{ roomDetail.name }}</h4>
+                <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
                 <p class="dark-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
 
                 <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
@@ -49,8 +49,9 @@
 
             <!-- List of devices -->
             <div class="mt-15 mb-15">
-                <span v-for="device in roomDevices" :key="device.deviceId">
-                    <room-device-detail :handleEditDevice="handleClickEditDevice" :device="device" />
+                <span v-for="(device, index) in roomDevices" :key="device.deviceId">
+                    <br v-if="index > 0 && device.thingId !== roomDevices[index - 1].thingId" />
+                    <room-device :handleEditDevice="handleClickEditDevice" :device="device" />
                 </span>
             </div>
 
@@ -100,17 +101,18 @@
     </el-row>
 
     <!-- dialog for edit device -->
-    <el-dialog :visible.sync="deviceEdited" v-if="deviceEdited">
-        <el-row :gutter="10">
-            <el-col :xs="24" :sm="6">
-                <img :src="deviceEdited.deviceIconUrl" class="room-icon" />
+    <!-- <el-dialog :visible.sync="deviceEdited" v-if="deviceEdited" class="dialog-w-50">
+        <el-row :gutter="30">
+            <el-col :xs="24" :sm="8">
+                <img :src="deviceEdited.deviceIconUrl" class="edit-device-preview" />
+                <p class="dark-text text-center" style="font-size: 14px"><i>({{ $t('room.clickToChangeDeviceIcon') }})</i></p>
             </el-col>
 
-            <el-col :xs="24" :sm="18">
+            <el-col :xs="24" :sm="16">
                 <el-input :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="1" v-model="deviceEdited.deviceName" />
 
                 <div class="section align-left">
-                    <el-button :loading="deleting" type="primary" @click="handleUpdateDevice">
+                    <el-button :loading="deviceUpdating" type="primary" @click="handleUpdateDevice">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
                     </el-button>
                     <el-button @click="deviceEdited = null">
@@ -119,7 +121,7 @@
                 </div>
             </el-col>
         </el-row>
-    </el-dialog>
+    </el-dialog> -->
 </section>
 </template>
 
@@ -133,13 +135,13 @@ import i18n from '@/lang';
 import {
     isEmpty
 } from '@/utils/validate'
-import RoomDeviceDetail from '@/components/RoomDeviceDetail';
+import RoomDevice from '@/components/RoomDevice';
 import DeviceIconsPopup from '@/components/DeviceIconsPopup'
 import DeviceIconForm from './DeviceIconForm';
 
 export default {
     components: {
-        RoomDeviceDetail,
+        RoomDevice,
         DeviceIconsPopup,
         DeviceIconForm
     },
@@ -182,7 +184,8 @@ export default {
             addDeviceForm: false,
             deviceRegistered: false,
             formAdded: [],
-            isOpenDeviceIconsPopup: false
+            isOpenDeviceIconsPopup: false,
+            deviceUpdating: false
         }
     },
 
@@ -224,6 +227,8 @@ export default {
         }
 
         this.$store.dispatch('room/getRoomDevices', roomId).then(response => {
+            const devices = response.devices;
+
             this.roomDevices = response.devices;
         })
     },
@@ -232,6 +237,7 @@ export default {
             this.deviceEdited = device;
         },
         handleUpdateDevice() {
+            this.deviceUpdating = true;
             const data = [{
                 assignedGroupId: this.roomDetail.id,
                 deviceIconUrl: this.deviceEdited.deviceIconUrl,
@@ -240,6 +246,7 @@ export default {
             }]
 
             this.$store.dispatch('device/updateDevice', data).then(response => {
+                this.deviceUpdating = false;
                 this.$message({
                     message: i18n.t('room.updateDeviceSuccess'),
                     type: 'success',
@@ -328,6 +335,13 @@ export default {
 .room-icon {
     width: 120px;
     height: 120px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.edit-device-preview {
+    width: 100%;
+    height: 100px;
     object-fit: contain;
     cursor: pointer;
 }

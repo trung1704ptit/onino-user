@@ -1,11 +1,11 @@
 <template>
 <router-link :to="'/room/thiet-bi/' + device.deviceId">
     <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
-        <img :src="device.deviceIconUrl" class="device-icon" />
-        <h5 class="title dark-text">{{ device.deviceName }}</h5>
-        <div class="actions">
+        <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
+        <h5 class="title dark-text text-center">{{ device.deviceName }}</h5>
+        <!-- <div class="actions">
             <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')" @click.prevent.stop="handleEditDevice(device)"></i>
-        </div>
+        </div> -->
         <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch" />
     </div>
 </router-link>
@@ -55,10 +55,14 @@ export default {
 .room-icon {
     width: 120px;
 }
-
+.device-icon-wrap {
+    width: 200px;
+    display: flex;
+}
 .device-icon {
-    width: 50px;
+    width: 60px;
     height: 50px;
+    margin: auto;
     object-fit: contain;
 }
 
