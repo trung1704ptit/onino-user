@@ -1,5 +1,5 @@
 <template>
-<router-link :to="base + 'chi-tiet/' + room.id" :style="{'background-image': 'linear-gradient(' + room.groupBackGroundUrl + ')'}">
+<router-link :to="base + 'chi-tiet/' + room.id" :style="{'background-image': 'linear-gradient(' + room.groupBackGroundUrl + ')', 'margin-top': '15px'}">
     <div :class="room.class">
         <img :src="room.groupIconUrl" class="room-icon" :style="{'color': room.groupColor}" />
         <div class="title mb-15 dark-text uppercase">
