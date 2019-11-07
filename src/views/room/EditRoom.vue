@@ -1,5 +1,5 @@
 <template>
-<section class="section m-15 p-15">
+<section class="p-15">
     <el-row :gutter="10">
         <el-col :xs="24" :sm="18">
             <h4 class="text">{{ $t('room.groupIcon') }}</h4>
