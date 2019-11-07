@@ -5,7 +5,7 @@
             <div class="align-center box mt-15 p-15 box-shadow">
                 <img :src="iconSelected || deviceDetail.deviceIconUrl" class="room-icon mb-15" @click="isOpenDeviceIconsPopup = true" />
                 <h4 class="section-title m-15">{{ deviceDetail.deviceName }}</h4>
-                <p class="guide-change" @click="isOpenDeviceIconsPopup = true"><i>({{ $t('room.clickToChangeDeviceIcon') }})</i></p>
+                <p class="guide-change white-text" @click="isOpenDeviceIconsPopup = true"><i>({{ $t('room.clickToChangeDeviceIcon') }})</i></p>
 
                 <el-form ref="deviceDetail" :model="deviceDetail" :rules="deviceRules" autocomplete="off" label-position="left">
                     <el-form-item prop="roomName" class="el-form-item">
@@ -30,12 +30,12 @@
             <div class="align-center box mt-15 p-15 box-shadow">
                 <div class="flex space-between p-15">
                     <div>
-                        <p class="dark-text">Thiết bị đang cắm</p>
-                        <strong>2 thiết bị</strong>
+                        <p class="text">Thiết bị đang cắm</p>
+                        <strong class="white-text">2 thiết bị</strong>
                     </div>
                     <div>
-                        <p class="dark-text">Điện năng tiêu thụ</p>
-                        <strong>100 kWh</strong>
+                        <p class="text">Điện năng tiêu thụ</p>
+                        <strong class="white-text">100 kWh</strong>
                     </div>
                 </div>
             </div>

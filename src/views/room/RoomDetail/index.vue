@@ -328,7 +328,8 @@ export default {
 }
 
 .add-device-form {
-    margin: 15px 0 15px 15px;
+    margin: 15px 15px 15px 0;
+    border-radius: 4px;
 }
 
 @media screen and (max-width: 768px) {

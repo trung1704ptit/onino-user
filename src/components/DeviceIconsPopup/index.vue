@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         handleClick: function (val) {
-            this.iconChecked = '';
+            this.iconChecked = val;
             this.selectIcon(val)
         },
         handleSave: function () {
@@ -92,7 +92,7 @@ export default {
             right: 3px;
             content: "\f058";
             font-family: FontAwesome;
-            color: greenyellow;
+            color: var(--main-color);
         }
     }
 
