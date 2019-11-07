@@ -35,4 +35,11 @@ export const deviceEndpoint = {
     registerDeviceEndpoint: `${baseEndpoint}/device/register`
 }
 
+export const mqttBroker = {
+    host: 'mqtt-stg.onino.vn',
+    port: '15675',
+    subcribeTopic: userId => `/topic/user/${userId}/out`,
+    publishTopic: userId => `/topic/user/${userId}/in`,
+}
+
 export const authorizeHeader = 'YnJvd3NlcjoxMjM0';

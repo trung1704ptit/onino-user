@@ -5,7 +5,7 @@
             <div class="align-center">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
-                <p class="dark-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
+                <p class="white-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
 
                 <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
                     <i class="el-icon-edit" /> {{ $t('root.edit') }}

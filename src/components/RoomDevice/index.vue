@@ -3,10 +3,7 @@
     <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
-        <!-- <div class="actions">
-            <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')" @click.prevent.stop="handleEditDevice(device)"></i>
-        </div> -->
-        <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch" />
+        <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch(device.deviceId)" />
     </div>
 </router-link>
 </template>
@@ -22,6 +19,14 @@ import {
     isEmpty
 } from '@/utils/validate'
 
+var mqtt = require('mqtt');
+import {
+    mqttBroker
+} from '@/api/endpoint';
+import {
+    mqttAuthentication
+} from '../../../secret'
+
 export default {
     props: {
         handleDelete: Function,
@@ -34,8 +39,35 @@ export default {
         }
     },
     methods: {
-        toggleSwitch(e) {
-            e.preventDefault();
+        toggleSwitch(deviceId) {
+            const user = this.$store.state.user;
+
+            var client = mqtt.connect(`ws://${mqttBroker.host}:${mqttBroker.port}/ws`, {
+                username: mqttAuthentication.username,
+                password: mqttAuthentication.password
+            });
+
+            client.subscribe(mqttBroker.subcribeTopic(user.userInfo.id), function (err) {
+                if (!err) {}
+            })
+
+            const data = {
+                token: user.token,
+                userCommand: "desired",
+                payload: [{
+                    state: 1,
+                    deviceCommand: "desired",
+                    deviceId
+                }]
+            }
+
+            client.publish(mqttBroker.publishTopic(user.userInfo.id), data)
+
+            client.on('message', function (topic, message) {
+                console.log(message.toString())
+                client.end()
+            })
+
         },
     },
     watch: {
@@ -50,6 +82,7 @@ export default {
 .turn-on {
     background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(144, 236, 210, 1) 0%, rgba(241, 244, 178, 1) 88%);
+
     .title {
         color: var(--main-color)
     }
@@ -58,10 +91,12 @@ export default {
 .room-icon {
     width: 120px;
 }
+
 .device-icon-wrap {
     width: 200px;
     display: flex;
 }
+
 .device-icon {
     width: 60px;
     height: 50px;
