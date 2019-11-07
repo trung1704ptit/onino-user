@@ -130,7 +130,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Thong bao',
-        meta: { title: 'notification', icon: 'guide', noCache: true }
+        meta: { title: 'notification', icon: 'fa fa-bell', noCache: true }
       }
     ]
   },
