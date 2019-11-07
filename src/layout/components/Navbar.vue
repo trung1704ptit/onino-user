@@ -90,14 +90,13 @@ export default {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
-
+  background: var(--background);
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
     cursor: pointer;
+    fill: #fff;
     transition: background .3s;
     -webkit-tap-highlight-color:transparent;
 
@@ -129,7 +128,7 @@ export default {
       padding: 0 8px;
       height: 100%;
       font-size: 18px;
-      color: #5a5e66;
+      color: #fff;
       vertical-align: text-bottom;
 
       &.hover-effect {

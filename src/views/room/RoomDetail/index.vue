@@ -61,7 +61,7 @@
             </el-button>
 
             <!-- serial number form -->
-            <el-form class="form-wrapper" :model="deviceForm" :rules="formRules" ref="deviceForm" v-if="addDeviceForm">
+            <el-form class="form-wrapper box app-form" :model="deviceForm" :rules="formRules" ref="deviceForm" v-if="addDeviceForm">
                 <el-form-item prop="serialNumber" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-indent" aria-hidden="true"></i>
@@ -99,29 +99,6 @@
             </div>
         </el-col>
     </el-row>
-
-    <!-- dialog for edit device -->
-    <!-- <el-dialog :visible.sync="deviceEdited" v-if="deviceEdited" class="dialog-w-50">
-        <el-row :gutter="30">
-            <el-col :xs="24" :sm="8">
-                <img :src="deviceEdited.deviceIconUrl" class="edit-device-preview" />
-                <p class="dark-text text-center" style="font-size: 14px"><i>({{ $t('room.clickToChangeDeviceIcon') }})</i></p>
-            </el-col>
-
-            <el-col :xs="24" :sm="16">
-                <el-input :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="1" v-model="deviceEdited.deviceName" />
-
-                <div class="section align-left">
-                    <el-button :loading="deviceUpdating" type="primary" @click="handleUpdateDevice">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
-                    </el-button>
-                    <el-button @click="deviceEdited = null">
-                        <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
-                    </el-button>
-                </div>
-            </el-col>
-        </el-row>
-    </el-dialog> -->
 </section>
 </template>
 

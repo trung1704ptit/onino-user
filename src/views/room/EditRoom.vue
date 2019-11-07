@@ -1,31 +1,16 @@
 <template>
-<section class="box section box-shadow m-15 p-15">
+<section class="section m-15 p-15">
     <el-row :gutter="10">
-        <el-col :xs="24" :sm="7" :lg="4">
-            <h4>{{ $t('room.groupColor') }}</h4>
-            <picker-color :colors="groupColor" :updateColor="updateColor" />
-        </el-col>
-
-        <el-col :xs="24" :sm="7" :lg="4">
-            <h4>{{ $t('room.bgColor') }} 1</h4>
-            <picker-color :colors="bgColor1" :updateColor="updateBackground1" />
-        </el-col>
-
-        <el-col :xs="24" :sm="7" :lg="4">
-            <h4>{{ $t('room.bgColor') }} 2</h4>
-            <picker-color :colors="bgColor2" :updateColor="updateBackground2" />
-        </el-col>
-
         <el-col :xs="24" :sm="18">
-            <h4>{{ $t('room.groupIcon') }}</h4>
+            <h4 class="text">{{ $t('room.groupIcon') }}</h4>
 
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': groupColor.hex, 'background-image': 'linear-gradient(' + bgColor + ')', 'text-align': 'center'}" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
+                <div v-for="(icon, index) in groupIcons" :key="index" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
                     <img :src="icon" class="preview-icon" />
                 </div>
             </div>
 
-            <el-form ref="roomDetail" :model="roomDetail" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
+            <el-form ref="roomDetail" :model="roomDetail" :rules="roomRules" autocomplete="off" class="app-form form-wrapper box" label-position="left">
                 <el-form-item prop="name" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-home" aria-hidden="true"></i>
@@ -66,15 +51,6 @@ export default {
             }
         }
         return {
-            groupColor: {
-                hex: '#B13227'
-            },
-            bgColor1: {
-                hex: '#D5FFB5'
-            },
-            bgColor2: {
-                hex: '#CBDC63'
-            },
             groupIcons: [],
             groupIconUrl: '',
             roomDetail: {
@@ -94,13 +70,7 @@ export default {
     computed: {
         ...mapGetters([
             'room'
-        ]),
-        bgColor: {
-            get: function () {
-                return this.bgColor1.hex + ',' + this.bgColor2.hex
-            },
-            set: function () {}
-        }
+        ])   
     },
 
     created() {
@@ -108,7 +78,7 @@ export default {
     },
 
     mounted() {
-        new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
+        new TintColor(this.groupIconUrl, this.roomDetail.groupColor).run().then(newImage => {
             this.groupIconUrl = newImage.url;
         })
         const roomList = this.$store.state.room.roomList;
@@ -125,16 +95,6 @@ export default {
 
             if (roomDetail) {
                 this.roomDetail = roomDetail;
-                this.bgColor1 = {
-                    hex: roomDetail.groupBackGroundUrl.split(',')[0]
-                };
-                this.bgColor2 = {
-                    hex: roomDetail.groupBackGroundUrl.split(',')[1]
-                };
-                this.bgColor = roomDetail.groupBackGroundUrl;
-                this.groupColor = {
-                    hex: roomDetail.groupColor
-                };
                 this.groupIconUrl = roomDetail.groupIconUrl;
             }
         } else {
@@ -143,44 +103,15 @@ export default {
 
                 if (roomDetail) {
                     this.roomDetail = roomDetail;
-                    this.bgColor1 = {
-                        hex: roomDetail.groupBackGroundUrl.split(',')[0]
-                    };
-                    this.bgColor2 = {
-                        hex: roomDetail.groupBackGroundUrl.split(',')[1]
-                    };
-                    this.bgColor = roomDetail.groupBackGroundUrl;
-                    this.groupColor = {
-                        hex: roomDetail.groupColor
-                    };
                     this.groupIconUrl = roomDetail.groupIconUrl;
                 }
             })
-        }
-    },
-
-    watch: {
-        groupColor: function (val, oldval) {
-            if (oldval !== val) {
-                new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
-                    this.groupIconUrl = newImage.url;
-                })
-            }
         }
     },
     components: {
         PickerColor
     },
     methods: {
-        updateColor(value) {
-            this.groupColor = value
-        },
-        updateBackground1(value) {
-            this.bgColor1 = value;
-        },
-        updateBackground2(value) {
-            this.bgColor2 = value;
-        },
         handleSelect(item) {
             this.groupIconUrl = item
         },
@@ -189,8 +120,8 @@ export default {
                 if (valid) {
                     this.creating = true
                     const data = {
-                        groupBackGroundUrl: this.bgColor,
-                        groupColor: this.groupColor.hex,
+                        groupBackGroundUrl: this.roomDetail.groupBackGroundUrl,
+                        groupColor: this.roomDetail.groupColor,
                         groupIconUrl: this.groupIconUrl,
                         groupName: this.roomDetail.name,
                         id: this.roomDetail.id

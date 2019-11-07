@@ -160,7 +160,7 @@ export const constantRoutes = [
   {
     path: '/room',
     component: Layout,
-    redirect: '/room/RoomSlide',
+    redirect: '/room/tat-ca',
     name: 'Room',
     meta: {
       title: 'room',
@@ -180,13 +180,13 @@ export const constantRoutes = [
       {
         path: 'chi-tiet/:id',
         component: () => import('@/views/room/RoomDetail/index'),
-        meta: { title: 'room', icon: 'eye-open', noCache: true },
+        meta: { title: 'roomDetail', icon: 'eye-open', noCache: true },
         hidden: true
       },
       {
         path: 'thiet-bi/:id',
         component: () => import('@/views/room/RoomDetail/DeviceDetail'),
-        meta: { title: 'room', icon: 'eye-open', noCache: true },
+        meta: { title: 'device', icon: 'eye-open', noCache: true },
         hidden: true
       },
       {

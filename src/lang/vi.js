@@ -71,7 +71,8 @@ export default {
     room: 'Phòng',
     roomList: 'Danh sách phòng',
     newRoom: 'Thêm mới phòng',
-    update: 'Cập nhật'
+    update: 'Cập nhật',
+    roomDetail: 'Chi tiết phòng'
   },
   root: {
     register: 'Đăng ký',

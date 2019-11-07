@@ -71,7 +71,8 @@ export default {
     room: 'Room',
     roomList: 'Room list',
     newRoom: 'Add new room',
-    update: 'Update'
+    update: 'Update',
+    roomDetail: 'Room detail'
   },
   navbar: {
     dashboard: 'Dashboard',

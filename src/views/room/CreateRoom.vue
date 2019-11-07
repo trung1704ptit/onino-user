@@ -1,31 +1,16 @@
 <template>
-<section class="box section box-shadow m-15 p-15">
+<section class="m-15 p-15">
     <el-row :gutter="10">
-        <el-col :xs="24" :sm="7" :lg="4">
-            <h4>{{ $t('room.groupColor') }}</h4>
-            <picker-color :colors="groupColor" :updateColor="updateColor" />
-        </el-col>
-
-        <el-col :xs="24" :sm="7" :lg="4">
-            <h4>{{ $t('room.bgColor') }} 1</h4>
-            <picker-color :colors="bgColor1" :updateColor="updateBackground1" />
-        </el-col>
-
-        <el-col :xs="24" :sm="7" :lg="4">
-            <h4>{{ $t('room.bgColor') }} 2</h4>
-            <picker-color :colors="bgColor2" :updateColor="updateBackground2" />
-        </el-col>
-
         <el-col :xs="24" :sm="18">
-            <h4>{{ $t('room.groupIcon') }}</h4>
+            <h4 class="text">{{ $t('room.groupIcon') }}</h4>
 
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" :style="{'color': groupColor.hex, 'background-image': 'linear-gradient(' + bgColor + ')', 'text-align': 'center'}" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
+                <div v-for="(icon, index) in groupIcons" :key="index" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
                     <img :src="icon" class="preview-icon" />
                 </div>
             </div>
 
-            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="form-wrapper" label-position="left">
+            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="app-form form-wrapper box box-shadow section" label-position="left">
                 <el-form-item prop="roomName" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-keyboard-o" aria-hidden="true"></i>
@@ -56,15 +41,6 @@ import {
 export default {
     data() {
         return {
-            groupColor: {
-                hex: '#B13227'
-            },
-            bgColor1: {
-                hex: '#D5FFB5'
-            },
-            bgColor2: {
-                hex: '#CBDC63'
-            },
             groupIcons: [],
             groupIconUrl: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
             roomForm: {
@@ -101,38 +77,14 @@ export default {
                 this.groupIcons = response;
             })
         }
-        new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
+        new TintColor(this.groupIconUrl, '#fff').run().then(newImage => {
             this.groupIconUrl = newImage.url;
         })
-    },
-    watch: {
-        groupColor: function (val, oldval) {
-            if (oldval !== val) {
-                new TintColor(this.groupIconUrl, this.groupColor.hex).run().then(newImage => {
-                    this.groupIconUrl = newImage.url;
-                })
-            }
-        }
     },
     components: {
         PickerColor
     },
     methods: {
-        onOk() {
-            console.log('ok')
-        },
-        onCancel() {
-            console.log('cancel')
-        },
-        updateColor(value) {
-            this.groupColor = value
-        },
-        updateBackground1(value) {
-            this.bgColor1 = value;
-        },
-        updateBackground2(value) {
-            this.bgColor2 = value;
-        },
         handleSelect(item) {
             this.groupIconUrl = item
         },
@@ -141,8 +93,8 @@ export default {
                 if (valid) {
                     this.creating = true
                     const data = {
-                        groupBackGroundUrl: this.bgColor,
-                        groupColor: this.groupColor.hex,
+                        groupBackGroundUrl: 'var(--dark-blue), var(--dark-blue)',
+                        groupColor: '#fff',
                         groupIconUrl: this.groupIconUrl,
                         groupName: this.roomForm.roomName
                     }

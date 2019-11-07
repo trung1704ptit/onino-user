@@ -48,7 +48,8 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #2b2f3a;
+  background: var(--dark-blue);
+  border-bottom: 1px solid var(--main-color);
   text-align: center;
   overflow: hidden;
 
