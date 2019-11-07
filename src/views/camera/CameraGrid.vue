@@ -1,11 +1,11 @@
 <template>
-    <section class="box section">
+    <section class="section">
     <h4 class="section-title m-15">{{ $t('dashboard.cameraSecurity') }}</h4>
 
      <el-row :gutter="10">
         <el-col :xs="24" :sm="8">
             <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -16,7 +16,7 @@
 
         <el-col :xs="24" :sm="8">
             <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -27,7 +27,7 @@
 
         <el-col :xs="24" :sm="8">
             <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -38,7 +38,7 @@
 
         <el-col :xs="24" :sm="8">
             <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -49,7 +49,7 @@
 
         <el-col :xs="24" :sm="8">
             <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -60,7 +60,7 @@
 
         <el-col :xs="24" :sm="8">
             <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
