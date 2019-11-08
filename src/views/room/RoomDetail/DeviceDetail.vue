@@ -30,9 +30,10 @@
             <div class="align-center box mt-15 p-15 box-shadow">
                 <el-row :gutter="15">
                     <el-col :xs="24" :sm="8">
-                        <p class="text">Độ sáng</p>
-                        <el-slider v-model="slideValue" @click.native.prevent="() => {}" />
-                        <!-- <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}" /> -->
+                        <p class="text">Trạng thái / hành động</p>
+                        <el-switch v-if="deviceDetail.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
+                        <el-slider v-if="deviceDetail.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}" />
+                        <switch-3-state v-if="deviceDetail.deviceType === '3StateSwitch'" />
                     </el-col>
                     <el-col :xs="24" :sm="16">
                         <div class="flex space-around text-center">
@@ -64,10 +65,12 @@ import {
     validateEmpty
 } from '@/utils/validate'
 import i18n from '@/lang'
+import Switch3State from '@/components/Switch3State';
 
 export default {
     components: {
-        DeviceIconsPopup
+        DeviceIconsPopup,
+        Switch3State
     },
     data() {
         return {

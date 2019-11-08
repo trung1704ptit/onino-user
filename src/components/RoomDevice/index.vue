@@ -4,8 +4,8 @@
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
         <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
-        <el-slider v-model="slideValue" @click.native.prevent="() => {}"/>
-        <switch-3-state />
+        <el-slider v-if="device.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}"/>
+        <switch-3-state v-if="device.deviceType === '3StateSwitch'"/>
     </div>
 </router-link>
 </template>
