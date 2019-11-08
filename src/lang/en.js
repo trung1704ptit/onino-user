@@ -270,6 +270,7 @@ export default {
     deviceSerial: 'Device serial',
     deviceName: 'Device name',
     updateDeviceSuccess: 'Update device successful',
-    clickToChangeDeviceIcon: 'Click to change device icon'
+    clickToChangeDeviceIcon: 'Click to change device icon',
+    updateRoomSuccess: 'Update room successful'
   }
 }

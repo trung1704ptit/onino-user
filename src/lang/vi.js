@@ -270,6 +270,7 @@ export default {
     deviceSerial: 'Số serial của thiết bị',
     deviceName: 'Tên thiết bị',
     updateDeviceSuccess: 'Cập nhật thiết bị thành công',
-    clickToChangeDeviceIcon: 'Nhấn để thay đổi biểu tượng của thiết bị'
+    clickToChangeDeviceIcon: 'Nhấn để thay đổi biểu tượng của thiết bị',
+    updateRoomSuccess: 'Cập nhật phòng thành công'
   }
 }

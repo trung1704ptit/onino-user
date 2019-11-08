@@ -99,7 +99,6 @@ export default {
 <style lang="scss" scoped>
 .dashboard-editor-container {
   padding: 15px;
-  background-color: rgb(240, 242, 245);
   position: relative;
 
   .github-corner {
@@ -110,7 +109,6 @@ export default {
   }
 
   .chart-wrapper {
-    background: #fff;
     padding: 16px 16px 0;
     margin-bottom: 32px;
   }

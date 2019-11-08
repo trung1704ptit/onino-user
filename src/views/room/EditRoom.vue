@@ -128,7 +128,7 @@ export default {
                     }
                     this.$store.dispatch('room/updateRoom', data).then(() => {
                         this.$message({
-                            message: i18n.t('room.createRoomSuccess'),
+                            message: i18n.t('room.updateRoomSuccess'),
                             type: 'success',
                             showClose: true,
                             duration: 4000
