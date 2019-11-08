@@ -3,9 +3,9 @@
     <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
-        <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
-        <el-slider v-if="device.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}"/>
-        <switch-3-state v-if="device.deviceType === '3StateSwitch'"/>
+        <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
+        <el-slider v-if="device.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}" />
+        <switch-3-state v-if="device.deviceType === '3StateSwitch'" />
     </div>
 </router-link>
 </template>
@@ -47,6 +47,14 @@ export default {
     },
     watch: {
         switchValue: function (val, oldval) {
+            this.changeSwitch(val)
+        },
+        slideValue: function (val, oldVal) {
+            this.changeSwitch(val)
+        }
+    },
+    methods: {
+        changeSwitch(val) {
             const user = this.$store.state.user;
 
             var client = mqtt.connect(`ws://${mqttBroker.host}:${mqttBroker.port}/ws`, {
