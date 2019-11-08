@@ -3,8 +3,9 @@
     <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
-        <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
+        <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
         <el-slider v-model="slideValue" @click.native.prevent="() => {}"/>
+        <switch-3-state />
     </div>
 </router-link>
 </template>
@@ -16,6 +17,7 @@ import {
 import PickerColor from '@/components/PickerColor';
 import TintColor from '@/utils/tint-color';
 import i18n from '@/lang';
+import Switch3State from '@/components/Switch3State';
 import {
     isEmpty
 } from '@/utils/validate'
@@ -29,6 +31,9 @@ import {
 } from '../../../secret'
 
 export default {
+    components: {
+        Switch3State
+    },
     props: {
         handleDelete: Function,
         handleEditDevice: Function,

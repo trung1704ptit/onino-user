@@ -109,7 +109,10 @@ export default {
     emptyList: 'Empty list',
     getInfo: 'Get information',
     device: 'Device',
-    loading: 'Loading'
+    loading: 'Loading',
+    open: 'Open',
+    close: 'Close',
+    stop: 'Stop'
   },
   login: {
     title: 'Login Form',

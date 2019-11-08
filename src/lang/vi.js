@@ -100,7 +100,10 @@ export default {
     emptyList: 'Danh sách rỗng',
     getInfo: 'Lấy thông tin',
     device: 'Thiết bị',
-    loading: 'Đang tải'
+    loading: 'Đang tải',
+    open: 'Mở',
+    close: 'Đóng lại',
+    stop: 'Dừng lại'
   },
   navbar: {
     dashboard: 'Dashboard',

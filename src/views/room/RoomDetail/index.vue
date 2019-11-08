@@ -30,21 +30,13 @@
 
         <el-col :xs="24" :sm="18">
             <!-- Banner -->
-            <div class="flex p-15 box-shadow box notify">
-                <div>
-                    <i class="fa fa-wifi" aria-hidden="true"></i>
-                    <span class="ml-15">4 Thiết bị đã phát hiện</span>
+            <div class="box-shadow box notify p-15">
+                <div class="flex space-between">
+                    <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
+                    <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
+                    <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
+                    <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
                 </div>
-                <div class="message">Đã phát hiện 4 thiết bị có kết nối Bluetooth trong phòng. <router-link to="/" class="link underline">Nhấp để kết nối</router-link>
-                </div>
-            </div>
-
-            <!-- room infor -->
-            <div class="flex space-between text section">
-                <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
-                <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
-                <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
-                <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
             </div>
 
             <!-- List of devices -->
