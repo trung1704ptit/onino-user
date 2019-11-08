@@ -14,7 +14,7 @@
             </pan-thumb>
           </div>
           <div class="box-center">
-            <div class="user-name text-center">{{ user.profile.fullName }}</div>
+            <div class="user-name text-center text">{{ user.profile.fullName }}</div>
             <!-- <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div> -->
           </div>
           <br />
@@ -41,7 +41,7 @@
       </el-col>
 
       <el-col :span="18" :xs="24">
-        <el-form ref="updateForm" :model="updateForm" :rules="updateRules" class="form-wrapper form-wrapper" autocomplete="off" label-position="left">
+        <el-form ref="updateForm" :model="updateForm" :rules="updateRules" class="form-wrapper app-form" autocomplete="off" label-position="left">
           <el-form-item prop="fullName" class="el-form-item">
             <span class="svg-container">
               <svg-icon icon-class="user" />
@@ -232,6 +232,10 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+  .el-card {
+    background: var(--dark-blue);
+    border: 0;
+  }
   .form-wrapper {
     padding: 0;
     @media screen and (max-width: 767px){

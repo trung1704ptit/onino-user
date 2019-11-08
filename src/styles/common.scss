@@ -90,8 +90,11 @@ button.VueCarousel-navigation-prev {
 .el-menu-item i {
   color: inherit;
 }
-.app-form input {
-  color: #fff !important;
+.app-form {
+  background: var(--dark-blue);
+  input {
+    color: #fff !important;
+  }
 }
 .border-white {
   border: 1px solid #fff;

@@ -3,7 +3,7 @@
     <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
-        <el-switch v-model="switchValue" class="switch" @click.native.prevent="toggleSwitch(device.deviceId)" />
+        <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
     </div>
 </router-link>
 </template>
@@ -38,8 +38,8 @@ export default {
             switchValue: false
         }
     },
-    methods: {
-        toggleSwitch(deviceId) {
+    watch: {
+        switchValue: function (val, oldval) {
             const user = this.$store.state.user;
 
             var client = mqtt.connect(`ws://${mqttBroker.host}:${mqttBroker.port}/ws`, {
@@ -55,24 +55,23 @@ export default {
                 token: user.token,
                 userCommand: "desired",
                 payload: [{
-                    state: 1,
+                    state: val ? 0 : 1,
                     deviceCommand: "desired",
-                    deviceId
+                    deviceId: this.device.deviceId
                 }]
             }
 
             client.publish(mqttBroker.publishTopic(user.userInfo.id), data)
 
+            const response = {
+                state: val ? 0 : 1,
+                deviceCommand: "reported",
+                deviceId: this.device.deviceId
+            }
+
             client.on('message', function (topic, message) {
-                console.log(message.toString())
                 client.end()
             })
-
-        },
-    },
-    watch: {
-        switchValue: function (val, oldval) {
-            this.switchValue = val
         }
     }
 }
