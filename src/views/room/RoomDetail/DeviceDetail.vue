@@ -16,7 +16,7 @@
                             <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
                         </el-button>
 
-                        <el-button>
+                        <el-button @click="() => this.$router.push(`/room/chi-tiet/${deviceDetail.assignedGroup}`)">
                             <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
                         </el-button>
                     </div>
