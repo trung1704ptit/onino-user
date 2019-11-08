@@ -4,6 +4,7 @@
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
         <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
+        <el-slider v-model="slideValue" @click.native.prevent="() => {}"/>
     </div>
 </router-link>
 </template>
@@ -35,7 +36,8 @@ export default {
     },
     data() {
         return {
-            switchValue: false
+            switchValue: false,
+            slideValue: 50
         }
     },
     watch: {

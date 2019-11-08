@@ -28,16 +28,25 @@
 
         <el-col :xs="24" :sm="18">
             <div class="align-center box mt-15 p-15 box-shadow">
-                <div class="flex space-between p-15">
-                    <div>
-                        <p class="text">Thiết bị đang cắm</p>
-                        <strong class="white-text">2 thiết bị</strong>
-                    </div>
-                    <div>
-                        <p class="text">Điện năng tiêu thụ</p>
-                        <strong class="white-text">100 kWh</strong>
-                    </div>
-                </div>
+                <el-row :gutter="15">
+                    <el-col :xs="24" :sm="8">
+                        <p class="text">Độ sáng</p>
+                        <el-slider v-model="slideValue" @click.native.prevent="() => {}" />
+                        <!-- <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}" /> -->
+                    </el-col>
+                    <el-col :xs="24" :sm="16">
+                        <div class="flex space-around text-center">
+                            <div>
+                                <p class="text">Thiết bị đang cắm</p>
+                                <strong class="white-text">2 thiết bị</strong>
+                            </div>
+                            <div>
+                                <p class="text">Điện năng tiêu thụ</p>
+                                <strong class="white-text">100 kWh</strong>
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
             </div>
         </el-col>
     </el-row>
@@ -73,7 +82,9 @@ export default {
                     validator: validateEmpty
                 }]
             },
-            updating: false
+            updating: false,
+            slideValue: 58,
+            switchValue: true
         }
     },
 
