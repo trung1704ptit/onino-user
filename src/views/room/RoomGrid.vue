@@ -1,5 +1,5 @@
 <template>
-<section class="p-15 m-15">
+<section class="m-15">
     <h4 class="text uppercase">{{ $t('dashboard.roomList') }}</h4>
 
     <div v-if="roomList.length > 0">
@@ -22,8 +22,8 @@
         </el-dialog>
     </div>
 
-    <div v-if="roomList.length === 0" class="box p-15 m-15 box-shadow">
-        <p><i>{{ $t('root.emptyList') }}</i></p>
+    <div v-if="roomList.length === 0" class="box p-15 box-shadow">
+        <p class="white-text"><i>{{ $t('root.emptyList') }}</i></p>
     </div>
 
 </section>
@@ -54,9 +54,9 @@ export default {
     computed: {
         roomList: {
             get: function () {
-                return this.$store.state.room.roomList; 
+                return this.$store.state.room.roomList;
             },
-            set: function() {}
+            set: function () {}
         }
     },
     methods: {

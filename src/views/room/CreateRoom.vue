@@ -93,7 +93,7 @@ export default {
                 if (valid) {
                     this.creating = true
                     const data = {
-                        groupBackGroundUrl: 'var(--dark-blue), var(--dark-blue)',
+                        groupBackGroundUrl: '#304156,#304156',
                         groupColor: '#fff',
                         groupIconUrl: this.groupIconUrl,
                         groupName: this.roomForm.roomName

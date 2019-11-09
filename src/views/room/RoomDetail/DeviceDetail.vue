@@ -157,6 +157,8 @@ export default {
 <style lang="scss" scoped>
 .room-icon {
     width: 120px;
+    height: 120px;
+    object-fit: contain;
     cursor: pointer;
 }
 
