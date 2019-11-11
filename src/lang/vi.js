@@ -75,7 +75,8 @@ export default {
     roomDetail: 'Chi tiết phòng',
     electric: 'Điện năng',
     setting: 'Cài đặt',
-    summary: 'Thống kê'
+    summary: 'Thống kê',
+    water: 'Nước'
   },
   root: {
     register: 'Đăng ký',

@@ -162,7 +162,7 @@ export const constantRoutes = [
   {
     path: '/thong-ke',
     component: Layout,
-    redirect: 'thong-ke/dien',
+    redirect: '/thong-ke/dien-nang',
     name: 'thongke',
     meta: {
       title: 'summary',
@@ -171,15 +171,21 @@ export const constantRoutes = [
     children: [
       {
         path: 'dien-nang',
-        component: () => import('@/views/electric/index'),
+        component: () => import('@/views/summary/electric/index'),
         name: 'Electric',
         meta: { title: 'electric', icon: 'fa fa-bolt', noCache: true }
       },
       {
-        path: 'dien-nang',
-        component: () => import('@/views/electric/index'),
-        name: 'Electric',
-        meta: { title: 'electric', icon: 'fa fa-bolt', noCache: true }
+        path: 'nuoc',
+        component: () => import('@/views/summary/water/index'),
+        name: 'Water',
+        meta: { title: 'water', icon: 'fa fa-tint', noCache: true }
+      },
+      {
+        path: 'gas',
+        component: () => import('@/views/summary/gas/index'),
+        name: 'Gas',
+        meta: { title: 'Gas', icon: 'fa fa-fire', noCache: true }
       }
     ]
   },

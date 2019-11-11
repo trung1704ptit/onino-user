@@ -78,4 +78,12 @@ export default {
     background: #fff;
     margin: 15px;
 }
+
+.chart-container {
+    width: 100%;
+}
+
+.app-main {
+    min-height: auto;
+}
 </style>

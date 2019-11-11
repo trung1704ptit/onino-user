@@ -75,7 +75,8 @@ export default {
     roomDetail: 'Room detail',
     electric: 'Electric',
     setting: 'Setting',
-    summary: 'Summary'
+    summary: 'Summary',
+    water: 'Water'
   },
   navbar: {
     dashboard: 'Dashboard',
