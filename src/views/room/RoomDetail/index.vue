@@ -35,7 +35,7 @@
                     <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
                     <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
                     <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
-                    <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
+                    <span><i class="fa fa-tint" aria-hidden="true"></i> 100ml</span>
                 </div>
             </div>
 
