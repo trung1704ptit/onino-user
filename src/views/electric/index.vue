@@ -1,11 +1,11 @@
 <template>
   <div class="chart-container">
-    <chart height="100%" width="100%" />
+    <chart />
   </div>
 </template>
 
 <script>
-import Chart from './Mixin'
+import Chart from './Chart'
 
 export default {
   name: 'MixChart',
@@ -15,9 +15,10 @@ export default {
 
 <style scoped>
 .chart-container{
-  position: relative;
   width: 100%;
-  height: calc(100vh - 80px);
+}
+.app-main {
+  min-height: auto;
 }
 </style>
 

@@ -73,7 +73,8 @@ export default {
     newRoom: 'Add new room',
     update: 'Update',
     roomDetail: 'Room detail',
-    electric: 'Electric'
+    electric: 'Electric',
+    setting: 'Setting'
   },
   navbar: {
     dashboard: 'Dashboard',

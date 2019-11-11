@@ -73,7 +73,8 @@ export default {
     newRoom: 'Thêm mới phòng',
     update: 'Cập nhật',
     roomDetail: 'Chi tiết phòng',
-    electric: 'Điện năng'
+    electric: 'Điện năng',
+    setting: 'Cài đặt'
   },
   root: {
     register: 'Đăng ký',

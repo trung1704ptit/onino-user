@@ -199,6 +199,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/cai-dat',
+    component: Layout,
+    redirect: '/cai-dat',
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/setting/index'),
+        name: 'Setting',
+        meta: { title: 'setting', icon: 'fa fa-cog', noCache: true }
+      }
+    ]
+  },
+  {
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',
