@@ -74,7 +74,8 @@ export default {
     update: 'Cập nhật',
     roomDetail: 'Chi tiết phòng',
     electric: 'Điện năng',
-    setting: 'Cài đặt'
+    setting: 'Cài đặt',
+    summary: 'Thống kê'
   },
   root: {
     register: 'Đăng ký',

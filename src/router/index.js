@@ -160,15 +160,26 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/dien-nang',
+    path: '/thong-ke',
     component: Layout,
-    redirect: '/Electric/index',
+    redirect: 'thong-ke/dien',
+    name: 'thongke',
+    meta: {
+      title: 'summary',
+      icon: 'fa fa-line-chart'
+    },
     children: [
       {
-        path: 'index',
+        path: 'dien-nang',
         component: () => import('@/views/electric/index'),
         name: 'Electric',
-        meta: { title: 'electric', icon: 'fa fa-line-chart', noCache: true }
+        meta: { title: 'electric', icon: 'fa fa-bolt', noCache: true }
+      },
+      {
+        path: 'dien-nang',
+        component: () => import('@/views/electric/index'),
+        name: 'Electric',
+        meta: { title: 'electric', icon: 'fa fa-bolt', noCache: true }
       }
     ]
   },
