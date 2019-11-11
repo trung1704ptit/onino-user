@@ -160,15 +160,15 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/profile',
+    path: '/dien-nang',
     component: Layout,
-    redirect: '/profile',
+    redirect: '/Electric/index',
     children: [
       {
-        path: '',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'profile', icon: 'user', noCache: true }
+        path: 'index',
+        component: () => import('@/views/electric/index'),
+        name: 'Electric',
+        meta: { title: 'electric', icon: 'fa fa-line-chart', noCache: true }
       }
     ]
   },
@@ -182,6 +182,19 @@ export const constantRoutes = [
         component: () => import('@/views/guide/index'),
         name: 'Thong bao',
         meta: { title: 'notification', icon: 'fa fa-bell', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile',
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
   },

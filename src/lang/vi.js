@@ -72,7 +72,8 @@ export default {
     roomList: 'Danh sách phòng',
     newRoom: 'Thêm mới phòng',
     update: 'Cập nhật',
-    roomDetail: 'Chi tiết phòng'
+    roomDetail: 'Chi tiết phòng',
+    electric: 'Điện năng'
   },
   root: {
     register: 'Đăng ký',
@@ -275,5 +276,19 @@ export default {
     updateDeviceSuccess: 'Cập nhật thiết bị thành công',
     clickToChangeDeviceIcon: 'Nhấn để thay đổi biểu tượng của thiết bị',
     updateRoomSuccess: 'Cập nhật phòng thành công'
+  },
+  months: {
+    january: 'Tháng 1',
+    february: 'Tháng 2',
+    march: 'Tháng 3',
+    april: 'Tháng 4',
+    may: 'Tháng 5',
+    june: 'Tháng 6',
+    july: 'Tháng 7',
+    august: 'Tháng 8',
+    september: 'Tháng 9',
+    october: 'Tháng 10',
+    november: 'Tháng 11',
+    december: 'Tháng 12'
   }
 }

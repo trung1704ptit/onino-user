@@ -72,7 +72,8 @@ export default {
     roomList: 'Room list',
     newRoom: 'Add new room',
     update: 'Update',
-    roomDetail: 'Room detail'
+    roomDetail: 'Room detail',
+    electric: 'Electric'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -275,5 +276,19 @@ export default {
     updateDeviceSuccess: 'Update device successful',
     clickToChangeDeviceIcon: 'Click to change device icon',
     updateRoomSuccess: 'Update room successful'
+  },
+  months: {
+    january: 'January',
+    february: 'February',
+    march: 'March',
+    april: 'April',
+    may: 'May',
+    june: 'June',
+    july: 'July',
+    august: 'August',
+    september: 'September',
+    october: 'October',
+    november: 'November',
+    december: 'December'
   }
 }
