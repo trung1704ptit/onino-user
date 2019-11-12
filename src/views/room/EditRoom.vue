@@ -5,7 +5,7 @@
             <h4 class="text">{{ $t('room.groupIcon') }}</h4>
 
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" class="room-block" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
+                <div v-for="(icon, index) in groupIcons" :key="index" class="room-block block-shadow" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
                     <img :src="icon" class="preview-icon" />
                 </div>
             </div>
