@@ -25,10 +25,6 @@ export default {
     .box {
         font-size: 16px;
         color: #fff;
-        // background: #8360c3;
-        // background: -webkit-linear-gradient(to right, #2ebf91, #8360c3); 
-        // background: linear-gradient(to right, #2ebf91, #8360c3);
-        border: 1px solid var(--main-color);
         @media screen and (max-width: 768px){
             font-size: 14px;
         }
