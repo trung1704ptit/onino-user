@@ -1,19 +1,21 @@
 <template>
-<div class="card-panel box block block-shadow" :class="className" @click="handleSetLineChartData('newVisitis')">
-    <div class="card-panel-icon-wrapper icon-people">
-        <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-    </div>
-    <div class="card-panel-description">
-        <div class="card-panel-toggle">
-            <el-switch v-model="switchValue" class="switch" />
+<router-link to="/cau-hinh/chi-tiet/6567dsd2sdsed">
+    <div class="card-panel box block block-shadow" :class="className">
+        <div class="card-panel-icon-wrapper icon-people">
+            <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
-        <div class="actions">
-            <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="() => {}"></i>
-            <router-link :to="'/cau-hinh/cap-nhat/'"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
+        <div class="card-panel-description">
+            <div class="card-panel-toggle">
+                <el-switch v-model="switchValue" class="switch" />
+            </div>
+            <div class="actions">
+                <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="() => {}"></i>
+                <router-link :to="'/cau-hinh/cap-nhat/'"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
+            </div>
+            <span class="card-panel-text">Buổi sáng</span>
         </div>
-        <span class="card-panel-text">Buổi sáng</span>
     </div>
-</div>
+</router-link>
 </template>
 
 <script>

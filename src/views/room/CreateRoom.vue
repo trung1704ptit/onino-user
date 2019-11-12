@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="app-form form-wrapper box box-shadow section" label-position="left">
+            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="app-form form-wrapper box block-shadow section" label-position="left">
                 <el-form-item prop="roomName" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-keyboard-o" aria-hidden="true"></i>

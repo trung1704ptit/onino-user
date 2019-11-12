@@ -29,13 +29,6 @@ export default {
     mixChart: 'Mix Chart',
     example: 'Example',
     nested: 'Nested Routes',
-    menu1: 'Menu 1',
-    'menu1-1': 'Menu 1-1',
-    'menu1-2': 'Menu 1-2',
-    'menu1-2-1': 'Menu 1-2-1',
-    'menu1-2-2': 'Menu 1-2-2',
-    'menu1-3': 'Menu 1-3',
-    menu2: 'Menu 2',
     Table: 'Table',
     dynamicTable: 'Dynamic Table',
     dragTable: 'Drag Table',
@@ -76,7 +69,11 @@ export default {
     electric: 'Electric',
     setting: 'Setting',
     summary: 'Summary',
-    water: 'Water'
+    water: 'Water',
+    all: 'All',
+    configuration: 'Configuration',
+    configurationDetail: 'Configuration detail',
+    addNewConfiguration: 'Add new configuration'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -157,6 +154,10 @@ export default {
     documentation: 'Documentation',
     github: 'Github Repository'
   },
+  configuration: {
+    addConfiguration: 'Add configuration',
+    configurationName: 'Configuration name'
+  },
   permission: {
     addRole: 'New Role',
     editPermission: 'Edit',
@@ -206,30 +207,10 @@ export default {
     cancel: 'Cancel',
     confirm: 'Confirm'
   },
-  example: {
-    warning: 'Creating and editing pages cannot be cached by keep-alive because keep-alive include does not currently support caching based on routes, so it is currently cached based on component name. If you want to achieve a similar caching effect, you can use a browser caching scheme such as localStorage. Or do not use keep-alive include to cache all pages directly. See details'
-  },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
     description: 'Now the management system are basically the form of the spa, it enhances the user experience, but it also increases the possibility of page problems, a small negligence may lead to the entire page deadlock. Fortunately Vue provides a way to catch handling exceptions, where you can handle errors or report exceptions.',
     documentation: 'Document introduction'
-  },
-  excel: {
-    export: 'Export',
-    selectedExport: 'Export Selected Items',
-    placeholder: 'Please enter the file name (default excel-list)'
-  },
-  zip: {
-    export: 'Export',
-    placeholder: 'Please enter the file name (default file)'
-  },
-  pdf: {
-    tips: 'Here we use window.print() to implement the feature of downloading PDF.'
-  },
-  theme: {
-    change: 'Change Theme',
-    documentation: 'Theme documentation',
-    tips: 'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.'
   },
   tagsView: {
     refresh: 'Refresh',

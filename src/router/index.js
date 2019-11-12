@@ -10,7 +10,7 @@ import Layout from '@/layout'
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+// import nestedRouter from './modules/nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -160,6 +160,36 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/cau-hinh',
+    component: Layout,
+    redirect: '/cau-hinh/tat-ca',
+    meta: {
+      title: 'configuration',
+      icon: 'fa fa-cogs'
+    },
+    children: [
+      {
+        path: 'tat-ca',
+        component: () => import('@/views/ConfigurationTemplate/Grid'),
+        name: 'Cau hinh',
+        meta: { title: 'all', icon: 'fa fa-th', noCache: true },
+      },
+      {
+        path: 'chi-tiet/:id',
+        component: () => import('@/views/ConfigurationTemplate/Detail/index'),
+        name: 'Cau hinh',
+        meta: { title: 'configurationDetail', icon: 'fa fa-cogs', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'them-moi',
+        component: () => import('@/views/ConfigurationTemplate/Create/index'),
+        name: 'Cau hinh',
+        meta: { title: 'addNewConfiguration', icon: 'fa fa-plus-square', noCache: true },
+      }
+    ]
+  },
+  {
     path: '/thong-ke',
     component: Layout,
     redirect: '/thong-ke/dien-nang',
@@ -199,20 +229,6 @@ export const constantRoutes = [
         component: () => import('@/views/guide/index'),
         name: 'Thong bao',
         meta: { title: 'notification', icon: 'fa fa-bell', noCache: true }
-      }
-    ]
-  },
-  {
-    path: '/cau-hinh',
-    component: Layout,
-    redirect: '/cau-hinh/tat-ca',
-    children: [
-      {
-        path: 'tat-ca',
-        component: () => import('@/views/ConfigurationTemplate/Grid'),
-        name: 'Cau hinh',
-        meta: { title: 'configuration', icon: 'fa fa-bell', noCache: true },
-        hidden: true
       }
     ]
   },

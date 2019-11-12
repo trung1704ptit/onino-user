@@ -29,13 +29,6 @@ export default {
     mixChart: 'Mix Chart',
     example: 'Example',
     nested: 'Nested Routes',
-    menu1: 'Menu 1',
-    'menu1-1': 'Menu 1-1',
-    'menu1-2': 'Menu 1-2',
-    'menu1-2-1': 'Menu 1-2-1',
-    'menu1-2-2': 'Menu 1-2-2',
-    'menu1-3': 'Menu 1-3',
-    menu2: 'Menu 2',
     Table: 'Table',
     dynamicTable: 'Dynamic Table',
     dragTable: 'Drag Table',
@@ -76,7 +69,11 @@ export default {
     electric: 'Điện năng',
     setting: 'Cài đặt',
     summary: 'Thống kê',
-    water: 'Nước'
+    water: 'Nước',
+    all: 'Tất cả',
+    configuration: 'Cấu hình',
+    configurationDetail: 'Cấu hình chi tiết',
+    addNewConfiguration: 'Thêm mới cấu hình'
   },
   root: {
     register: 'Đăng ký',
@@ -156,6 +153,10 @@ export default {
   documentation: {
     documentation: 'Documentation',
     github: 'Github Repository'
+  },
+  configuration: {
+    addConfiguration: 'Thêm cấu hình',
+    configurationName: 'Tên cấu hình'
   },
   permission: {
     addRole: 'New Role',
