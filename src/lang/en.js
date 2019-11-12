@@ -254,7 +254,9 @@ export default {
   },
   dashboard: {
     cameraSecurity: 'Camera securirty',
-    roomList: 'Room list'
+    roomList: 'Room list',
+    configuration: 'Configuration',
+    configurationUsing: 'This is a list of configuations, please click to choose one'
   },
   notification: {
     notification: 'Notification'

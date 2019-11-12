@@ -8,7 +8,7 @@
         <div v-if="roomList.length > 0">
             <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 2], [768, 6]]" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
                 <slide v-for="(room, index) in roomList" :key="index">
-                    <room :room="room" :base="'room/'" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 mb-15 block box-shadow" />
+                    <room :room="room" :base="'room/'" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 mb-15 block block-shadow slide" />
                 </slide>
             </carousel>
 

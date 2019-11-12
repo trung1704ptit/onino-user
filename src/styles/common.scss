@@ -68,7 +68,10 @@
   overflow: unset;
 }
 .box-shadow {
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 3px 5px rgba(0,0,0,.5);
+}
+.block-shadow {
+  box-shadow: 2px 3px 5px rgba(0,0,0,.5);
 }
 .timestamp {
   color: var(--dark-gray);
@@ -101,4 +104,41 @@ button.VueCarousel-navigation-prev {
 }
 .space-around {
   justify-content: space-around;
+}
+.active-bg {
+  background: #ebf3b3;
+}
+.main-bg {
+  background: var(--dark-blue);
+}
+.block {
+  position: relative;
+  border: 3px solid transparent;
+  color: #fff;
+  .actions {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transition: 0.2s all ease-in-out;
+    font-size: 18px;
+    .fa { margin-left: 10px;}
+    .fa-trash-o {
+        color: var(--red)
+    }
+    .fa-pencil-square-o {
+        color: var(--main-color)
+    }
+  }
+  &:hover {
+    .actions {
+        display: inline;
+      }
+  }
+}
+.turn-on {
+  border: 3px solid var(--main-color);
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(5, 136, 203, .6);
+  color: var(--main-color);
 }

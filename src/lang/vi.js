@@ -254,7 +254,9 @@ export default {
   },
   dashboard: {
     cameraSecurity: 'Camera an ninh',
-    roomList: 'Danh sách phòng'
+    roomList: 'Danh sách phòng',
+    configuration: 'Cấu hình',
+    configurationUsing: 'Danh sách cấu hình cài đặt sẵn, vui lòng nhấn để lựa chọn.'
   },
   notification: {
     notification: 'Thông báo'

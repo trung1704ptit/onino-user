@@ -1,8 +1,8 @@
 <template>
-<section class="box section box-shadow m-15 p-15">
-    <el-row :gutter="10">
+<section class="section p-15">
+    <el-row :gutter="15">
         <el-col :xs="24" :sm="6">
-            <div class="align-center">
+            <div class="align-center box box-shadow p-15">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
                 <p class="white-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
@@ -316,7 +316,7 @@ export default {
 }
 
 .form-wrapper {
-    padding: 30px 0;
+    padding: 30px;
 }
 
 .add-device-form {
@@ -333,7 +333,6 @@ export default {
 <style lang="scss">
 .notify {
     color: #fff;
-    background: var(--green)
 }
 
 .message {

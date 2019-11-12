@@ -5,7 +5,7 @@
         <div class="title mb-15 uppercase">
             <span>{{ room.name }}</span>
         </div>
-        <div class="flex space-between">
+        <div class="flex space-between infor-bottom">
             <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ room.temperature }}°C</span>
             <span><i class="fa fa-tint" aria-hidden="true"></i> {{ room.humidity }}%</span>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="box p-15">
+  <div class="box p-15 box-shadow">
       <div class="flex space-between banner">
           <div><svg-icon icon-class="international" /></div>
           <div>Hà Nội</div>
@@ -28,6 +28,7 @@ export default {
         // background: #8360c3;
         // background: -webkit-linear-gradient(to right, #2ebf91, #8360c3); 
         // background: linear-gradient(to right, #2ebf91, #8360c3);
+        border: 1px solid var(--main-color);
         @media screen and (max-width: 768px){
             font-size: 14px;
         }

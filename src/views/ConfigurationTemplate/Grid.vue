@@ -1,11 +1,9 @@
 <template>
-<section class="m-15">
-    <h4 class="text uppercase">{{ $t('dashboard.roomList') }}</h4>
-
-    <div v-if="roomList.length > 0">
+<section class="section panel-group">
+    <div class="mt-15 mb-15 p-15">
         <el-row :gutter="10">
             <el-col :xs="24" :sm="6" v-for="(room, index) in roomList" :key="index">
-                <room :room="room" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 block block-shadow grid" />
+                <block />
             </el-col>
         </el-row>
 
@@ -21,28 +19,31 @@
             </div>
         </el-dialog>
     </div>
-
-    <div v-if="roomList.length === 0" class="box p-15 block-shadow">
-        <p class="white-text"><i>{{ $t('root.emptyList') }}</i></p>
-    </div>
-
 </section>
 </template>
 
 <script>
 import Room from '@/components/Room'
-import i18n from '@/lang';
+import i18n from '@/lang'
+import {
+    mapGetters,
+    mapstate
+} from 'vuex'
+
+import CountTo from 'vue-count-to'
+import Block from './Block';
 
 export default {
+    components: {
+        CountTo,
+        Block
+    },
     data() {
         return {
             dialogConfirmDelete: false,
             roomToDelete: '',
             deleting: false
         }
-    },
-    components: {
-        Room
     },
     mounted() {
         if (this.roomList.length === 0) {
@@ -76,7 +77,20 @@ export default {
                 this.dialogConfirmDelete = false;
                 this.deleting = false;
             })
+        },
+        handleSetLineChartData(type) {
+            this.$emit('handleSetLineChartData', type)
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.panel-group {
+    margin-top: 18px;
+
+    .card-panel-col {
+        margin-bottom: 32px;
+    }
+}
+</style>

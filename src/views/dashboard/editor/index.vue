@@ -2,11 +2,9 @@
   <div class="dashboard-editor-container">
     <weather />
 
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <!-- <panel-group @handleSetLineChartData="handleSetLineChartData" /> -->
 
-    <!-- <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-      <line-chart :chart-data="lineChartData" />
-    </el-row> -->
+    <configuration-template-slide />
 
     <room-slide />
 
@@ -46,6 +44,7 @@ import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
 import Weather from './components/Weather';
 import CameraSlide from '@/views/camera/CameraSlide';
 import RoomSlide from '@/views/room/RoomSlide';
+import ConfigurationTemplateSlide from '@/views/ConfigurationTemplate/Slide';
 
  
 Vue.use(VueCarousel);
@@ -84,7 +83,8 @@ export default {
     Slide,
     Weather,
     CameraSlide,
-    RoomSlide
+    RoomSlide,
+    ConfigurationTemplateSlide
   },
   data() {
     return {

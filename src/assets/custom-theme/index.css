@@ -4273,8 +4273,8 @@
     background-color:#fff
 }
 .custom-theme .el-switch.is-checked .el-switch__core{
-    border-color:#262729;
-    background-color:#262729
+    border-color: var(--active);
+    background-color: var(--active);
 }
 .custom-theme .el-switch.is-disabled{
     opacity:.6

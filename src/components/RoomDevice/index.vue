@@ -1,8 +1,8 @@
 <template>
 <router-link :to="'/room/thiet-bi/' + device.deviceId">
-    <div class="box p-15 mr-15 box-shadow device-block" v-bind:class="switchValue && 'turn-on'">
+    <div class="box p-15 mr-15 block-shadow device-block block" v-bind:class="switchValue && 'turn-on'">
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
-        <h5 class="title white-text text-center">{{ device.deviceName }}</h5>
+        <h5 class="title text-center">{{ device.deviceName }}</h5>
         <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
         <el-slider v-if="device.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}" />
         <switch-3-state v-if="device.deviceType === '3StateSwitch'" />
@@ -93,15 +93,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.turn-on {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(144, 236, 210, 1) 0%, rgba(241, 244, 178, 1) 88%);
-
-    .title {
-        color: var(--main-color)
-    }
-}
-
 .room-icon {
     width: 120px;
 }
@@ -123,7 +114,6 @@ export default {
     display: inline-block;
     min-width: 220px;
     margin: 15px 15px 15px 0;
-    border: 1px solid var(--main-color);
 
     @media only screen and (max-width: 480px) {
         min-width: 100%

@@ -203,6 +203,20 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/cau-hinh',
+    component: Layout,
+    redirect: '/cau-hinh/tat-ca',
+    children: [
+      {
+        path: 'tat-ca',
+        component: () => import('@/views/ConfigurationTemplate/Grid'),
+        name: 'Cau hinh',
+        meta: { title: 'configuration', icon: 'fa fa-bell', noCache: true },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile',
