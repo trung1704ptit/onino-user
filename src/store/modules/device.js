@@ -1,5 +1,4 @@
 import { getDeviceList, updateDevice, registerDevice, getDeviceById } from '@/api/device'
-import i18n from '@/lang';
 
 const state = {
     deviceList: [],
@@ -19,11 +18,8 @@ const actions = {
     getDeviceList({ commit, state }) {
         return new Promise((resolve, reject) => {
             getDeviceList().then(response => {
-                if (!response) {
-                    reject(i18n.t('root.somethingWentWrong'))
-                }
-                commit('SET_DEVICE_LIST', response)
-                resolve(response)
+                commit('SET_DEVICE_LIST', response.groups)
+                resolve(response.groups)
             }).catch(error => {
                 reject(error)
             })

@@ -162,7 +162,6 @@ export const constantRoutes = [
   {
     path: '/cau-hinh',
     component: Layout,
-    redirect: '/cau-hinh/tat-ca',
     meta: {
       title: 'configuration',
       icon: 'fa fa-cogs'

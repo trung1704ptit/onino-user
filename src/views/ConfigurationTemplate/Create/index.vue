@@ -23,7 +23,12 @@
         </el-col>
         <el-col :xs="24" :sm="18">
             <div v-if="addDevice" class="p-15 box block-shadow form-wrapper app-form">
-                <el-input ref="configurationName" v-model="search" :placeholder="$t('configuration.configurationName')" name="configurationName" type="text" />
+                <el-input ref="configurationName" v-model="search" :placeholder="$t('room.deviceName')" name="configurationName" type="text" />
+                <div>
+                    <div v-for="room in roomList" :key="room.id">
+                        <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
+                    </div>
+                </div>
             </div>
         </el-col>
     </el-row>
@@ -31,13 +36,12 @@
 </template>
 
 <script>
-import PickerColor from '@/components/PickerColor';
-import TintColor from '@/utils/tint-color';
 import {
     isEmpty,
     validateEmpty
 } from '@/utils/validate'
 import i18n from '@/lang'
+import Room from '../Room/index'
 
 import {
     mapGetters
@@ -58,12 +62,30 @@ export default {
             },
             creating: false,
             addDevice: false,
-            search: ''
+            search: '',
+            groups: [],
+            deviceList: [],
+            filterList: []
         }
     },
-    computed: {},
+    mounted() {
+        if (!this.roomList || this.roomList.length === 0) {
+            this.$store.dispatch('room/getAllRoom').then(response => {
+                console.log('response', response);
+                this.groups = response;
+            })
+        }
+    },
+    computed: {
+        roomList: {
+            get: function () {
+                return this.$store.state.room.roomList;
+            },
+            set: function () {}
+        }
+    },
     components: {
-        PickerColor
+        Room
     },
     methods: {
         handleCreateRoom() {
@@ -74,10 +96,16 @@ export default {
                     return false;
                 }
             })
+        },
+        updateSelectedList(deviceId, val) {
+            console.log(deviceId, val);
         }
     },
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.form-wrapper {
+    min-width: 200px;
+}
 </style>

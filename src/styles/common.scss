@@ -142,3 +142,11 @@ button.VueCarousel-navigation-prev {
   box-shadow: 0 3px 6px rgba(5, 136, 203, .6);
   color: var(--main-color);
 }
+.el-checkbox__inner {
+  height: 17px;
+  width: 17px;
+  &:after {
+    left: 6px;
+    height: 10px;
+  }
+}
