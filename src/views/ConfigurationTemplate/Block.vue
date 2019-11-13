@@ -6,7 +6,7 @@
         </div>
         <div class="card-panel-description">
             <div class="card-panel-toggle">
-                <el-switch v-model="switchValue" class="switch" />
+                <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}"/>
             </div>
             <div class="actions">
                 <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="() => {}"></i>

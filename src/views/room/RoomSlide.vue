@@ -10,6 +10,9 @@
                 <slide v-for="(room, index) in roomList" :key="index">
                     <room :room="room" :base="'room/'" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 mb-15 block block-shadow slide" />
                 </slide>
+                <slide v-if="roomList.length < 6">
+                    <latest-block :href="'/room/tat-ca'" />
+                </slide>
             </carousel>
 
             <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
@@ -39,6 +42,7 @@ import {
     mapGetters,
     mapstate
 } from 'vuex'
+import LatestBlock from '@/components/LatestBlock';
 
 export default {
     data() {
@@ -64,7 +68,8 @@ export default {
         }
     },
     components: {
-        Room
+        Room,
+        LatestBlock
     },
     methods: {
         confirmDelete(groupId) {

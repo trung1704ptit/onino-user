@@ -9,6 +9,9 @@
             <slide v-for="(item, index) in roomList" :key="index">
                 <block :className="index == 1 ? 'active-bg' : ''" />
             </slide>
+            <slide v-if="roomList.length < 6">
+                <latest-block :href="'/cau-hinh/tat-ca'" />
+            </slide>
         </carousel>
 
         <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
@@ -36,11 +39,13 @@ import {
 
 import CountTo from 'vue-count-to'
 import Block from './Block';
+import LatestBlock from '@/components/LatestBlock';
 
 export default {
     components: {
         CountTo,
-        Block
+        Block,
+        LatestBlock
     },
     data() {
         return {
