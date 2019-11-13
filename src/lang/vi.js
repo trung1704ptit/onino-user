@@ -106,7 +106,8 @@ export default {
     close: 'Đóng lại',
     stop: 'Dừng lại',
     language: 'Ngôn ngữ',
-    authentication: 'Quyền truy cập'
+    authentication: 'Quyền truy cập',
+    systemInformation: 'Thông tin hệ thống'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -171,8 +172,8 @@ export default {
     cancel: 'Cancel'
   },
   guide: {
-    description: 'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
-    button: 'Show Guide'
+    description: 'Hãy để chúng tôi hướng dẫn cho bạn cách sử dụng ứng dụng',
+    button: 'Hướng dẫn'
   },
   components: {
     documentation: 'Documentation',

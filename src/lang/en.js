@@ -106,7 +106,8 @@ export default {
     close: 'Close',
     stop: 'Stop',
     language: 'Language',
-    authentication: 'Authentication'
+    authentication: 'Authentication',
+    systemInformation: 'System information'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -171,7 +172,7 @@ export default {
     cancel: 'Cancel'
   },
   guide: {
-    description: 'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
+    description: 'Let us show to you how to use this application',
     button: 'Show Guide'
   },
   components: {
