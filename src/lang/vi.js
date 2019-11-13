@@ -104,7 +104,9 @@ export default {
     loading: 'Đang tải',
     open: 'Mở',
     close: 'Đóng lại',
-    stop: 'Dừng lại'
+    stop: 'Dừng lại',
+    language: 'Ngôn ngữ',
+    authentication: 'Quyền truy cập'
   },
   navbar: {
     dashboard: 'Dashboard',

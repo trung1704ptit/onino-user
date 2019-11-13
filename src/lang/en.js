@@ -75,15 +75,6 @@ export default {
     configurationDetail: 'Configuration detail',
     addNewConfiguration: 'Add new configuration'
   },
-  navbar: {
-    dashboard: 'Dashboard',
-    github: 'Github',
-    logOut: 'Log Out',
-    profile: 'Profile',
-    theme: 'Theme',
-    size: 'Global Size',
-    userInfo: 'User information'
-  },
   root: {
     register: 'Register',
     login: 'Login',
@@ -113,7 +104,18 @@ export default {
     loading: 'Loading',
     open: 'Open',
     close: 'Close',
-    stop: 'Stop'
+    stop: 'Stop',
+    language: 'Language',
+    authentication: 'Authentication'
+  },
+  navbar: {
+    dashboard: 'Dashboard',
+    github: 'Github',
+    logOut: 'Log Out',
+    profile: 'Profile',
+    theme: 'Theme',
+    size: 'Global Size',
+    userInfo: 'User information'
   },
   login: {
     title: 'Login Form',
