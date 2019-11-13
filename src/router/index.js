@@ -7,9 +7,6 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
 // import nestedRouter from './modules/nested'
 
 /**
@@ -221,11 +218,10 @@ export const constantRoutes = [
   {
     path: '/thong-bao',
     component: Layout,
-    redirect: '/guide/index',
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
+        path: '',
+        component: () => import('@/views/notification/index'),
         name: 'Thong bao',
         meta: { title: 'notification', icon: 'fa fa-bell', noCache: true }
       }

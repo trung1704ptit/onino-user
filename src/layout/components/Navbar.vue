@@ -151,9 +151,10 @@ export default {
         .user-avatar {
           cursor: pointer;
           object-fit: cover;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin-top: 4px;
         }
 
         .el-icon-caret-bottom {
