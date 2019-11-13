@@ -1,7 +1,7 @@
 <template>
 <router-link :to="'/room/thiet-bi/' + device.deviceId">
     <div class="box p-15 mr-15 block-shadow device-block block" v-bind:class="switchValue && 'turn-on'">
-        <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
+        <div class="device-icon-wrap"><img :src="deviceIconUrl" class="device-icon" /></div>
         <h5 class="title text-center">{{ device.deviceName }}</h5>
         <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
         <el-slider v-if="device.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}" />
@@ -15,7 +15,9 @@ import {
     mapGetters
 } from 'vuex';
 import PickerColor from '@/components/PickerColor';
-import TintColor from '@/utils/tint-color';
+import TintColor, {
+    changeColor
+} from '@/utils/tint-color';
 import i18n from '@/lang';
 import Switch3State from '@/components/Switch3State';
 import {
@@ -42,7 +44,17 @@ export default {
     data() {
         return {
             switchValue: false,
-            slideValue: 50
+            slideValue: 50,
+            deviceIconUrl: '',
+        }
+    },
+    mounted() {
+        if (this.device) {
+            this.deviceIconUrl = this.device.deviceIconUrl;
+            const tintImage = new TintColor(this.deviceIconUrl, this.switchValue ? '' : '#ffffff')
+            tintImage.run().then(newImage => {
+                this.deviceIconUrl = newImage.url;
+            });
         }
     },
     watch: {
@@ -87,6 +99,9 @@ export default {
             client.on('message', function (topic, message) {
                 client.end()
             })
+        },
+        getImage() {
+            getImage();
         }
     }
 }

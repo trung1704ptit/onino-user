@@ -3,7 +3,7 @@
     <h2 class="text">{{ $t('configuration.addConfiguration') }}</h2>
     <el-row :gutter="15">
         <el-col :xs="24" :sm="6">
-            <el-form ref="form" :model="form" :rules="roomRules" autocomplete="off" class="form-wrapper app-form block-shadow" label-position="left">
+            <el-form ref="form" :model="form" :rules="roomRules" autocomplete="off" class="box form-wrapper app-form block-shadow" label-position="left">
                 <el-form-item prop="configurationName" class="el-form-item">
                     <span class="svg-container">
                         <i class="fa fa-keyboard-o" aria-hidden="true"></i>

@@ -174,7 +174,7 @@ export default {
 
             if (roomDetail) {
                 this.roomDetail = roomDetail;
-                new TintColor(roomDetail.groupIconUrl, roomDetail.groupColor).run().then(newImage => {
+                new TintColor(roomDetail.groupIconUrl, '#ffffff').run().then(newImage => {
                     this.roomDetail.groupIconUrl = newImage.url;
                 })
             } else {
@@ -186,7 +186,7 @@ export default {
 
                 if (roomDetail) {
                     this.roomDetail = roomDetail;
-                    new TintColor(roomDetail.groupIconUrl, roomDetail.groupColor).run().then(newImage => {
+                    new TintColor(roomDetail.groupIconUrl, '#ffffff').run().then(newImage => {
                         this.roomDetail.groupIconUrl = newImage.url;
                     })
                 } else {

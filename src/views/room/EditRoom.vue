@@ -5,9 +5,7 @@
             <h4 class="text">{{ $t('room.groupIcon') }}</h4>
 
             <div class="room-list">
-                <div v-for="(icon, index) in groupIcons" :key="index" class="room-block block-shadow" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
-                    <img :src="icon" class="preview-icon" />
-                </div>
+                <device-icon v-for="(icon, index) in groupIcons" :key="index" :icon="icon" :groupIconUrl="groupIconUrl" :handleSelect="handleSelect"/>
             </div>
 
             <el-form ref="roomDetail" :model="roomDetail" :rules="roomRules" autocomplete="off" class="app-form form-wrapper box block-shadow" label-position="left">
@@ -30,8 +28,8 @@
 </template>
 
 <script>
-import PickerColor from '@/components/PickerColor';
 import TintColor from '@/utils/tint-color';
+
 import {
     isEmpty
 } from '@/utils/validate'
@@ -40,6 +38,8 @@ import i18n from '@/lang'
 import {
     mapGetters
 } from 'vuex'
+
+import DeviceIcon from './DeviceIcon';
 
 export default {
     data() {
@@ -109,7 +109,7 @@ export default {
         }
     },
     components: {
-        PickerColor
+        DeviceIcon
     },
     methods: {
         handleSelect(item) {
@@ -154,8 +154,4 @@ export default {
 .vc-chrome {
     width: 100% !important;
 }
-</style>
-
-<style lang="scss" scoped>
-@import './edit-style.scss';
 </style>
