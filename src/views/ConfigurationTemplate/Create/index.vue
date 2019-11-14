@@ -20,6 +20,7 @@
     </el-form>
 
     <div class="p-15 mt-15 block-shadow selected-list" v-if="filterList.length > 0">
+        <h2 class="text m-0">{{ $t('root.listFiltered') }}</h2>
         <div v-for="room in filterList" :key="room.id">
             <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
         </div>

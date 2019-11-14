@@ -1,6 +1,6 @@
 <template>
 <div class="p-15 device-block block">
-    <h2 class="text uppercase">{{ room.name }}</h2>
+    <h3 class="text uppercase">{{ room.name }}</h3>
     <device v-for="device in room.devices" :key="device.id" :device="device" :updateSelectedList="updateList" />
 </div>
 </template>
