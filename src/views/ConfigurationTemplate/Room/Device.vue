@@ -3,6 +3,7 @@
     <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
     <h5 class="title text-center">{{ device.deviceName }}</h5>
     <i class="fa fa-plus-circle add" aria-hidden="true"></i>
+    <i class="fa fa-minus-circle remove" aria-hidden="true"></i>
 </div>
 </template>
 
@@ -36,12 +37,6 @@ export default {
     display: flex;
 }
 
-.add {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
 .device-icon {
     width: 60px;
     height: 50px;
@@ -61,11 +56,42 @@ export default {
     }
 
     &:hover {
-        color: var(--main-color)
+        color: var(--main-color);
     }
 
     .title {
         margin-bottom: 0;
+    }
+}
+
+
+.add,
+.remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+}
+
+.room-list {
+    .add {
+        display: block;
+    }
+
+    .remove {
+        display: none;
+    }
+}
+
+.selected-list {
+    .add {
+        display: none;
+    }
+
+    .device-block:hover {
+        & > .remove {
+            display: block;
+        }
     }
 }
 </style>

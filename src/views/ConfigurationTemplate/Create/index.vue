@@ -19,7 +19,7 @@
         </el-button>
     </el-form>
 
-    <div class="p-15 mt-15 block-shadow" v-if="filterList.length > 0">
+    <div class="p-15 mt-15 block-shadow selected-list" v-if="filterList.length > 0">
         <div v-for="room in filterList" :key="room.id">
             <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
         </div>
@@ -29,7 +29,7 @@
         <div class="p-15">
             <el-input ref="configurationName" v-model="search" :placeholder="$t('room.deviceName')" name="configurationName" type="text" />
         </div>
-        <div>
+        <div class="room-list">
             <div v-for="room in roomList" :key="room.id">
                 <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
             </div>
