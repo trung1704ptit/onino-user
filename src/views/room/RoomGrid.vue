@@ -32,8 +32,12 @@
 <script>
 import Room from '@/components/Room'
 import i18n from '@/lang';
+import livingRoomBg from '@/assets/img/living-room.jpg';
 
 export default {
+    beforeCreate: function () {
+        document.body.background = livingRoomBg;
+    },
     data() {
         return {
             dialogConfirmDelete: false,

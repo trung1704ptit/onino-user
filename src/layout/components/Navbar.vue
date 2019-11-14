@@ -90,7 +90,6 @@ export default {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background: var(--background);
   .hamburger-container {
     line-height: 46px;
     height: 100%;
