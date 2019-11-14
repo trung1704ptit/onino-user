@@ -36,7 +36,7 @@ import livingRoomBg from '@/assets/img/living-room.jpg';
 
 export default {
     beforeCreate: function () {
-        document.body.background = livingRoomBg;
+        document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${livingRoomBg}')`;
     },
     data() {
         return {

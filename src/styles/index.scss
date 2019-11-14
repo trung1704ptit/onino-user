@@ -13,8 +13,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: myriad-pro, Helvetica;
-  // background: var(--dark-blue);
-  background-size: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/img/living-room.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 label {
@@ -262,7 +264,11 @@ aside {
 }
 .box {
   border-radius: 10px;
-  background: #1e3550;
+  background: var(--bg);
+}
+.dark-box {
+  border-radius: 10px;
+  background: var(--dark-blue);
 }
 .white-text {
   color: #fff

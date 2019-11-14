@@ -19,14 +19,14 @@
         </el-button>
     </el-form>
 
-    <div class="p-15 mt-15 block-shadow selected-list" v-if="filterList.length > 0">
+    <div class="box p-15 mt-15 block-shadow selected-list" v-if="filterList.length > 0">
         <h2 class="text m-0">{{ $t('root.listFiltered') }}</h2>
         <div v-for="room in filterList" :key="room.id">
             <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
         </div>
     </div>
 
-    <div v-if="addDevice" class="p-15 mt-15 block-shadow form-wrapper app-form">
+    <div v-if="addDevice" class="box p-15 mt-15 block-shadow form-wrapper app-form">
         <div class="p-15">
             <el-input ref="configurationName" v-model="search" :placeholder="$t('room.deviceName')" name="configurationName" type="text" />
         </div>

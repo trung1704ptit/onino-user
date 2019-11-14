@@ -2666,12 +2666,10 @@
     margin:0 -10px
 }
 .custom-theme .el-menu{
-    border-right:solid 1px #e6e6e6;
     list-style:none;
     position:relative;
     margin:0;
     padding-left:0;
-    background-color:#fff
 }
 .custom-theme .el-menu::after,.custom-theme .el-menu::before{
     display:table;
