@@ -107,7 +107,8 @@ export default {
     stop: 'Dừng lại',
     language: 'Ngôn ngữ',
     authentication: 'Quyền truy cập',
-    systemInformation: 'Thông tin hệ thống'
+    systemInformation: 'Thông tin hệ thống',
+    listFiltered: 'Danh sách đã chọn'
   },
   navbar: {
     dashboard: 'Dashboard',

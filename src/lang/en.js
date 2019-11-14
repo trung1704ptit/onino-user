@@ -107,7 +107,8 @@ export default {
     stop: 'Stop',
     language: 'Language',
     authentication: 'Authentication',
-    systemInformation: 'System information'
+    systemInformation: 'System information',
+    listFiltered: 'List filtered'
   },
   navbar: {
     dashboard: 'Dashboard',

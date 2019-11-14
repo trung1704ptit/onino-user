@@ -19,7 +19,7 @@
         </el-button>
     </el-form>
 
-    <div class="p-15 mt-15 block-shadow">
+    <div class="p-15 mt-15 block-shadow" v-if="filterList.length > 0">
         <div v-for="room in filterList" :key="room.id">
             <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
         </div>
@@ -102,6 +102,7 @@ export default {
         updateSelectedList(device, room) {
             // check room already exists or not
             const index = this.filterList.findIndex(item => room.id === item.id);
+            const roomIndex = this.roomList.findIndex(item => item.id === room.id);
 
             if (index > -1) {
                 const currentRoom = this.filterList[index];
@@ -109,16 +110,33 @@ export default {
 
                 // check device exist on list
                 const deviceIndex = currentDevices.findIndex(item => item.deviceId === device.deviceId);
+
                 if (deviceIndex > -1) {
                     currentDevices = currentDevices.filter(item => item.deviceId !== device.deviceId);
+                    this.addDeviceToRoomList(device, roomIndex);
                 } else {
                     currentDevices.push(device);
+                    this.removeDeviceFromRoomList(device, roomIndex);
                 }
+
                 this.filterList[index].devices = currentDevices;
+
             } else {
-                // push room to list when room is not exists
+                // push room to list when room does not exists
                 this.filterList.push(room);
+
+                this.removeDeviceFromRoomList(device, roomIndex);
             }
+        },
+        removeDeviceFromRoomList(device, roomIndex) {
+            const currentRoom = this.roomList[roomIndex];
+            currentRoom.devices = currentRoom.devices.filter(item => item.deviceId !== device.deviceId);
+            this.roomList[roomIndex] = currentRoom;
+        },
+        addDeviceToRoomList(device, roomIndex) {
+            const currentRoom = this.roomList[roomIndex];
+            currentRoom.devices.push(device);
+            this.roomList[roomIndex] = currentRoom;
         }
     },
 }

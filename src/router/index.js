@@ -167,20 +167,20 @@ export const constantRoutes = [
       {
         path: 'tat-ca',
         component: () => import('@/views/ConfigurationTemplate/Grid'),
-        name: 'Cau hinh',
+        name: 'Tat ca',
         meta: { title: 'all', icon: 'fa fa-th', noCache: true },
       },
       {
         path: 'chi-tiet/:id',
         component: () => import('@/views/ConfigurationTemplate/Detail/index'),
-        name: 'Cau hinh',
+        name: 'Chi tiet',
         meta: { title: 'configurationDetail', icon: 'fa fa-cogs', noCache: true },
         hidden: true
       },
       {
         path: 'them-moi',
         component: () => import('@/views/ConfigurationTemplate/Create/index'),
-        name: 'Cau hinh',
+        name: 'Them moi',
         meta: { title: 'addNewConfiguration', icon: 'fa fa-plus-square', noCache: true },
       }
     ]
