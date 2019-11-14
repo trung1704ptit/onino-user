@@ -1,8 +1,8 @@
 <template>
-<div class="box p-15 mr-15 block-shadow device-block block" @click="checkboxVal = !checkboxVal">
+<div class="box p-15 mr-15 block-shadow device-block block" @click="selectDevice = !selectDevice">
     <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
     <h5 class="title text-center">{{ device.deviceName }}</h5>
-    <el-checkbox v-model="checkboxVal" class="checkbox" @click.native.stop="()=>{}"></el-checkbox>
+    <i class="fa fa-plus-circle add" aria-hidden="true"></i>
 </div>
 </template>
 
@@ -20,12 +20,12 @@ export default {
     },
     data() {
         return {
-            checkboxVal: false
+            selectDevice: false
         }
     },
     watch: {
-        checkboxVal: function (val, oldVal) {
-            this.updateSelectedList(this.device.deviceId, val)
+        selectDevice: function (val, oldVal) {
+            this.updateSelectedList(this.device)
         }
     }
 }
@@ -36,7 +36,7 @@ export default {
     display: flex;
 }
 
-.checkbox {
+.add {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -58,6 +58,10 @@ export default {
 
     @media only screen and (max-width: 480px) {
         min-width: 100%
+    }
+
+    &:hover {
+        color: var(--main-color)
     }
 
     .title {
