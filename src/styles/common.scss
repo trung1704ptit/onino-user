@@ -153,6 +153,14 @@ button.VueCarousel-navigation-prev {
 .bg-white {
   background: #fff;
 }
+.bg-light {
+  background: var(--bg-light);
+  border-radius: 10px;
+  padding: 30px;
+  @media screen and (max-width: 767px){
+    padding: 15px;
+  }
+}
 #driver-highlighted-element-stage {
   background: var(--dark-blue) !important;
 }

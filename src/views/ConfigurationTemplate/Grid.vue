@@ -1,6 +1,7 @@
 <template>
-<section class="section panel-group">
+<section class="section panel-group bg-light m-15">
     <div class="mt-15 mb-15 p-15">
+        <h2 class="text">{{ $t('configuration.configurationList')}}</h2>
         <el-row :gutter="10">
             <el-col :xs="24" :sm="6" v-for="(room, index) in roomList" :key="index">
                 <block />

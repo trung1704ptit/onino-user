@@ -160,7 +160,8 @@ export default {
   },
   configuration: {
     addConfiguration: 'Add configuration',
-    configurationName: 'Configuration name'
+    configurationName: 'Configuration name',
+    configurationList: 'Configuration list'
   },
   permission: {
     addRole: 'New Role',

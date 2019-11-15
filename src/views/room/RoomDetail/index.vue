@@ -1,5 +1,5 @@
 <template>
-<section class="section p-15">
+<section class="section m-15 bg-light">
     <el-row :gutter="15">
         <el-col :xs="24" :sm="6">
             <div class="align-center box box-shadow p-15">

@@ -1,7 +1,7 @@
 <template>
 <section class="p-15">
     <h2 class="text">{{ $t('configuration.addConfiguration') }}</h2>
-    <el-form ref="form" :model="form" :rules="roomRules" autocomplete="off" class="box form-wrapper app-form block-shadow" label-position="left">
+    <el-form ref="form" :model="form" :rules="roomRules" autocomplete="off" class="form-wrapper app-form block-shadow bg-light" label-position="left">
         <el-form-item prop="configurationName" class="el-form-item">
             <span class="svg-container">
                 <i class="fa fa-keyboard-o" aria-hidden="true"></i>
@@ -19,14 +19,14 @@
         </el-button>
     </el-form>
 
-    <div class="box p-15 mt-15 block-shadow selected-list" v-if="filterList.length > 0">
+    <div class="p-15 mt-15 block-shadow selected-list bg-light" v-if="filterList.length > 0">
         <h2 class="text m-0">{{ $t('root.listFiltered') }}</h2>
         <div v-for="room in filterList" :key="room.id">
             <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
         </div>
     </div>
 
-    <div v-if="addDevice" class="box p-15 mt-15 block-shadow form-wrapper app-form">
+    <div v-if="addDevice" class="p-15 mt-15 block-shadow form-wrapper app-form bg-light">
         <div class="p-15">
             <el-input ref="configurationName" v-model="search" :placeholder="$t('room.deviceName')" name="configurationName" type="text" />
         </div>
@@ -146,5 +146,12 @@ export default {
 <style lang="scss" scoped>
 .form-wrapper {
     min-width: 200px;
+    background: transparent;
+}
+.app-form {
+    background: transparent;
+}
+.bg-light {
+    background: var(--bg-light);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<section class="m-15">
+<section class="bg-light m-15">
     <h4 class="text uppercase">{{ $t('dashboard.roomList') }}</h4>
 
     <div v-if="roomList.length > 0">
@@ -36,7 +36,7 @@ import livingRoomBg from '@/assets/img/living-room.jpg';
 
 export default {
     beforeCreate: function () {
-        document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${livingRoomBg}')`;
+        document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${livingRoomBg}')`;
     },
     data() {
         return {
