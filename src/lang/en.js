@@ -73,7 +73,8 @@ export default {
     all: 'All',
     configuration: 'Configuration',
     configurationDetail: 'Configuration detail',
-    addNewConfiguration: 'Add new configuration'
+    addNewConfiguration: 'Add new configuration',
+    gas: 'Gas'
   },
   root: {
     register: 'Register',
@@ -108,7 +109,12 @@ export default {
     language: 'Language',
     authentication: 'Authentication',
     systemInformation: 'System information',
-    listFiltered: 'List filtered'
+    listFiltered: 'List filtered',
+    weekLoop: 'Week in loop',
+    turnOnDeviceSuccess: 'Turn on device successful',
+    turnOffDeviceSuccess: 'Turn off device successful',
+    timeStart: 'Time start',
+    timeEnd: 'Time end'
   },
   navbar: {
     dashboard: 'Dashboard',

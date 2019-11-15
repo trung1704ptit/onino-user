@@ -73,7 +73,8 @@ export default {
     all: 'Tất cả',
     configuration: 'Cấu hình',
     configurationDetail: 'Cấu hình chi tiết',
-    addNewConfiguration: 'Thêm mới cấu hình'
+    addNewConfiguration: 'Thêm mới cấu hình',
+    gas: 'Gas'
   },
   root: {
     register: 'Đăng ký',
@@ -108,7 +109,12 @@ export default {
     language: 'Ngôn ngữ',
     authentication: 'Quyền truy cập',
     systemInformation: 'Thông tin hệ thống',
-    listFiltered: 'Danh sách đã chọn'
+    listFiltered: 'Danh sách đã chọn',
+    weekLoop: 'Lặp trong tuần',
+    turnOnDeviceSuccess: 'Bật thiết bị thành công',
+    turnOffDeviceSuccess: 'Tắt thiết bị thành công',
+    timeStart: 'Thời gian bắt đầu',
+    timeEnd: 'Thời gian kết thúc'
   },
   navbar: {
     dashboard: 'Dashboard',

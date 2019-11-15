@@ -211,7 +211,7 @@ export const constantRoutes = [
         path: 'gas',
         component: () => import('@/views/summary/gas/index'),
         name: 'Gas',
-        meta: { title: 'Gas', icon: 'fa fa-fire', noCache: true }
+        meta: { title: 'gas', icon: 'fa fa-fire', noCache: true }
       }
     ]
   },
