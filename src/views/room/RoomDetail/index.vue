@@ -41,10 +41,11 @@
 
             <!-- List of devices -->
             <div class="mt-15 mb-15">
-                <span v-for="(device, index) in roomDevices" :key="device.deviceId">
-                    <br v-if="index > 0 && device.thingId !== roomDevices[index - 1].thingId" />
-                    <room-device :handleEditDevice="handleClickEditDevice" :device="device" />
-                </span>
+                <!-- <br v-if="index > 0 && device.thingId !== roomDevices[index - 1].thingId" /> -->
+                <room-device  v-for="(device, index) in roomDevices" :key="device.deviceId" :handleEditDevice="handleClickEditDevice" :device="device" :breakPoint="index < 4"/>
+                <div class="box p-15">
+                    
+                </div>
             </div>
 
             <!-- Button add form -->

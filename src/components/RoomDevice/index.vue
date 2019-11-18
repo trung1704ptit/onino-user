@@ -1,13 +1,12 @@
 <template>
-<router-link :to="'/room/thiet-bi/' + device.deviceId">
+<fragment>
     <div class="box p-15 mr-15 block-shadow device-block block" v-bind:class="switchValue && 'turn-on'">
         <div class="device-icon-wrap"><img :src="deviceIconUrl" class="device-icon" /></div>
         <h5 class="title text-center">{{ device.deviceName }}</h5>
-        <el-switch v-if="device.deviceType === 'switch'" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
-        <el-slider v-if="device.deviceType === 'fullColorBub'" v-model="slideValue" @click.native.prevent="() => {}" />
-        <switch-3-state v-if="device.deviceType === '3StateSwitch'" />
+        <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
     </div>
-</router-link>
+    <br v-if="breakPoint" />
+</fragment>
 </template>
 
 <script>
@@ -20,6 +19,7 @@ import TintColor, {
 } from '@/utils/tint-color';
 import i18n from '@/lang';
 import Switch3State from '@/components/Switch3State';
+import { Fragment } from 'vue-fragment';
 import {
     isEmpty
 } from '@/utils/validate'
@@ -34,12 +34,14 @@ import {
 
 export default {
     components: {
-        Switch3State
+        Switch3State,
+        Fragment
     },
     props: {
         handleDelete: Function,
         handleEditDevice: Function,
-        device: Object
+        device: Object,
+        breakPoint: Boolean
     },
     data() {
         return {
@@ -113,7 +115,7 @@ export default {
 }
 
 .device-icon-wrap {
-    width: 200px;
+    width: 150px;
     display: flex;
 }
 
@@ -127,8 +129,8 @@ export default {
 .device-block {
     position: relative;
     display: inline-block;
-    min-width: 220px;
-    margin: 15px 15px 15px 0;
+    min-width: 150px;
+    margin: 5px 5px 5px 0;
 
     @media only screen and (max-width: 480px) {
         min-width: 100%
