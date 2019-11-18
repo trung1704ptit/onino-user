@@ -114,7 +114,9 @@ export default {
     turnOnDeviceSuccess: 'Bật thiết bị thành công',
     turnOffDeviceSuccess: 'Tắt thiết bị thành công',
     timeStart: 'Thời gian bắt đầu',
-    timeEnd: 'Thời gian kết thúc'
+    timeEnd: 'Thời gian kết thúc',
+    currentTime: 'Thời gian hiện tại',
+    setTimer: 'Cài đặt hẹn giờ'
   },
   navbar: {
     dashboard: 'Dashboard',

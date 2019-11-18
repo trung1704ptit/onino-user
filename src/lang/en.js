@@ -114,7 +114,9 @@ export default {
     turnOnDeviceSuccess: 'Turn on device successful',
     turnOffDeviceSuccess: 'Turn off device successful',
     timeStart: 'Time start',
-    timeEnd: 'Time end'
+    timeEnd: 'Time end',
+    currentTime: 'Current time',
+    setTimer: 'Set timer'
   },
   navbar: {
     dashboard: 'Dashboard',
