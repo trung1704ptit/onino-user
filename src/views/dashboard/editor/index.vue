@@ -4,6 +4,8 @@
 
     <configuration-template-slide />
 
+    <automation-slide />
+
     <room-slide />
 
     <camera-slide />
@@ -17,7 +19,8 @@ import CameraSlide from '@/views/camera/CameraSlide';
 import RoomSlide from '@/views/room/RoomSlide';
 import Weather from './components/Weather';
 import ConfigurationTemplateSlide from '@/views/ConfigurationTemplate/Slide';
- 
+import AutomationSlide from '@/views/Automation/Slide';
+
 Vue.use(VueCarousel);
 
 export default {
@@ -28,7 +31,8 @@ export default {
     Weather,
     CameraSlide,
     RoomSlide,
-    ConfigurationTemplateSlide
+    ConfigurationTemplateSlide,
+    AutomationSlide
   },
 }
 </script>

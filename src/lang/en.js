@@ -74,7 +74,8 @@ export default {
     configuration: 'Configuration',
     configurationDetail: 'Configuration detail',
     addNewConfiguration: 'Add new configuration',
-    gas: 'Gas'
+    gas: 'Gas',
+    automation: 'Automation'
   },
   root: {
     register: 'Register',
@@ -251,7 +252,8 @@ export default {
     cameraSecurity: 'Camera securirty',
     roomList: 'Room list',
     configuration: 'Configuration',
-    configurationUsing: 'This is a list of configuations, please click to choose one'
+    configurationUsing: 'This is a list of configuations, please click to choose one',
+    automationList: 'Automation list'
   },
   notification: {
     notification: 'Notification'

@@ -94,6 +94,35 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/tu-dong',
+    component: Layout,
+    meta: {
+      title: 'automation',
+      icon: 'fa fa-sliders'
+    },
+    children: [
+      {
+        path: 'tat-ca',
+        component: () => import('@/views/Automation/Grid'),
+        name: 'Tat ca',
+        meta: { title: 'all', icon: 'fa fa-th', noCache: true },
+      },
+      {
+        path: 'chi-tiet/:id',
+        component: () => import('@/views/Automation/Detail/index'),
+        name: 'Chi tiet',
+        meta: { title: 'configurationDetail', icon: 'fa fa-cogs', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'them-moi',
+        component: () => import('@/views/Automation/Create/index'),
+        name: 'Them moi',
+        meta: { title: 'addNewConfiguration', icon: 'fa fa-plus-square', noCache: true },
+      }
+    ]
+  },
+  {
     path: '/camera',
     component: Layout,
     redirect: '/camera/CameraSlide',

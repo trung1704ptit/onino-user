@@ -74,7 +74,8 @@ export default {
     configuration: 'Cấu hình',
     configurationDetail: 'Cấu hình chi tiết',
     addNewConfiguration: 'Thêm mới cấu hình',
-    gas: 'Gas'
+    gas: 'Gas',
+    automation: 'Tự động'
   },
   root: {
     register: 'Đăng ký',
@@ -271,7 +272,8 @@ export default {
     cameraSecurity: 'Camera an ninh',
     roomList: 'Danh sách phòng',
     configuration: 'Cấu hình',
-    configurationUsing: 'Danh sách cấu hình cài đặt sẵn, vui lòng nhấn để lựa chọn.'
+    configurationUsing: 'Danh sách cấu hình cài đặt sẵn, vui lòng nhấn để lựa chọn.',
+    automationList: 'Danh sách tự động'
   },
   notification: {
     notification: 'Thông báo'
