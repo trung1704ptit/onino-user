@@ -9,6 +9,7 @@
     <el-dialog :visible.sync="dialogVisible" :title="$t('configuration.settingDevice')" v-if="dialogVisible">
         <span class="mr-15">Trạng thái Bật/Tắt</span>
         <el-switch v-model="deviceStatus" />
+        <el-slider v-model="slideValue" @click.native.prevent="() => {}" />
         <span slot="footer" class="dialog-footer">
             <el-button type="primary" @click="dialogVisible = false"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}</el-button>
             <el-button @click="dialogVisible = false"><i class="fa fa-times-circle" aria-hidden="true"></i> {{ $t('root.cancel') }}</el-button>
@@ -33,7 +34,8 @@ export default {
         return {
             selectDevice: false,
             dialogVisible: false,
-            deviceStatus: false
+            deviceStatus: false,
+            slideValue: 30
         }
     },
     watch: {

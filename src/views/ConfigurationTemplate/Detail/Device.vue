@@ -7,12 +7,6 @@
 </template>
 
 <script>
-// import {
-//     mapGetters
-// } from 'vuex';
-// import TintColor from '@/utils/tint-color';
-// import i18n from '@/lang';
-
 export default {
     props: {
         device: Object,
