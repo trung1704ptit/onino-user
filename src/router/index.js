@@ -104,21 +104,21 @@ export const constantRoutes = [
       {
         path: 'tat-ca',
         component: () => import('@/views/Automation/Grid'),
-        name: 'Tat ca',
+        name: 'Tat ca tu dong',
         meta: { title: 'all', icon: 'fa fa-th', noCache: true },
       },
       {
         path: 'chi-tiet/:id',
         component: () => import('@/views/Automation/Detail/index'),
-        name: 'Chi tiet',
+        name: 'Chi tiet tu dong',
         meta: { title: 'configurationDetail', icon: 'fa fa-cogs', noCache: true },
         hidden: true
       },
       {
         path: 'them-moi',
         component: () => import('@/views/Automation/Create/index'),
-        name: 'Them moi',
-        meta: { title: 'addNewConfiguration', icon: 'fa fa-plus-square', noCache: true },
+        name: 'Them moi tu dong',
+        meta: { title: 'addNewAutomation', icon: 'fa fa-plus-square', noCache: true },
       }
     ]
   },

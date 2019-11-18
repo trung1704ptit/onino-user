@@ -75,7 +75,9 @@ export default {
     configurationDetail: 'Cấu hình chi tiết',
     addNewConfiguration: 'Thêm mới cấu hình',
     gas: 'Gas',
-    automation: 'Tự động'
+    automation: 'Tự động',
+    addNewAutomation: 'Thêm mới tự động',
+    addNew: 'Thêm mới'
   },
   root: {
     register: 'Đăng ký',

@@ -75,7 +75,9 @@ export default {
     configurationDetail: 'Configuration detail',
     addNewConfiguration: 'Add new configuration',
     gas: 'Gas',
-    automation: 'Automation'
+    automation: 'Automation',
+    addNewAutomation: 'Add new automation',
+    addNew: 'Add new'
   },
   root: {
     register: 'Register',

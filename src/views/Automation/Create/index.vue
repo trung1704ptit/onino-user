@@ -2,12 +2,15 @@
 <section class="p-15">
     <h2 class="text">{{ $t('configuration.addConfiguration') }}</h2>
     <el-form ref="form" :model="form" :rules="roomRules" autocomplete="off" class="form-wrapper app-form block-shadow bg-light" label-position="left">
-        <el-form-item prop="configurationName" class="el-form-item">
-            <span class="svg-container">
-                <i class="fa fa-keyboard-o" aria-hidden="true"></i>
-            </span>
-            <el-input ref="configurationName" v-model="form.configurationName" :placeholder="$t('configuration.configurationName')" name="configurationName" type="text" tabindex="1" />
-        </el-form-item>
+        <div class="flex mb-15">
+            <img :src="form.icon" style="width: 100px" @click="isOpenDeviceIconsPopup = true" />
+            <el-form-item prop="configurationName" class="el-form-item">
+                <span class="svg-container">
+                    <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+                </span>
+                <el-input ref="configurationName" v-model="form.configurationName" :placeholder="$t('configuration.configurationName')" name="configurationName" type="text" tabindex="1" />
+            </el-form-item>
+        </div>
 
         <div class="mt-15 selected-list" v-if="filterList.length > 0">
             <div v-for="room in filterList" :key="room.id">
@@ -18,10 +21,10 @@
         <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
         </el-button>
-        <el-button v-if="!addDevice" type="primary" @click="addDevice = !addDevice">
+        <el-button v-if="!addDevice" type="primary" @click="addDevice = true">
             <i class="fa fa-plus-square" aria-hidden="true"></i> {{ $t('room.addDevice') }}
         </el-button>
-        <el-button v-if="addDevice" @click="addDevice = !addDevice">
+        <el-button v-if="addDevice" @click="addDevice = false">
             <i class="el-icon-circle-close" aria-hidden="true"></i> {{ $t('root.cancel') }}
         </el-button>
     </el-form>
@@ -37,6 +40,12 @@
             </div>
         </div>
     </div>
+    <device-icons-popup
+        :selectIcon="handleSelectIcon"
+        :isOpenPopup="isOpenDeviceIconsPopup"
+        :handleClose="handleClose"
+        v-if="isOpenDeviceIconsPopup"
+    />
 </section>
 </template>
 
@@ -46,7 +55,9 @@ import {
     validateEmpty
 } from '@/utils/validate'
 import i18n from '@/lang'
-import Room from '../Room/index'
+import Room from '../Room/index';
+import DeviceIconsPopup from '@/components/DeviceIconsPopup';
+import addIcon from '@/assets/img/add.svg';
 
 import {
     mapGetters
@@ -56,7 +67,8 @@ export default {
     data() {
         return {
             form: {
-                configurationName: ''
+                configurationName: '',
+                icon: ''
             },
             roomRules: {
                 configurationName: [{
@@ -66,11 +78,12 @@ export default {
                 }]
             },
             creating: false,
-            addDevice: false,
+            addDevice: true,
             search: '',
             groups: [],
             deviceList: [],
-            filterList: []
+            filterList: [],
+            isOpenDeviceIconsPopup: false
         }
     },
     mounted() {
@@ -79,6 +92,7 @@ export default {
                 this.groups = response;
             })
         }
+        this.form.icon = addIcon;
     },
     computed: {
         roomList: {
@@ -89,7 +103,8 @@ export default {
         }
     },
     components: {
-        Room
+        Room,
+        DeviceIconsPopup
     },
     methods: {
         handleCreateRoom() {
@@ -139,6 +154,12 @@ export default {
             const currentRoom = this.roomList[roomIndex];
             currentRoom.devices.push(device);
             this.roomList[roomIndex] = currentRoom;
+        },
+        handleSelectIcon(image) {
+            this.form.icon = image;
+        },
+        handleClose() {
+            this.isOpenDeviceIconsPopup = false;
         }
     },
 }
@@ -148,6 +169,10 @@ export default {
 .form-wrapper {
     min-width: 200px;
     background: transparent;
+}
+.el-form-item {
+    width: 100%;
+    margin: auto auto auto 15px;
 }
 
 .app-form {

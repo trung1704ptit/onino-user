@@ -24,8 +24,12 @@ import {
 } from 'vuex';
 import TintColor from '@/utils/tint-color';
 import i18n from '@/lang';
+import { Fragment } from 'vue-fragment'
 
 export default {
+    components: {
+        Fragment
+    },
     props: {
         device: Object,
         updateSelectedList: Function
