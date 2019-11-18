@@ -1,15 +1,15 @@
 <template>
-<div class="box bg-white block-shadow p-15 m-15">
+<div class="bg-light block-shadow p-15 m-15">
     <div v-if="notifications.length > 0">
         <div class="p-15 notify-item" v-for="item of notifications" :key="item.value">
             <div class="flex">
                 <img :src="item.icon" class="notify-icon" />
                 <div>
-                    <p class="m-0">{{ item.description }}</p>
+                    <p class="m-0 white-text">{{ item.description }}</p>
                     <i class="timestamp">{{ moment(item.timestamp).format('HH:MM DD/MM/YYYY') }}</i>
                 </div>
 
-                <i class="el-icon-close remove" :title="$t('root.delete')" @click="handleRemove(item.id)" />
+                <i class="el-icon-close remove white-text" :title="$t('root.delete')" @click="handleRemove(item.id)" />
             </div>
         </div>
     </div>
