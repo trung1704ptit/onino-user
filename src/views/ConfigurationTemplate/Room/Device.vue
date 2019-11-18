@@ -7,8 +7,11 @@
         <i class="fa fa-minus-circle remove" aria-hidden="true" @click.stop.prevent="selectDevice = !selectDevice"></i>
     </div>
     <el-dialog :visible.sync="dialogVisible" :title="$t('configuration.settingDevice')" v-if="dialogVisible">
+        <span class="mr-15">Trạng thái Bật/Tắt</span>
+        <el-switch v-model="deviceStatus" />
         <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="dialogVisible = false">{{ $t('table.confirm') }}</el-button>
+            <el-button type="primary" @click="dialogVisible = false"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}</el-button>
+            <el-button @click="dialogVisible = false"><i class="fa fa-times-circle" aria-hidden="true"></i> {{ $t('root.cancel') }}</el-button>
         </span>
     </el-dialog>
 </fragment>
@@ -29,7 +32,8 @@ export default {
     data() {
         return {
             selectDevice: false,
-            dialogVisible: false
+            dialogVisible: false,
+            deviceStatus: false
         }
     },
     watch: {
