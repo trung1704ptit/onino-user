@@ -1,10 +1,17 @@
 <template>
-<div class="box p-15 mr-15 block-shadow device-block block" @click="selectDevice = !selectDevice">
-    <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
-    <h5 class="title text-center">{{ device.deviceName }}</h5>
-    <i class="fa fa-plus-circle add" aria-hidden="true"></i>
-    <i class="fa fa-minus-circle remove" aria-hidden="true"></i>
-</div>
+<fragment>
+    <div class="box p-15 mr-15 block-shadow device-block block" @click="dialogVisible = true">
+        <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
+        <h5 class="title text-center">{{ device.deviceName }}</h5>
+        <i class="fa fa-plus-circle add" aria-hidden="true" @click.stop.prevent="selectDevice = !selectDevice"></i>
+        <i class="fa fa-minus-circle remove" aria-hidden="true" @click.stop.prevent="selectDevice = !selectDevice"></i>
+    </div>
+    <el-dialog :visible.sync="dialogVisible" :title="$t('configuration.settingDevice')" v-if="dialogVisible">
+        <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogVisible = false">{{ $t('table.confirm') }}</el-button>
+        </span>
+    </el-dialog>
+</fragment>
 </template>
 
 <script>
@@ -21,7 +28,8 @@ export default {
     },
     data() {
         return {
-            selectDevice: false
+            selectDevice: false,
+            dialogVisible: false
         }
     },
     watch: {
@@ -64,13 +72,13 @@ export default {
     }
 }
 
-
 .add,
 .remove {
     position: absolute;
     top: 10px;
     right: 10px;
     display: none;
+    font-size: 22px;
 }
 
 .room-list {
@@ -89,7 +97,7 @@ export default {
     }
 
     .device-block:hover {
-        & > .remove {
+        &>.remove {
             display: block;
         }
     }

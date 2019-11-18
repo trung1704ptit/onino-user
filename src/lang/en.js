@@ -169,7 +169,8 @@ export default {
   configuration: {
     addConfiguration: 'Add configuration',
     configurationName: 'Configuration name',
-    configurationList: 'Configuration list'
+    configurationList: 'Configuration list',
+    settingDevice: 'Setting device'
   },
   permission: {
     addRole: 'New Role',

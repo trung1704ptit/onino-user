@@ -8,6 +8,13 @@
             </span>
             <el-input ref="configurationName" v-model="form.configurationName" :placeholder="$t('configuration.configurationName')" name="configurationName" type="text" tabindex="1" />
         </el-form-item>
+
+        <div class="mt-15 selected-list" v-if="filterList.length > 0">
+            <div v-for="room in filterList" :key="room.id">
+                <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
+            </div>
+        </div>
+
         <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
             <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
         </el-button>
@@ -19,17 +26,11 @@
         </el-button>
     </el-form>
 
-    <div class="p-15 mt-15 block-shadow selected-list bg-light" v-if="filterList.length > 0">
-        <h2 class="text m-0">{{ $t('root.listFiltered') }}</h2>
-        <div v-for="room in filterList" :key="room.id">
-            <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
-        </div>
-    </div>
-
     <div v-if="addDevice" class="p-15 mt-15 block-shadow form-wrapper app-form bg-light">
         <div class="p-15">
             <el-input ref="configurationName" v-model="search" :placeholder="$t('room.deviceName')" name="configurationName" type="text" />
         </div>
+        <p class="white-text p-15"><i>Vui lòng nhấn vào thiết bị để thêm vào danh sách cấu hình</i></p>
         <div class="room-list">
             <div v-for="room in roomList" :key="room.id">
                 <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
@@ -148,9 +149,11 @@ export default {
     min-width: 200px;
     background: transparent;
 }
+
 .app-form {
     background: transparent;
 }
+
 .bg-light {
     background: var(--bg-light);
 }

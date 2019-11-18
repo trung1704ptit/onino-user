@@ -169,7 +169,8 @@ export default {
   configuration: {
     addConfiguration: 'Thêm cấu hình',
     configurationName: 'Tên cấu hình',
-    configurationList: 'Danh sách cấu hình'
+    configurationList: 'Danh sách cấu hình',
+    settingDevice: 'Cài đặt cấu hình'
   },
   permission: {
     addRole: 'New Role',
