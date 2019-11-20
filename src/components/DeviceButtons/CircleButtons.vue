@@ -1,6 +1,6 @@
 <template>
 <div class="wrapper">
-    <div class="flex space-around row">
+    <div class="flex space-around row mt-15">
         <device-button :icon="minusIcon" />
 
         <device-button :icon="plusIcon" />

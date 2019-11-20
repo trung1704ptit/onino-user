@@ -1,7 +1,7 @@
 <template>
 <section class="section m-15 bg-light">
     <el-row :gutter="15">
-        <el-col :xs="24" :sm="24" :lg="6">
+        <el-col :xs="24" :sm="24" :lg="5">
             <div class="align-center box box-shadow p-15 mt-15">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
@@ -28,7 +28,7 @@
             </div>
         </el-col>
 
-        <el-col :xs="24" :sm="24" :lg="18">
+        <el-col :xs="24" :sm="24" :lg="19">
             <!-- Banner -->
             <div class="box-shadow box notify p-15 mt-15">
                 <div class="flex space-between">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
 
-                    <control style="margin-bottom: 10px" />
+                    <control class="control"/>
                 </div>
                 <div class="horizontal-list flex">
                     <room-device v-for="(device, index) in horizontalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="true" />

@@ -129,15 +129,10 @@ export default {
 }
 
 .device-icon {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     margin: auto;
     object-fit: contain;
-
-    @media only screen and (max-width: 768px) {
-        width: 50px;
-        height: 50px;
-    }
 }
 
 .device-block {
@@ -146,33 +141,29 @@ export default {
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 
-    @media only screen and (max-width: 480px) {
-        min-width: 100%
-    }
-
     .title {
         margin-bottom: 0;
     }
 
-    .actions {
-        position: absolute;
-        display: inline-grid;
-        top: 35px;
-        right: 15px;
+    // .actions {
+    //     position: absolute;
+    //     display: inline-grid;
+    //     top: 35px;
+    //     right: 15px;
 
-        .fa {
-            margin-top: 8px;
-            cursor: pointer;
-        }
+    //     .fa {
+    //         margin-top: 8px;
+    //         cursor: pointer;
+    //     }
 
-        .fa.fa-trash-o {
-            color: var(--red)
-        }
+    //     .fa.fa-trash-o {
+    //         color: var(--red)
+    //     }
 
-        .fa.fa-pencil-square-o {
-            color: var(--main-color)
-        }
-    }
+    //     .fa.fa-pencil-square-o {
+    //         color: var(--main-color)
+    //     }
+    // }
 
     .switch {
         position: absolute;
@@ -181,9 +172,9 @@ export default {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .device-block {
-        min-width: calc(50% - 20px);
-    }
-}
+// @media screen and (max-width: 768px) {
+//     .device-block {
+//         min-width: calc(50% - 20px);
+//     }
+// }
 </style>
