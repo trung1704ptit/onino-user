@@ -1,8 +1,24 @@
 import axios from 'axios'
-import { MessageBox, Message } from 'element-ui'
+import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 import i18n from '@/lang';
+
+function cachingGet (get) {
+  const cache = new Map()
+
+  return function cachedGet (url) {
+    const key = url
+
+    if (cache.has(key)) {
+      return cache.get(key)
+    } else {
+      const request = get(...arguments)
+      cache.set(key, request)
+      return request
+    }
+  }
+}
 
 // create an axios instance
 const service = axios.create({
@@ -10,6 +26,8 @@ const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 10000000 // request timeout
 })
+
+service.get = cachingGet(service.get)
 
 // request interceptor
 service.interceptors.request.use(

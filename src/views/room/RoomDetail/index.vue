@@ -41,10 +41,14 @@
 
             <!-- List of devices -->
             <div class="mt-15 mb-15">
-                <!-- <br v-if="index > 0 && device.thingId !== roomDevices[index - 1].thingId" /> -->
-                <room-device  v-for="(device, index) in roomDevices" :key="device.deviceId" :handleEditDevice="handleClickEditDevice" :device="device" :breakPoint="index < 4"/>
-                <div class="box p-15">
-                    
+                <div class="flex">
+                    <div class="devices-vertical">
+                        <room-device v-for="device in roomDevices" :key="device.deviceId" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="false" />
+                    </div>
+                    <div>
+                        <control class="mb-15" />
+                        <room-device v-for="device in roomDevices" :key="device.deviceId" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="true"/>
+                    </div>
                 </div>
             </div>
 
@@ -108,12 +112,16 @@ import {
 import RoomDevice from '@/components/RoomDevice';
 import DeviceIconsPopup from '@/components/DeviceIconsPopup'
 import DeviceIconForm from './DeviceIconForm';
+import CircleButtons from '@/components/DeviceButtons/CircleButtons';
+import Control from '@/components/Control';
 
 export default {
     components: {
         RoomDevice,
         DeviceIconsPopup,
-        DeviceIconForm
+        DeviceIconForm,
+        CircleButtons,
+        Control
     },
     data() {
         const validateEmpty = (rule, value, callback) => {
@@ -344,5 +352,9 @@ export default {
 
 .link {
     color: #fff;
+}
+
+.VueCarousel-inner {
+    justify-content: center;
 }
 </style>

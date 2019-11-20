@@ -1,11 +1,12 @@
 <template>
 <fragment>
-    <div class="box p-15 mr-15 block-shadow device-block block" v-bind:class="switchValue && 'turn-on'">
-        <div class="device-icon-wrap"><img :src="deviceIconUrl" class="device-icon" /></div>
+    <div class="box p-15 mr-15 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick">
+        <div class="device-icon-wrap">
+            <img :src="deviceIconUrl" class="device-icon" />
+        </div>
         <h5 class="title text-center">{{ device.deviceName }}</h5>
-        <el-switch v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
+        <el-switch v-if="hasSwitch" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
     </div>
-    <br v-if="breakPoint" />
 </fragment>
 </template>
 
@@ -19,7 +20,9 @@ import TintColor, {
 } from '@/utils/tint-color';
 import i18n from '@/lang';
 import Switch3State from '@/components/Switch3State';
-import { Fragment } from 'vue-fragment';
+import {
+    Fragment
+} from 'vue-fragment';
 import {
     isEmpty
 } from '@/utils/validate'
@@ -41,13 +44,23 @@ export default {
         handleDelete: Function,
         handleEditDevice: Function,
         device: Object,
-        breakPoint: Boolean
+        breakPoint: Boolean,
+        width: {
+            type: String,
+            default: '180px'
+        },
+        hasSwitch: {
+            type: Boolean,
+            default: false
+        },
+        active: Boolean,
+        inlineBlock: Boolean
     },
     data() {
         return {
             switchValue: false,
             slideValue: 50,
-            deviceIconUrl: '',
+            deviceIconUrl: ''
         }
     },
     mounted() {
@@ -102,6 +115,8 @@ export default {
                 client.end()
             })
         },
+        handleClick() {
+        },
         getImage() {
             getImage();
         }
@@ -111,12 +126,13 @@ export default {
 
 <style lang="scss" scoped>
 .room-icon {
-    width: 120px;
+    width: 80px;
 }
 
 .device-icon-wrap {
-    width: 150px;
+    width: 100%;
     display: flex;
+    margin-top: 10px;
 }
 
 .device-icon {
@@ -128,9 +144,8 @@ export default {
 
 .device-block {
     position: relative;
-    display: inline-block;
-    min-width: 150px;
-    margin: 5px 5px 5px 0;
+    margin: 0px 5px 10px 0;
+    cursor: pointer;
 
     @media only screen and (max-width: 480px) {
         min-width: 100%
@@ -162,8 +177,8 @@ export default {
 
     .switch {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 8px;
+        right: 8px;
     }
 }
 

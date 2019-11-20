@@ -35,9 +35,9 @@ export default {
         },
         handleDelete: Function
     },
-    created() {
+    mounted() {
         if (this.room) {
-            new TintColor(this.room.groupIconUrl, this.room.groupColor).run().then(newImage => {
+            new TintColor(this.room.groupIconUrl, '#ffffff').run().then(newImage => {
                 this.room.groupIconUrl = newImage.url;
             })
         }
