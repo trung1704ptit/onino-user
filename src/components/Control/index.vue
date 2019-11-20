@@ -1,6 +1,6 @@
 <template>
 <div class="box p-15">
-    <div class="p-15"><group-device-slide /></div>
+    <group-device-slide />
     <circle-buttons />
 </div>
 </template>

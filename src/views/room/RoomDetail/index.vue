@@ -42,12 +42,19 @@
             <!-- List of devices -->
             <div class="mt-15 mb-15">
                 <div class="flex">
-                    <div class="devices-vertical">
-                        <room-device v-for="device in roomDevices" :key="device.deviceId" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="false" />
+                    <div class="vertical-list">
+                        <room-device v-for="(device, index) in verticalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="false" />
+                        <div v-if="hasPrevious" class="arrow-btn" style="transform: translate(-50%, 0); top: 20px; left: 50%; padding: 0 20px" @click="handlePrevious">
+                            <i class="el-icon-arrow-up" />
+                        </div>
                     </div>
-                    <div>
-                        <control class="mb-15" />
-                        <room-device v-for="device in roomDevices" :key="device.deviceId" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="true"/>
+
+                    <control style="margin-bottom: 10px" />
+                </div>
+                <div class="horizontal-list flex">
+                    <room-device v-for="(device, index) in horizontalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="true" />
+                    <div v-if="hasNext" class="arrow-btn" style="transform: translate(0, -50%); top: 50%; right: 20px" @click="handleNext">
+                        <i class="el-icon-arrow-right" />
                     </div>
                 </div>
             </div>
@@ -163,7 +170,12 @@ export default {
             deviceRegistered: false,
             formAdded: [],
             isOpenDeviceIconsPopup: false,
-            deviceUpdating: false
+            deviceUpdating: false,
+            hasNext: false,
+            hasPrevious: false,
+            horizontalDevices: [],
+            verticalDevices: [],
+            tempList: [],
         }
     },
 
@@ -175,7 +187,6 @@ export default {
 
     mounted() {
         const roomList = this.$store.state.room.roomList;
-        const roomDevices = this.$store.state.room.roomDevices;
         const roomId = this.$route.params.id;
 
         if (roomList && roomList.length > 0) {
@@ -208,6 +219,19 @@ export default {
             const devices = response.devices;
 
             this.roomDevices = response.devices;
+
+            let allDevices = [...this.roomDevices];
+            this.verticalDevices = allDevices.slice(0, 5);
+
+            allDevices.splice(0, 5);
+            this.horizontalDevices = allDevices;
+
+            if (this.verticalDevices.length > 5) {
+                this.hasPrevious = true;
+            }
+            if (this.horizontalDevices.length > 6) {
+                this.hasNext = true;
+            }
         })
     },
     methods: {
@@ -304,41 +328,48 @@ export default {
             }).then(error => {
                 console.log(error)
             })
+        },
+        handleNext() {
+            this.tempList.push(this.verticalDevices[0]);
+            this.verticalDevices.push(this.horizontalDevices[0]);
+            this.horizontalDevices.splice(0, 1);
+
+            if (this.horizontalDevices.length > 6) {
+                this.hasNext = true;
+            } else {
+                this.hasNext = false;
+            }
+            this.hasPrevious = true;
+            this.verticalDevices.splice(0, 1);
+        },
+        handlePrevious() {
+            const devicePoped = this.tempList.pop();
+            this.verticalDevices.unshift(devicePoped);
+
+            const deviceSendBack = this.verticalDevices.pop();
+            this.horizontalDevices.unshift(deviceSendBack);
+            if (this.tempList.length === 0) {
+                this.hasPrevious = false;
+            } else {
+                this.hasPrevious = true;
+            }
+            if (this.horizontalDevices.length > 6) {
+                this.hasNext = true;
+            } else {
+                this.hasNext = false;
+            }
         }
+    },
+    computed: {
+
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.room-icon {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-.edit-device-preview {
-    width: 100%;
-    height: 100px;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-.form-wrapper {
-    padding: 30px;
-}
-
-.add-device-form {
-    margin: 15px 15px 15px 0;
-    border-radius: 4px;
-}
-
-@media screen and (max-width: 768px) {
-    .delete-btn {
-        margin: 15px 0;
-    }
-}
+@import './styles.scss';
 </style>
+
 <style lang="scss">
 .notify {
     color: #fff;

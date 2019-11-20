@@ -170,3 +170,16 @@ button.VueCarousel-navigation-prev {
 #driver-highlighted-element-stage {
   background: var(--dark-blue) !important;
 }
+.arrow-btn {
+  position: absolute;
+  padding: 15px 3px;
+  font-size: 30px;
+  color: #f1f1f1;
+  background: rgba(0,0,0,.2);
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background: rgba(0,0,0,.5);
+  }
+}

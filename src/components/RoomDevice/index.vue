@@ -1,13 +1,11 @@
 <template>
-<fragment>
-    <div class="box p-15 mr-15 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick">
+    <div class="box p-15 mr-15 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick" v-if="!device.isHide">
         <div class="device-icon-wrap">
             <img :src="deviceIconUrl" class="device-icon" />
         </div>
         <h5 class="title text-center">{{ device.deviceName }}</h5>
         <el-switch v-if="hasSwitch" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
     </div>
-</fragment>
 </template>
 
 <script>
@@ -20,9 +18,6 @@ import TintColor, {
 } from '@/utils/tint-color';
 import i18n from '@/lang';
 import Switch3State from '@/components/Switch3State';
-import {
-    Fragment
-} from 'vue-fragment';
 import {
     isEmpty
 } from '@/utils/validate'
@@ -37,8 +32,7 @@ import {
 
 export default {
     components: {
-        Switch3State,
-        Fragment
+        Switch3State
     },
     props: {
         handleDelete: Function,
@@ -146,6 +140,7 @@ export default {
     position: relative;
     margin: 0px 5px 10px 0;
     cursor: pointer;
+    transition: all 0.5s ease-in-out;
 
     @media only screen and (max-width: 480px) {
         min-width: 100%
