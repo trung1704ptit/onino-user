@@ -1,5 +1,5 @@
 <template>
-<carousel :per-page="7" :scrollPerPage="true" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
+<carousel :per-page="7" :perPageCustom="[[480, 2], [768, 6]]" :scrollPerPage="true" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
     <slide class="slide">
         <room-device :device="device" :width="'100%'" :hasSwitch="true"/>
     </slide>

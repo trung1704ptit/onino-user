@@ -21,15 +21,18 @@
     border-radius: 4px;
 }
 
-@media screen and (max-width: 768px) {
-    .delete-btn {
-        margin: 15px 0;
-    }
-}
 .horizontal-list {
     overflow-x: hidden;
     position: relative;
 }
 .vertical-list {
     position: relative;
+}
+.bg-light {
+    padding: 15px;
+}
+@media screen and (max-width: 768px) {
+    .delete-btn {
+        margin: 15px 0;
+    }
 }

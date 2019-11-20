@@ -1,8 +1,8 @@
 <template>
 <section class="section m-15 bg-light">
     <el-row :gutter="15">
-        <el-col :xs="24" :sm="6">
-            <div class="align-center box box-shadow p-15">
+        <el-col :xs="24" :sm="24" :lg="6">
+            <div class="align-center box box-shadow p-15 mt-15">
                 <img :src="roomDetail.groupIconUrl" class="room-icon" />
                 <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
                 <p class="white-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
@@ -28,9 +28,9 @@
             </div>
         </el-col>
 
-        <el-col :xs="24" :sm="18">
+        <el-col :xs="24" :sm="24" :lg="18">
             <!-- Banner -->
-            <div class="box-shadow box notify p-15">
+            <div class="box-shadow box notify p-15 mt-15">
                 <div class="flex space-between">
                     <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
                     <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>

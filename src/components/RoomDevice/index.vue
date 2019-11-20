@@ -1,11 +1,11 @@
 <template>
-    <div class="box p-15 mr-15 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick" v-if="!device.isHide">
-        <div class="device-icon-wrap">
-            <img :src="deviceIconUrl" class="device-icon" />
-        </div>
-        <h5 class="title text-center">{{ device.deviceName }}</h5>
-        <el-switch v-if="hasSwitch" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
+<div class="box p-15 mr-15 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick" v-if="!device.isHide">
+    <div class="device-icon-wrap">
+        <img :src="deviceIconUrl" class="device-icon" />
     </div>
+    <h5 class="title text-center">{{ device.deviceName }}</h5>
+    <el-switch v-if="hasSwitch" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
+</div>
 </template>
 
 <script>
@@ -109,8 +109,7 @@ export default {
                 client.end()
             })
         },
-        handleClick() {
-        },
+        handleClick() {},
         getImage() {
             getImage();
         }
@@ -131,9 +130,14 @@ export default {
 
 .device-icon {
     width: 60px;
-    height: 50px;
+    height: 60px;
     margin: auto;
     object-fit: contain;
+
+    @media only screen and (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 .device-block {
