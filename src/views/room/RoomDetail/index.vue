@@ -1,109 +1,118 @@
 <template>
-<section class="section m-15 bg-light">
-    <el-row :gutter="15">
-        <el-col :xs="24" :sm="24" :lg="5">
-            <div class="align-center box box-shadow p-15 mt-15">
-                <img :src="roomDetail.groupIconUrl" class="room-icon" />
-                <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
-                <p class="white-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
+<div>
+    <span class="ml-15" v-for="room in roomList" :key="room.id">
+        <router-link :to="'/room/chi-tiet/' + room.id">
+            <el-button :type="roomDetail.id === room.id && 'primary'" size="small" class="uppercase">
+                {{ room.name }}
+            </el-button>
+        </router-link>
+    </span>
+    <section class="section m-15 bg-light">
+        <el-row :gutter="15">
+            <el-col :xs="24" :sm="24" :lg="5">
+                <div class="align-center box box-shadow p-15 mt-15">
+                    <img :src="roomDetail.groupIconUrl" class="room-icon" />
+                    <h4 class="section-title m-15 uppercase">{{ roomDetail.name }}</h4>
+                    <p class="white-text m-0" style="font-size: 14px"><i>({{ roomDevices.length }} thiết bị đang hoạt động)</i></p>
 
-                <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
-                    <i class="el-icon-edit" /> {{ $t('root.edit') }}
-                </el-button>
-                <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting" class="mt-15 delete-btn">
-                    <i class="el-icon-delete" /> {{ $t('root.delete') }}
-                </el-button>
+                    <el-button type="primary" @click="handleEditRoom(roomDetail.id)" class="mt-15">
+                        <i class="el-icon-edit" /> {{ $t('root.edit') }}
+                    </el-button>
+                    <el-button type="danger" @click="confirmDelete(roomDetail.id)" :loading="deleting" class="mt-15 delete-btn">
+                        <i class="el-icon-delete" /> {{ $t('root.delete') }}
+                    </el-button>
 
-                <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
-                    <div>{{ $t('room.confirmDeleteMessage') }}</div>
-                    <div slot="footer" class="dialog-footer">
-                        <el-button @click="dialogConfirmDelete = false">
-                            <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
-                        </el-button>
-                        <el-button :loading="deleting" type="primary" @click="handleDelete">
-                            {{ $t('root.confirm') }}
-                        </el-button>
-                    </div>
-                </el-dialog>
-            </div>
-        </el-col>
-
-        <el-col :xs="24" :sm="24" :lg="19">
-            <!-- Banner -->
-            <div class="box-shadow box notify p-15 mt-15">
-                <div class="flex space-between">
-                    <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
-                    <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
-                    <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
-                    <span><i class="fa fa-tint" aria-hidden="true"></i> 100ml</span>
+                    <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
+                        <div>{{ $t('room.confirmDeleteMessage') }}</div>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="dialogConfirmDelete = false">
+                                <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
+                            </el-button>
+                            <el-button :loading="deleting" type="primary" @click="handleDelete">
+                                {{ $t('root.confirm') }}
+                            </el-button>
+                        </div>
+                    </el-dialog>
                 </div>
-            </div>
+            </el-col>
 
-            <!-- List of devices -->
-            <div class="mt-15 mb-15">
-                <div class="flex">
-                    <div class="vertical-list">
-                        <room-device v-for="(device, index) in verticalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="false" />
-                        <div v-if="hasPrevious" class="arrow-btn" style="transform: translate(-50%, 0); top: 20px; left: 50%; padding: 0 20px" @click="handlePrevious">
-                            <i class="el-icon-arrow-up" />
+            <el-col :xs="24" :sm="24" :lg="19">
+                <!-- Banner -->
+                <div class="box-shadow box notify p-15 mt-15">
+                    <div class="flex space-between">
+                        <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> {{ roomDetail.temperature }}°C</span>
+                        <span><i class="fa fa-tint" aria-hidden="true"></i> {{ roomDetail.humidity }}%</span>
+                        <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
+                        <span><i class="fa fa-tint" aria-hidden="true"></i> 100ml</span>
+                    </div>
+                </div>
+
+                <!-- List of devices -->
+                <div class="mt-15 mb-15">
+                    <div class="flex">
+                        <div class="vertical-list">
+                            <room-device v-for="(device, index) in verticalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="false" />
+                            <div v-if="hasPrevious" class="arrow-btn" style="transform: translate(-50%, 0); top: 20px; left: 50%; padding: 0 20px" @click="handlePrevious">
+                                <i class="el-icon-arrow-up" />
+                            </div>
+                        </div>
+
+                        <control class="control" />
+                    </div>
+                    <div class="horizontal-list flex">
+                        <room-device v-for="(device, index) in horizontalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="true" />
+                        <div v-if="hasNext" class="arrow-btn" style="transform: translate(0, -50%); top: 50%; right: 20px" @click="handleNext">
+                            <i class="el-icon-arrow-right" />
                         </div>
                     </div>
-
-                    <control class="control"/>
                 </div>
-                <div class="horizontal-list flex">
-                    <room-device v-for="(device, index) in horizontalDevices" :key="device.deviceId + index" :handleEditDevice="handleClickEditDevice" :device="device" :inlineBlock="true" />
-                    <div v-if="hasNext" class="arrow-btn" style="transform: translate(0, -50%); top: 50%; right: 20px" @click="handleNext">
-                        <i class="el-icon-arrow-right" />
-                    </div>
-                </div>
-            </div>
 
-            <!-- Button add form -->
-            <el-button type="primary" @click.native.prevent="addDeviceForm = true" v-if="!addDeviceForm">
-                <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
-            </el-button>
-
-            <!-- serial number form -->
-            <el-form class="form-wrapper box app-form" :model="deviceForm" :rules="formRules" ref="deviceForm" v-if="addDeviceForm">
-                <el-form-item prop="serialNumber" class="el-form-item">
-                    <span class="svg-container">
-                        <i class="fa fa-indent" aria-hidden="true"></i>
-                    </span>
-                    <el-input v-model="deviceForm.serialNumber" :placeholder="$t('room.deviceSerial')" name="serialNumber" type="text" tabindex="1" />
-                </el-form-item>
-
-                <el-form-item prop="deviceName" class="el-form-item">
-                    <span class="svg-container">
-                        <i class="fa fa-tag" aria-hidden="true"></i>
-                    </span>
-                    <el-input v-model="deviceForm.deviceName" :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="2" />
-                </el-form-item>
-
-                <el-button type="primary" @click="getDeviceInfo">
-                    <i class="el-icon-search" /> {{ $t('root.getInfo') }}
+                <!-- Button add form -->
+                <el-button type="primary" @click.native.prevent="addDeviceForm = true" v-if="!addDeviceForm">
+                    <i class="el-icon-circle-plus" /> {{ $t('room.addDevice') }}
                 </el-button>
 
-                <el-button @click.native.prevent="addDeviceForm = false">
-                    <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
-                </el-button>
-            </el-form>
+                <!-- serial number form -->
+                <el-form class="form-wrapper box app-form" :model="deviceForm" :rules="formRules" ref="deviceForm" v-if="addDeviceForm">
+                    <el-form-item prop="serialNumber" class="el-form-item">
+                        <span class="svg-container">
+                            <i class="fa fa-indent" aria-hidden="true"></i>
+                        </span>
+                        <el-input v-model="deviceForm.serialNumber" :placeholder="$t('room.deviceSerial')" name="serialNumber" type="text" tabindex="1" />
+                    </el-form-item>
 
-            <!-- device icon form -->
-            <div v-if="deviceRegistered">
-                <device-icon-form v-for="(form, index) in formAdded" :key="index" :form="form" />
-                <div class="mt-15" style="text-align: right">
-                    <el-button type="primary" @click="handleUpdateDeviceRegistered">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
+                    <el-form-item prop="deviceName" class="el-form-item">
+                        <span class="svg-container">
+                            <i class="fa fa-tag" aria-hidden="true"></i>
+                        </span>
+                        <el-input v-model="deviceForm.deviceName" :placeholder="$t('room.deviceName')" name="deviceName" type="text" tabindex="2" />
+                    </el-form-item>
+
+                    <el-button type="primary" @click="getDeviceInfo">
+                        <i class="el-icon-search" /> {{ $t('root.getInfo') }}
                     </el-button>
-                    <el-button @click.native.prevent="deviceRegistered = false">
+
+                    <el-button @click.native.prevent="addDeviceForm = false">
                         <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
                     </el-button>
+                </el-form>
+
+                <!-- device icon form -->
+                <div v-if="deviceRegistered">
+                    <device-icon-form v-for="(form, index) in formAdded" :key="index" :form="form" />
+                    <div class="mt-15" style="text-align: right">
+                        <el-button type="primary" @click="handleUpdateDeviceRegistered">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
+                        </el-button>
+                        <el-button @click.native.prevent="deviceRegistered = false">
+                            <i class="el-icon-circle-close" /> {{ $t('root.cancel') }}
+                        </el-button>
+                    </div>
                 </div>
-            </div>
-        </el-col>
-    </el-row>
-</section>
+            </el-col>
+        </el-row>
+    </section>
+</div>
 </template>
 
 <script>
@@ -176,6 +185,7 @@ export default {
             horizontalDevices: [],
             verticalDevices: [],
             tempList: [],
+            roomList: []
         }
     },
 
@@ -187,6 +197,7 @@ export default {
 
     mounted() {
         const roomList = this.$store.state.room.roomList;
+        this.roomList = roomList;
         const roomId = this.$route.params.id;
 
         if (roomList && roomList.length > 0) {

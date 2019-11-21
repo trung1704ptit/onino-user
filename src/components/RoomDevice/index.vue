@@ -1,5 +1,5 @@
 <template>
-<div class="box p-15 mr-15 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick" v-if="!device.isHide">
+<div class="box p-10 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick" v-if="!device.isHide">
     <div class="device-icon-wrap">
         <img :src="deviceIconUrl" class="device-icon" />
     </div>
@@ -140,9 +140,14 @@ export default {
     margin: 0px 5px 10px 0;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
+    max-width: 200px;
 
     .title {
         margin-bottom: 0;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 
     // .actions {

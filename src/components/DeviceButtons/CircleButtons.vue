@@ -1,22 +1,25 @@
 <template>
 <div class="wrapper">
     <div class="flex space-around row mt-15">
-        <device-button :icon="minusIcon" />
+        <device-button
+            :icon="minusIcon"
+            title="Giảm"
+        />
 
-        <device-button :icon="plusIcon" />
+        <device-button :icon="plusIcon" title="Tăng" />
     </div>
     <div class="flex space-between row">
-        <device-button :icon="plusIcon" />
+        <device-button :icon="plusIcon" title="Giảm" />
 
-        <device-button :icon="shutDownIcon" />
+        <device-button :icon="shutDownIcon" title="Bật / Tắt" isShutdown="true" />
 
-        <device-button :icon="plusIcon" />
+        <device-button :icon="plusIcon" title="Giảm" />
 
     </div>
     <div class="flex space-around row">
-        <device-button :icon="plusIcon" />
+        <device-button :icon="plusIcon" title="Giảm" />
 
-        <device-button :icon="plusIcon" />
+        <device-button :icon="plusIcon" title="Giảm" />
     </div>
 </div>
 </template>
