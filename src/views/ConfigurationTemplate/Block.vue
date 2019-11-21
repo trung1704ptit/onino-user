@@ -12,7 +12,7 @@
                 <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="() => {}"></i>
                 <router-link :to="'/cau-hinh/cap-nhat/'"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
             </div>
-            <span class="card-panel-text">Buổi sáng</span>
+            <span class="card-panel-text text">Buổi sáng</span>
         </div>
     </div>
 </router-link>

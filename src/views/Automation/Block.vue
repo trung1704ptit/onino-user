@@ -12,7 +12,7 @@
                 <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="() => {}"></i>
                 <router-link :to="'/cau-hinh/cap-nhat/'"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
             </div>
-            <span class="card-panel-text">Chuyển động</span>
+            <span class="card-panel-text text">Chuyển động</span>
             <p class="card-panel-subtitle"><i>Có 2 thiết bị</i></p>
         </div>
     </div>
