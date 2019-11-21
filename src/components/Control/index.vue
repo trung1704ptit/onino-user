@@ -1,18 +1,21 @@
 <template>
 <div class="box p-15">
-    <group-device-slide />
+    <group-devices :groupDevices="groupDevices" />
     <circle-buttons />
 </div>
 </template>
 
 <script>
 import CircleButtons from '@/components/DeviceButtons/CircleButtons';
-import GroupDeviceSlide from './GroupDeviceSlide';
+import GroupDevices from './GroupDevices';
 
 export default {
+    props: {
+        groupDevices: Array
+    },
     components: {
         CircleButtons,
-        GroupDeviceSlide
+        GroupDevices
     }
 }
 </script>

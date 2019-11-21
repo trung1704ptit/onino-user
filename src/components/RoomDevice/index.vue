@@ -1,5 +1,5 @@
 <template>
-<div class="box p-10 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleClick" v-if="!device.isHide">
+<div class="box p-10 block-shadow device-block block" :class="(active || switchValue) && 'turn-on'" :style="{minWidth: width, display: inlineBlock ? 'inline-block' : ''}" @click="handleSelectDevice(device)" v-if="!device.isHide">
     <div class="device-icon-wrap">
         <img :src="deviceIconUrl" class="device-icon" />
     </div>
@@ -17,10 +17,6 @@ import TintColor, {
     changeColor
 } from '@/utils/tint-color';
 import i18n from '@/lang';
-import Switch3State from '@/components/Switch3State';
-import {
-    isEmpty
-} from '@/utils/validate'
 
 var mqtt = require('mqtt');
 import {
@@ -31,9 +27,6 @@ import {
 } from '../../../secret'
 
 export default {
-    components: {
-        Switch3State
-    },
     props: {
         handleDelete: Function,
         handleEditDevice: Function,
@@ -48,7 +41,8 @@ export default {
             default: false
         },
         active: Boolean,
-        inlineBlock: Boolean
+        inlineBlock: Boolean,
+        handleSelectDevice: Function
     },
     data() {
         return {
@@ -109,7 +103,9 @@ export default {
                 client.end()
             })
         },
-        handleClick() {},
+        handleClick() {
+            this.handleSelectDevice(this.device);
+        },
         getImage() {
             getImage();
         }
@@ -125,7 +121,7 @@ export default {
 .device-icon-wrap {
     width: 100%;
     display: flex;
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .device-icon {
@@ -148,27 +144,8 @@ export default {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
+        margin-top: 10px;
     }
-
-    // .actions {
-    //     position: absolute;
-    //     display: inline-grid;
-    //     top: 35px;
-    //     right: 15px;
-
-    //     .fa {
-    //         margin-top: 8px;
-    //         cursor: pointer;
-    //     }
-
-    //     .fa.fa-trash-o {
-    //         color: var(--red)
-    //     }
-
-    //     .fa.fa-pencil-square-o {
-    //         color: var(--main-color)
-    //     }
-    // }
 
     .switch {
         position: absolute;
@@ -176,10 +153,4 @@ export default {
         right: 8px;
     }
 }
-
-// @media screen and (max-width: 768px) {
-//     .device-block {
-//         min-width: calc(50% - 20px);
-//     }
-// }
 </style>
