@@ -87,3 +87,15 @@ export function isArray(arg) {
   }
   return Array.isArray(arg)
 }
+
+
+// validate empty string
+import i18n from '@/lang';
+
+export function validateEmpty (rule, value, callback) {
+  if (isEmpty(value)) {
+      callback(new Error(i18n.t('root.emptyString')))
+  } else {
+      callback()
+  }
+}

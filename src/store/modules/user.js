@@ -65,7 +65,7 @@ const actions = {
 
       login(user).then(response => {
         commit('SET_TOKEN', response.access_token)
-        setToken(response.access_token)
+        setToken(response.access_token, response.expires_in)
         resolve()
       }).catch(error => {
         reject(error)

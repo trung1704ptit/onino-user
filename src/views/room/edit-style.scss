@@ -1,0 +1,33 @@
+.form-wrapper {
+    width: 50%;
+    margin: 15px 0;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+}
+
+.room-block {
+    padding: 15px 30px;
+    margin-right: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+
+    &.active {
+        &:after {
+            position: absolute;
+            content: "\f058";
+            font-family: FontAwesome;
+            top: 5px;
+            right: 5px;
+            color: #85F271;
+        }
+    }
+}
+
+.preview-icon {
+    width: 50px;
+}

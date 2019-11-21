@@ -3,6 +3,7 @@
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
   font-weight: 400 !important;
+  color: #ffff;
 }
 
 .el-upload {
@@ -52,7 +53,9 @@
   left: 0;
   position: relative;
   margin: 0 auto;
-  width: 50%;
+  width: fit-content;
+  min-width: 30%;
+  max-width: 90%;
   @media screen and (max-width: 767px) {
     width: 90%;
   }

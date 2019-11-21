@@ -1,46 +1,130 @@
 <template>
-<section class="box section box-shadow m-15 p-15">
+<section class="bg-light m-15">
     <el-row :gutter="10">
-        <el-col :xs="24" :sm="6">
-            <div class="align-center">
-                <img src="@/assets/img/bed.png" class="room-icon" />
-                <h4 class="section-title m-15">Phòng ngủ</h4>
-            </div>
-        </el-col>
-
         <el-col :xs="24" :sm="18">
-            <div class="flex p-15 box-shadow box notify">
-                <div>
-                    <i class="fa fa-wifi" aria-hidden="true"></i> 
-                    <span class="ml-15">4 Thiết bị đã phát hiện</span>
-                </div>
-                <div class="message">Đã phát hiện 4 thiết bị có kết nối Bluetooth trong phòng. <router-link to="/" class="link underline">Nhấp để kết nối</router-link>
+            <h4 class="text">{{ $t('room.groupIcon') }}</h4>
+
+            <div class="room-list">
+                <div v-for="(icon, index) in groupIcons" :key="index" class="box room-block block-shadow" :class="groupIconUrl == icon ? 'active' : ''" @click="handleSelect(icon)">
+                    <img :src="icon" class="preview-icon" />
                 </div>
             </div>
-            <div class="flex space-between mt-15 text">
-                <span><i class="fa fa-thermometer-half" aria-hidden="true"></i> 28C</span>
-                <span><i class="fa fa-tint" aria-hidden="true"></i> 80%</span>
-                <span><i class="fa fa-bolt" aria-hidden="true"></i> 269W</span>
-                <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i> 100ml</span>
-            </div>
+
+            <el-form ref="roomForm" :model="roomForm" :rules="roomRules" autocomplete="off" class="app-form form-wrapper box block-shadow section" label-position="left">
+                <el-form-item prop="roomName" class="el-form-item">
+                    <span class="svg-container">
+                        <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+                    </span>
+                    <el-input ref="roomName" v-model="roomForm.roomName" :placeholder="$t('room.roomName')" name="roomName" type="text" tabindex="1" />
+                </el-form-item>
+                <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save') }}
+                </el-button>
+            </el-form>
         </el-col>
     </el-row>
 </section>
 </template>
 
-<style lang="scss">
-.notify {
-    color: #fff;
-    background: var(--green)
-}
+<script>
+import PickerColor from '@/components/PickerColor';
+import TintColor from '@/utils/tint-color';
+import {
+    isEmpty, validateEmpty
+} from '@/utils/validate'
+import i18n from '@/lang'
 
-.message {
-    margin-left: 15px;
-    padding-left: 15px;
-    border-left: 2px solid #fff;
-}
+import {
+    mapGetters
+} from 'vuex'
 
-.link {
-    color: #fff;
+export default {
+    data() {
+        return {
+            groupIcons: [],
+            groupIconUrl: 'https://s3.ap-southeast-1.amazonaws.com/stg.onino.icons/group/defaultRoom.png',
+            roomForm: {
+                roomName: ''
+            },
+            roomRules: {
+                roomName: [{
+                    required: true,
+                    trigger: 'blur',
+                    validator: validateEmpty
+                }]
+            },
+            creating: false
+        }
+    },
+
+    computed: {
+        ...mapGetters([
+            'room'
+        ]),
+        bgColor:{
+            get: function (){
+                return this.bgColor1.hex + ',' + this.bgColor2.hex
+            },
+            set: function () {}
+        }
+    },
+    created() {
+        this.groupIcons = this.room.groupIcons;
+    },
+    mounted() {
+        if (this.room.groupIcons.length == 0) {
+            this.$store.dispatch('room/getGroupIcons').then(response => {
+                this.groupIcons = response;
+            })
+        }
+        new TintColor(this.groupIconUrl, '#fff').run().then(newImage => {
+            this.groupIconUrl = newImage.url;
+        })
+    },
+    components: {
+        PickerColor
+    },
+    methods: {
+        handleSelect(item) {
+            this.groupIconUrl = item
+        },
+        handleCreateRoom() {
+            this.$refs.roomForm.validate(valid => {
+                if (valid) {
+                    this.creating = true
+                    const data = {
+                        groupBackGroundUrl: '#304156,#304156',
+                        groupColor: '#fff',
+                        groupIconUrl: this.groupIconUrl,
+                        groupName: this.roomForm.roomName
+                    }
+                    this.$store.dispatch('room/createRoom', data).then(() => {
+                        this.$message({
+                            message: i18n.t('room.createRoomSuccess'),
+                            type: 'success',
+                            showClose: true,
+                            duration: 4000
+                        });
+                        if (this.room.roomListLoaded) {
+                            this.$store.dispatch('room/getAllRoom');
+                        }
+                        this.creating = false;
+                    })
+                } else {
+                    return false;
+                }
+            })
+        }
+    },
 }
+</script>
+
+<style>
+.vc-chrome {
+    width: 100% !important;
+}
+</style>
+
+<style lang="scss" scoped>
+@import './edit-style.scss';
 </style>

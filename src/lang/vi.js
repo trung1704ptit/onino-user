@@ -29,13 +29,6 @@ export default {
     mixChart: 'Mix Chart',
     example: 'Example',
     nested: 'Nested Routes',
-    menu1: 'Menu 1',
-    'menu1-1': 'Menu 1-1',
-    'menu1-2': 'Menu 1-2',
-    'menu1-2-1': 'Menu 1-2-1',
-    'menu1-2-2': 'Menu 1-2-2',
-    'menu1-3': 'Menu 1-3',
-    menu2: 'Menu 2',
     Table: 'Table',
     dynamicTable: 'Dynamic Table',
     dragTable: 'Drag Table',
@@ -69,7 +62,22 @@ export default {
     camera: 'Camera',
     notification: 'Thông báo',
     room: 'Phòng',
-    newRoom: 'Thêm mới phòng'
+    roomList: 'Danh sách phòng',
+    newRoom: 'Thêm mới phòng',
+    update: 'Cập nhật',
+    roomDetail: 'Chi tiết phòng',
+    electric: 'Điện năng',
+    setting: 'Cài đặt',
+    summary: 'Thống kê',
+    water: 'Nước',
+    all: 'Tất cả',
+    configuration: 'Cấu hình',
+    configurationDetail: 'Cấu hình chi tiết',
+    addNewConfiguration: 'Thêm mới cấu hình',
+    gas: 'Gas',
+    automation: 'Tự động',
+    addNewAutomation: 'Thêm mới tự động',
+    addNew: 'Thêm mới'
   },
   root: {
     register: 'Đăng ký',
@@ -77,7 +85,7 @@ export default {
     emptyString: 'Trường thông tin không được để trống',
     phone: 'Điện thoại',
     incorrectEmail: 'Địa chỉ email không hợp lệ',
-    somthingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau',
+    somethingWentWrong: 'Đã xảy ra lỗi, vui lòng thử lại sau',
     activate: 'Kích hoạt',
     update: 'Cập nhật',
     name: 'Tên',
@@ -89,7 +97,29 @@ export default {
     edit: "Sửa",
     cancel: 'Thoát',
     accept: 'Đồng ý',
-    confirm: 'Xác nhận'
+    confirm: 'Xác nhận',
+    preview: 'Xem trước',
+    save: 'Lưu lại',
+    sessionTimeOut: 'Phiên đăng nhập của bạn đã hết, vui lòng đăng nhập lại',
+    noPermission: 'Bạn không có quyền truy cập trang này, cảm ơn.',
+    emptyList: 'Danh sách rỗng',
+    getInfo: 'Lấy thông tin',
+    device: 'Thiết bị',
+    loading: 'Đang tải',
+    open: 'Mở',
+    close: 'Đóng lại',
+    stop: 'Dừng lại',
+    language: 'Ngôn ngữ',
+    authentication: 'Quyền truy cập',
+    systemInformation: 'Thông tin hệ thống',
+    listFiltered: 'Danh sách đã chọn',
+    weekLoop: 'Lặp trong tuần',
+    turnOnDeviceSuccess: 'Bật thiết bị thành công',
+    turnOffDeviceSuccess: 'Tắt thiết bị thành công',
+    timeStart: 'Thời gian bắt đầu',
+    timeEnd: 'Thời gian kết thúc',
+    currentTime: 'Thời gian hiện tại',
+    setTimer: 'Cài đặt hẹn giờ'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -139,6 +169,12 @@ export default {
     documentation: 'Documentation',
     github: 'Github Repository'
   },
+  configuration: {
+    addConfiguration: 'Thêm cấu hình',
+    configurationName: 'Tên cấu hình',
+    configurationList: 'Danh sách cấu hình',
+    settingDevice: 'Cài đặt thiết bị'
+  },
   permission: {
     addRole: 'New Role',
     editPermission: 'Edit',
@@ -150,8 +186,8 @@ export default {
     cancel: 'Cancel'
   },
   guide: {
-    description: 'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
-    button: 'Show Guide'
+    description: 'Hãy để chúng tôi hướng dẫn cho bạn cách sử dụng ứng dụng',
+    button: 'Hướng dẫn'
   },
   components: {
     documentation: 'Documentation',
@@ -236,7 +272,10 @@ export default {
   },
   dashboard: {
     cameraSecurity: 'Camera an ninh',
-    roomList: 'Danh sách phòng'
+    roomList: 'Danh sách phòng',
+    configuration: 'Cấu hình',
+    configurationUsing: 'Danh sách cấu hình cài đặt sẵn, vui lòng nhấn để lựa chọn.',
+    automationList: 'Danh sách tự động'
   },
   notification: {
     notification: 'Thông báo'
@@ -246,6 +285,34 @@ export default {
   },
   room: {
     confirmDelete: 'Xác nhận xóa phòng',
-    confirmDeleteMessage: 'Vui lòng xác nhận rằng bạn muốn xóa phòng này.'
+    confirmDeleteMessage: 'Vui lòng xác nhận rằng bạn muốn xóa phòng này.',
+    groupColor: 'Màu biểu tượng',
+    bgColor: 'Màu nền',
+    roomName: 'Tên phòng',
+    createRoomSuccess: 'Tạo mới phòng thành công',
+    deleteRoomSuccess: 'Xóa phòng thành công',
+    groupIcon: 'Biểu tượng phòng',
+    update: 'Cập nhật',
+    addDevice: 'Thêm thiết bị',
+    roomDetail: 'Chi tiết phòng',
+    deviceSerial: 'Số serial của thiết bị',
+    deviceName: 'Tên thiết bị',
+    updateDeviceSuccess: 'Cập nhật thiết bị thành công',
+    clickToChangeDeviceIcon: 'Nhấn để thay đổi biểu tượng của thiết bị',
+    updateRoomSuccess: 'Cập nhật phòng thành công'
+  },
+  months: {
+    january: 'Tháng 1',
+    february: 'Tháng 2',
+    march: 'Tháng 3',
+    april: 'Tháng 4',
+    may: 'Tháng 5',
+    june: 'Tháng 6',
+    july: 'Tháng 7',
+    august: 'Tháng 8',
+    september: 'Tháng 9',
+    october: 'Tháng 10',
+    november: 'Tháng 11',
+    december: 'Tháng 12'
   }
 }

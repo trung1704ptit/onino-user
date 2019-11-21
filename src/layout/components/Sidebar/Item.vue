@@ -17,7 +17,11 @@ export default {
     const vnodes = []
 
     if (icon) {
-      vnodes.push(<svg-icon icon-class={icon}/>)
+      if (icon.indexOf('fa-') > -1) {
+        vnodes.push(<i class={`${icon} custom-menu-icon`} aria-hidden="true" />)
+      } else {
+        vnodes.push(<svg-icon icon-class={icon}/>)
+      }
     }
 
     if (title) {

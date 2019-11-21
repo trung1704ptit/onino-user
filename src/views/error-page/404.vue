@@ -9,8 +9,8 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__headline">{{ $t('page404.notFound') }}</div>
-        <div class="bullshit__info">{{ $t('page404.ensureMessage') }}</div>
+        <div class="bullshit__headline white-text">{{ $t('page404.notFound') }}</div>
+        <div class="bullshit__info white-text">{{ $t('page404.ensureMessage') }}</div>
         <a href="/" class="bullshit__return-home">{{ $t('page404.backToHome') }}</a>
       </div>
     </div>
@@ -168,7 +168,6 @@ export default {
     &__headline {
       font-size: 20px;
       line-height: 24px;
-      color: #222;
       font-weight: bold;
       opacity: 0;
       margin-bottom: 10px;
@@ -180,7 +179,6 @@ export default {
     &__info {
       font-size: 13px;
       line-height: 21px;
-      color: grey;
       opacity: 0;
       margin-bottom: 30px;
       animation-name: slideUp;

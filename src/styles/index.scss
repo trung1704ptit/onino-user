@@ -13,6 +13,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: myriad-pro, Helvetica;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/img/living-room.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 label {
@@ -225,6 +229,9 @@ aside {
 .m-0 {
   margin: 0;
 }
+.mt-0 {
+  margin-top: 0;
+}
 .m-15 {
   margin: 15px;
 }
@@ -249,6 +256,9 @@ aside {
 .space-between {
   justify-content: space-between;
 }
+.space-around {
+  justify-content: space-around;
+}
 .underline {
   text-decoration: underline;
 }
@@ -256,10 +266,32 @@ aside {
   color: var(--main-color)
 }
 .box {
-  background: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
+  background: var(--bg);
+}
+.dark-box {
+  border-radius: 10px;
+  background: var(--dark-blue);
+}
+.white-text {
+  color: #fff
 }
 .show {
   display: block
+}
+.dark-text {
+  color: var(--grey);
+}
+.align-left {
+  text-align: left;
+}
+.inline-block {
+  display: inline-block;
+}
+.dialog-w-50 .el-dialog {
+  width: 50%;
+}
+.uppercase {
+  text-transform: uppercase;
 }
 @import './responsive.scss';

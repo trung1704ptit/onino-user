@@ -15,7 +15,7 @@
       >
         <slide>
           <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -25,7 +25,7 @@
         </slide>
         <slide>
           <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Khách</span>
               </div>
@@ -35,7 +35,7 @@
         </slide>
         <slide>
           <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng ăn</span>
               </div>
@@ -45,7 +45,7 @@
         </slide>
         <slide>
           <router-link to="/camera/chi-tiet">
-            <div class="box p-15 camera">
+            <div class="p-15 camera">
               <div class="title">
                 <span>Phòng Ngủ</span>
               </div>

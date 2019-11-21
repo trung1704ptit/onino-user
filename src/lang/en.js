@@ -29,13 +29,6 @@ export default {
     mixChart: 'Mix Chart',
     example: 'Example',
     nested: 'Nested Routes',
-    menu1: 'Menu 1',
-    'menu1-1': 'Menu 1-1',
-    'menu1-2': 'Menu 1-2',
-    'menu1-2-1': 'Menu 1-2-1',
-    'menu1-2-2': 'Menu 1-2-2',
-    'menu1-3': 'Menu 1-3',
-    menu2: 'Menu 2',
     Table: 'Table',
     dynamicTable: 'Dynamic Table',
     dragTable: 'Drag Table',
@@ -69,16 +62,22 @@ export default {
     camera: 'Camera',
     notification: 'Notification',
     room: 'Room',
-    newRoom: 'Add new room'
-  },
-  navbar: {
-    dashboard: 'Dashboard',
-    github: 'Github',
-    logOut: 'Log Out',
-    profile: 'Profile',
-    theme: 'Theme',
-    size: 'Global Size',
-    userInfo: 'User information'
+    roomList: 'Room list',
+    newRoom: 'Add new room',
+    update: 'Update',
+    roomDetail: 'Room detail',
+    electric: 'Electric',
+    setting: 'Setting',
+    summary: 'Summary',
+    water: 'Water',
+    all: 'All',
+    configuration: 'Configuration',
+    configurationDetail: 'Configuration detail',
+    addNewConfiguration: 'Add new configuration',
+    gas: 'Gas',
+    automation: 'Automation',
+    addNewAutomation: 'Add new automation',
+    addNew: 'Add new'
   },
   root: {
     register: 'Register',
@@ -86,7 +85,7 @@ export default {
     emptyString: 'This field canot be empty',
     phone: 'Phone',
     incorrectEmail: 'Incorrect email address',
-    somthingWentWrong: 'Something went wrong',
+    somethingWentWrong: 'Something went wrong',
     activate: 'Activate',
     update: 'Update',
     name: 'Name',
@@ -98,7 +97,38 @@ export default {
     edit: "Edit",
     cancel: 'Cancel',
     accept: 'Accept',
-    confirm: 'Confirm'
+    confirm: 'Confirm',
+    preview: 'Preview',
+    save: 'Save',
+    sessionTimeOut: 'Your working session has been expired, please login again.',
+    noPermission: 'You have no permission to access this page, thank you',
+    emptyList: 'Empty list',
+    getInfo: 'Get information',
+    device: 'Device',
+    loading: 'Loading',
+    open: 'Open',
+    close: 'Close',
+    stop: 'Stop',
+    language: 'Language',
+    authentication: 'Authentication',
+    systemInformation: 'System information',
+    listFiltered: 'List filtered',
+    weekLoop: 'Week in loop',
+    turnOnDeviceSuccess: 'Turn on device successful',
+    turnOffDeviceSuccess: 'Turn off device successful',
+    timeStart: 'Time start',
+    timeEnd: 'Time end',
+    currentTime: 'Current time',
+    setTimer: 'Set timer'
+  },
+  navbar: {
+    dashboard: 'Dashboard',
+    github: 'Github',
+    logOut: 'Log Out',
+    profile: 'Profile',
+    theme: 'Theme',
+    size: 'Global Size',
+    userInfo: 'User information'
   },
   login: {
     title: 'Login Form',
@@ -139,6 +169,12 @@ export default {
     documentation: 'Documentation',
     github: 'Github Repository'
   },
+  configuration: {
+    addConfiguration: 'Add configuration',
+    configurationName: 'Configuration name',
+    configurationList: 'Configuration list',
+    settingDevice: 'Setting device'
+  },
   permission: {
     addRole: 'New Role',
     editPermission: 'Edit',
@@ -150,7 +186,7 @@ export default {
     cancel: 'Cancel'
   },
   guide: {
-    description: 'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
+    description: 'Let us show to you how to use this application',
     button: 'Show Guide'
   },
   components: {
@@ -188,30 +224,10 @@ export default {
     cancel: 'Cancel',
     confirm: 'Confirm'
   },
-  example: {
-    warning: 'Creating and editing pages cannot be cached by keep-alive because keep-alive include does not currently support caching based on routes, so it is currently cached based on component name. If you want to achieve a similar caching effect, you can use a browser caching scheme such as localStorage. Or do not use keep-alive include to cache all pages directly. See details'
-  },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
     description: 'Now the management system are basically the form of the spa, it enhances the user experience, but it also increases the possibility of page problems, a small negligence may lead to the entire page deadlock. Fortunately Vue provides a way to catch handling exceptions, where you can handle errors or report exceptions.',
     documentation: 'Document introduction'
-  },
-  excel: {
-    export: 'Export',
-    selectedExport: 'Export Selected Items',
-    placeholder: 'Please enter the file name (default excel-list)'
-  },
-  zip: {
-    export: 'Export',
-    placeholder: 'Please enter the file name (default file)'
-  },
-  pdf: {
-    tips: 'Here we use window.print() to implement the feature of downloading PDF.'
-  },
-  theme: {
-    change: 'Change Theme',
-    documentation: 'Theme documentation',
-    tips: 'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.'
   },
   tagsView: {
     refresh: 'Refresh',
@@ -236,7 +252,10 @@ export default {
   },
   dashboard: {
     cameraSecurity: 'Camera securirty',
-    roomList: 'Room list'
+    roomList: 'Room list',
+    configuration: 'Configuration',
+    configurationUsing: 'This is a list of configuations, please click to choose one',
+    automationList: 'Automation list'
   },
   notification: {
     notification: 'Notification'
@@ -246,6 +265,34 @@ export default {
   },
   room: {
     confirmDelete: 'Confirm delete room',
-    confirmDeleteMessage: 'Please confirm that you want to delete this room.'
+    confirmDeleteMessage: 'Please confirm that you want to delete this room.',
+    groupColor: 'Icon color',
+    bgColor: 'Background color',
+    roomName: 'Room name',
+    createRoomSuccess: 'Create room successful',
+    deleteRoomSuccess: 'Delete room successful',
+    groupIcon: 'Room icon',
+    update: 'Update',
+    addDevice: 'Add device',
+    roomDetail: 'Room detail',
+    deviceSerial: 'Device serial',
+    deviceName: 'Device name',
+    updateDeviceSuccess: 'Update device successful',
+    clickToChangeDeviceIcon: 'Click to change device icon',
+    updateRoomSuccess: 'Update room successful'
+  },
+  months: {
+    january: 'January',
+    february: 'February',
+    march: 'March',
+    april: 'April',
+    may: 'May',
+    june: 'June',
+    july: 'July',
+    august: 'August',
+    september: 'September',
+    october: 'October',
+    november: 'November',
+    december: 'December'
   }
 }
