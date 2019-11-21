@@ -376,27 +376,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-@import './styles.scss';
-</style>
-
-<style lang="scss">
-.notify {
-    color: #fff;
-}
-
-.message {
-    margin-left: 15px;
-    padding-left: 15px;
-    border-left: 2px solid #fff;
-}
-
-.link {
-    color: #fff;
-}
-
-.VueCarousel-inner {
-    justify-content: center;
-}
-</style>
