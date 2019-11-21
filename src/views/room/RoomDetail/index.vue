@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="15" class="p-15">
       <el-col :xs="24" :sm="18">
-        <span class="ml-15" v-for="room in roomList" :key="room.id">
+        <span class="mr-15" v-for="room in roomList" :key="room.id">
           <router-link :to="'/room/chi-tiet/' + room.id">
             <el-button
               :type="roomDetail.id === room.id && 'primary'"
@@ -301,6 +301,7 @@ export default {
     } else {
       this.$store.dispatch("room/getAllRoom").then(response => {
         const roomDetail = response.filter(item => item.id === roomId)[0];
+        this.roomList = response;
 
         if (roomDetail) {
           this.roomDetail = roomDetail;
