@@ -25,70 +25,69 @@
           <i class="el-icon-circle-plus" />
           {{ $t('room.addDevice') }}
         </el-button>
-
-        <!-- serial number form -->
-        <el-form
-          class="form-wrapper box app-form"
-          :model="deviceForm"
-          :rules="formRules"
-          ref="deviceForm"
-          v-if="addDeviceForm"
-        >
-          <el-form-item prop="serialNumber" class="el-form-item">
-            <span class="svg-container">
-              <i class="fa fa-indent" aria-hidden="true"></i>
-            </span>
-            <el-input
-              v-model="deviceForm.serialNumber"
-              :placeholder="$t('room.deviceSerial')"
-              name="serialNumber"
-              type="text"
-              tabindex="1"
-            />
-          </el-form-item>
-
-          <el-form-item prop="deviceName" class="el-form-item">
-            <span class="svg-container">
-              <i class="fa fa-tag" aria-hidden="true"></i>
-            </span>
-            <el-input
-              v-model="deviceForm.deviceName"
-              :placeholder="$t('room.deviceName')"
-              name="deviceName"
-              type="text"
-              tabindex="2"
-            />
-          </el-form-item>
-
-          <el-button type="primary" @click="getDeviceInfo">
-            <i class="el-icon-search" />
-            {{ $t('root.getInfo') }}
-          </el-button>
-
-          <el-button @click.native.prevent="addDeviceForm = false">
-            <i class="el-icon-circle-close" />
-            {{ $t('root.cancel') }}
-          </el-button>
-        </el-form>
-
-        <!-- device icon form -->
-        <div v-if="deviceRegistered">
-          <device-icon-form v-for="(form, index) in formAdded" :key="index" :form="form" />
-          <div class="mt-15" style="text-align: right">
-            <el-button type="primary" @click="handleUpdateDeviceRegistered">
-              <i class="fa fa-floppy-o" aria-hidden="true"></i>
-              {{ $t('root.save') }}
-            </el-button>
-            <el-button @click.native.prevent="deviceRegistered = false">
-              <i class="el-icon-circle-close" />
-              {{ $t('root.cancel') }}
-            </el-button>
-          </div>
-        </div>
       </el-col>
     </el-row>
 
     <section class="section m-15 bg-light">
+      <!-- serial number form -->
+      <el-form
+        class="form-wrapper box app-form"
+        :model="deviceForm"
+        :rules="formRules"
+        ref="deviceForm"
+        v-if="addDeviceForm"
+      >
+        <el-form-item prop="serialNumber" class="el-form-item">
+          <span class="svg-container">
+            <i class="fa fa-indent" aria-hidden="true"></i>
+          </span>
+          <el-input
+            v-model="deviceForm.serialNumber"
+            :placeholder="$t('room.deviceSerial')"
+            name="serialNumber"
+            type="text"
+            tabindex="1"
+          />
+        </el-form-item>
+
+        <el-form-item prop="deviceName" class="el-form-item">
+          <span class="svg-container">
+            <i class="fa fa-tag" aria-hidden="true"></i>
+          </span>
+          <el-input
+            v-model="deviceForm.deviceName"
+            :placeholder="$t('room.deviceName')"
+            name="deviceName"
+            type="text"
+            tabindex="2"
+          />
+        </el-form-item>
+
+        <el-button type="primary" @click="getDeviceInfo">
+          <i class="el-icon-search" />
+          {{ $t('root.getInfo') }}
+        </el-button>
+
+        <el-button @click.native.prevent="addDeviceForm = false">
+          <i class="el-icon-circle-close" />
+          {{ $t('root.cancel') }}
+        </el-button>
+      </el-form>
+
+      <!-- device icon form -->
+      <div v-if="deviceRegistered">
+        <device-icon-form v-for="(form, index) in formAdded" :key="index" :form="form" />
+        <div class="mt-15" style="text-align: right">
+          <el-button type="primary" @click="handleUpdateDeviceRegistered">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            {{ $t('root.save') }}
+          </el-button>
+          <el-button @click.native.prevent="deviceRegistered = false">
+            <i class="el-icon-circle-close" />
+            {{ $t('root.cancel') }}
+          </el-button>
+        </div>
+      </div>
       <el-row :gutter="15">
         <el-col :xs="24" :sm="24" :lg="5">
           <div class="align-center box box-shadow p-15 mt-15">
