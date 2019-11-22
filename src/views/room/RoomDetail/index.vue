@@ -152,7 +152,7 @@
           <!-- List of devices -->
           <div class="mt-15 mb-15">
             <div class="flex">
-              <div class="vertical-list">
+              <div class="vertical-list" v-if="verticalDevices.length > 0">
                 <room-device
                   v-for="(device, index) in verticalDevices"
                   :key="device.deviceId + index"
@@ -172,9 +172,9 @@
                 </div>
               </div>
 
-              <control class="control" :groupDevices="groupDevices" :buttons="groupSelected.buttons" />
+              <control class="control" v-if="groupDevices.length > 0" :groupDevices="groupDevices" :buttons="groupSelected.buttons" />
             </div>
-            <div class="horizontal-list flex">
+            <div class="horizontal-list flex" v-if="horizontalDevices.length > 0">
               <room-device
                 v-for="(device, index) in horizontalDevices"
                 :key="device.deviceId + index"
@@ -192,6 +192,8 @@
                 <i class="el-icon-arrow-right" />
               </div>
             </div>
+
+            <p v-if="roomDevices.length === 0" class="white-text text-center">{{ $t('root.emptyList') }}</p>
           </div>
         </el-col>
       </el-row>
@@ -482,8 +484,7 @@ export default {
         item => item.deviceType === group.deviceType
       );
     }
-  },
-  computed: {}
+  }
 };
 </script>
 
