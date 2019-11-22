@@ -135,7 +135,7 @@ export default {
     position: relative;
     margin: 0px 5px 10px 0;
     cursor: pointer;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     max-width: 200px;
 
     .title {

@@ -172,7 +172,7 @@
                 </div>
               </div>
 
-              <control class="control" :groupDevices="groupDevices" />
+              <control class="control" :groupDevices="groupDevices" :buttons="groupSelected.buttons" />
             </div>
             <div class="horizontal-list flex">
               <room-device

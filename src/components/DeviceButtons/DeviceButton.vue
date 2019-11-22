@@ -1,86 +1,103 @@
 <template>
-<div class="button-wrapper" @click="handleClickButton">
-    <el-button type="primary" @click="handleClickButton" class="button" :style="{ width: size + 'px', height: size + 'px' }">
-        <img :src="icon" />
+  <div class="button-wrapper" @click="handleClickButton">
+    <el-button
+      type="primary"
+      @click="handleClickButton"
+      class="button"
+      :style="{ width: size + 'px', height: size + 'px' }"
+    >
+      <img :src="iconUrl" />
     </el-button>
     <div class="text">{{ title }}</div>
-</div>
+  </div>
 </template>
 
 <script>
-import TintColor from '@/utils/tint-color';
+import TintColor from "@/utils/tint-color";
 
 export default {
-    props: {
-        icon: {
-            type: String,
-            default: ''
-        },
-        size: {
-            type: String,
-            default: '70'
-        },
-        title: {
-            type: String,
-            default: 'Tăng'
-        },
-        onClickButton: Function
+  props: {
+    icon: {
+      type: String,
+      default: ""
     },
-    data() {
-        return {
-            active: false
-        }
+    size: {
+      type: [String, Number],
+      default: "70"
     },
-    methods: {
-        handleClickButton() {
-            this.active = !this.active;
-            this.onClickButton();
-        }
+    title: {
+      type: String,
+      default: "Tăng"
     },
-    mounted() {
-        new TintColor(this.icon, '#ffffff').run().then(newImage => {
-            this.icon = newImage.url;
-        })
+    onClickButton: Function,
+    offlineColor: String,
+    activeColor: {
+      type: String,
+      default: "#ffffff"
+    },
+    power: Boolean
+  },
+  data() {
+    return {
+      active: false,
+      iconUrl: ""
+    };
+  },
+  methods: {
+    handleClickButton() {
+      this.active = !this.active;
+      this.onClickButton();
+      if (this.power) {
+        // new TintColor(this.icon, this.offlineColor).run().then(newImage => {
+        //   this.iconUrl = newImage.url;
+        // });
+      }
     }
-}
+  },
+  mounted() {
+    new TintColor(this.icon, this.activeColor).run().then(newImage => {
+      this.iconUrl = newImage.url;
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .button-wrapper {
-    text-align: center;
-    margin: 15px;
+  text-align: center;
+  margin: 15px;
 
-    .button {
-        border: 2px solid var(--main-color);
-        border-radius: 50%;
-        padding: 12px;
-        cursor: pointer;
-        background: transparent;
-        background-position: center;
-        transition: background 0.8s;
+  .button {
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    background: transparent;
+    background-position: center;
+    transition: background 0.8s;
 
-        img {
-            width: 100%;
-        }
-
-        &:active {
-            background-color: #6eb9f7;
-            background-size: 100%;
-            transition: background 0s;
-        }
+    img {
+      width: 100%;
     }
 
-    .text {
-        margin-top: 10px;
-        color: #fff;
+    &:active {
+      background-color: #6eb9f7;
+      background-size: 100%;
+      transition: background 0s;
     }
+  }
 
-    &.active {
-        color: var(--main-color);
+  .text {
+    margin-top: 10px;
+    color: #fff;
+  }
 
-        .circle {
-            border: 2px solid var(--main-color);
-        }
+  &.active {
+    color: var(--main-color);
+
+    .circle {
+      border: 2px solid var(--main-color);
     }
+  }
 }
 </style>

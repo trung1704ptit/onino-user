@@ -1,23 +1,23 @@
-import commonPlug from '@/assets/img/icons/common_plug.png';
-import oCam from '@/assets/img/icons/o-cam.png';
-
 export const deviceTypes = [
-     {
-        deviceIconUrl: commonPlug,
+    {
+        deviceIconUrl: require('@/assets/img/icons/common_plug.png'),
         deviceId: new Date().getTime() + 1,
         deviceName: "công tắc",
-        deviceType: 'switch'
+        deviceType: 'switch',
+        buttons: ['minus', 'plus']
     },
     {
-        deviceIconUrl: oCam,
+        deviceIconUrl: require('@/assets/img/icons/o-cam.png'),
         deviceId: new Date().getTime() + 2,
         deviceName: 'Ổ cắm',
-        deviceType: 'timerSocket'
+        deviceType: 'timerSocket',
+        buttons: ['minus', 'plus', 'back']
     },
     {
-        deviceIconUrl: commonPlug,
+        deviceIconUrl: require('@/assets/img/icons/common_plug.png'),
         deviceId: new Date().getTime() + 3,
         deviceName: 'Ổ cắm',
-        deviceType: 'timerSocket2'
+        deviceType: 'timerSocket2',
+        buttons: ['minus', 'plus', 'next', 'back']
     }
 ]

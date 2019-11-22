@@ -1,7 +1,7 @@
 <template>
 <div class="box p-15">
     <group-devices :groupDevices="groupDevices" />
-    <circle-buttons />
+    <circle-buttons :buttons="buttons" />
 </div>
 </template>
 
@@ -11,7 +11,8 @@ import GroupDevices from './GroupDevices';
 
 export default {
     props: {
-        groupDevices: Array
+        groupDevices: Array,
+        buttons: Array
     },
     components: {
         CircleButtons,
