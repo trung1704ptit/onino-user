@@ -23,7 +23,7 @@ export default {
     },
     size: {
       type: [String, Number],
-      default: "70"
+      default: "50"
     },
     title: {
       type: String,
@@ -65,7 +65,8 @@ export default {
 <style lang="scss" scoped>
 .button-wrapper {
   text-align: center;
-  margin: 15px;
+  margin: 0 10px 10px 10px;
+  width: 100%;
 
   .button {
     border: 2px solid var(--main-color);

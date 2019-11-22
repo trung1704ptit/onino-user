@@ -160,7 +160,7 @@
                   :inlineBlock="false"
                   hasSwitch
                   :handleSelectDevice="handleSelectDevice"
-                  :active="groupSelected.deviceType === device.deviceType"
+                  :active="groupSelected && groupSelected.deviceType && groupSelected.deviceType.toLowerCase() === device.deviceType.toLowerCase()"
                 />
                 <div
                   v-if="hasPrevious"
@@ -172,7 +172,12 @@
                 </div>
               </div>
 
-              <control class="control" v-if="groupDevices.length > 0" :groupDevices="groupDevices" :buttons="groupSelected.buttons" />
+              <control
+                class="control"
+                v-if="groupDevices.length > 0"
+                :groupDevices="groupDevices"
+                :buttons="groupSelected.buttons"
+              />
             </div>
             <div class="horizontal-list flex" v-if="horizontalDevices.length > 0">
               <room-device
@@ -193,7 +198,10 @@
               </div>
             </div>
 
-            <p v-if="roomDevices.length === 0" class="white-text text-center">{{ $t('root.emptyList') }}</p>
+            <p
+              v-if="roomDevices.length === 0"
+              class="white-text text-center"
+            >{{ $t('root.emptyList') }}</p>
           </div>
         </el-col>
       </el-row>
@@ -324,8 +332,18 @@ export default {
       this.roomDevices = response.devices;
 
       const groups = deviceTypes.filter(type =>
-        this.roomDevices.some(item => item.deviceType === type.deviceType)
+        this.roomDevices.some(
+          item =>
+            item.deviceType.toLowerCase() === type.deviceType.toLowerCase()
+        )
       );
+
+      if (groups.length > 0) {
+        this.groupSelected = groups[0];
+        this.groupDevices = this.roomDevices.filter(
+          item => item.deviceType.toLowerCase() === groups[0].deviceType.toLowerCase()
+        );
+      }
 
       this.verticalDevices = groups.slice(0, 5);
 
@@ -368,6 +386,29 @@ export default {
           const roomId = this.$route.params.id;
           this.$store.dispatch("room/getRoomDevices", roomId).then(response => {
             this.roomDevices = response.devices;
+            const devices = response.devices;
+
+            this.roomDevices = response.devices;
+
+            const groups = deviceTypes.filter(type =>
+              this.roomDevices.some(
+                item =>
+                  item.deviceType.toLowerCase() ===
+                  type.deviceType.toLowerCase()
+              )
+            );
+
+            this.verticalDevices = groups.slice(0, 5);
+
+            groups.splice(0, 5);
+            this.horizontalDevices = groups;
+
+            if (this.verticalDevices.length > 5) {
+              this.hasPrevious = true;
+            }
+            if (this.horizontalDevices.length > 6) {
+              this.hasNext = true;
+            }
           });
           this.deviceRegistered = false;
         })
@@ -441,8 +482,32 @@ export default {
           const roomId = this.$route.params.id;
           this.$store.dispatch("room/getRoomDevices", roomId).then(response => {
             this.roomDevices = response.devices;
+            const devices = response.devices;
+
+            this.roomDevices = response.devices;
+
+            const groups = deviceTypes.filter(type =>
+              this.roomDevices.some(
+                item =>
+                  item.deviceType.toLowerCase() ===
+                  type.deviceType.toLowerCase()
+              )
+            );
+
+            this.verticalDevices = groups.slice(0, 5);
+
+            groups.splice(0, 5);
+            this.horizontalDevices = groups;
+
+            if (this.verticalDevices.length > 5) {
+              this.hasPrevious = true;
+            }
+            if (this.horizontalDevices.length > 6) {
+              this.hasNext = true;
+            }
           });
           this.deviceRegistered = false;
+          this.addDeviceForm = false;
         })
         .then(error => {
           console.log(error);
@@ -481,7 +546,7 @@ export default {
     handleSelectDevice(group) {
       this.groupSelected = group;
       this.groupDevices = this.roomDevices.filter(
-        item => item.deviceType === group.deviceType
+        item => item.deviceType.toLowerCase() === group.deviceType.toLowerCase()
       );
     }
   }
