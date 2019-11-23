@@ -120,7 +120,8 @@ export default {
     timeEnd: 'Time end',
     currentTime: 'Current time',
     setTimer: 'Set timer',
-    setTimerByWeek: 'Set timer by week'
+    setTimerByWeek: 'Set timer by week',
+    setTimerByDay: 'set timer by day'
   },
   navbar: {
     dashboard: 'Dashboard',

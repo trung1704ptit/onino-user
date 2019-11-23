@@ -120,7 +120,8 @@ export default {
     timeEnd: 'Thời gian kết thúc',
     currentTime: 'Thời gian hiện tại',
     setTimer: 'Cài đặt hẹn giờ',
-    setTimerByWeek: 'Hẹn giờ theo tuần'
+    setTimerByWeek: 'Hẹn giờ theo tuần',
+    setTimerByDay: 'Hẹn giờ theo ngày'
   },
   navbar: {
     dashboard: 'Dashboard',
