@@ -4,21 +4,21 @@ export const deviceTypes = [
         deviceId: new Date().getTime() + 1,
         deviceName: "công tắc",
         deviceType: 'switch',
-        buttons: []
+        buttons: ['clock']
     },
     {
         deviceIconUrl: require('@/assets/img/icons/o-cam.png'),
         deviceId: new Date().getTime() + 2,
         deviceName: 'Ổ cắm',
         deviceType: 'timerSocket',
-        buttons: []
+        buttons: ['clock']
     },
     {
         deviceIconUrl: require('@/assets/img/icons/common_plug.png'),
         deviceId: new Date().getTime() + 3,
         deviceName: 'Ổ cắm',
         deviceType: 'timerSocket2',
-        buttons: []
+        buttons: ['clock']
     },
     {
         deviceIconUrl: require('@/assets/img/icons/parking-meter.png'),
@@ -39,13 +39,13 @@ export const deviceTypes = [
         deviceId: new Date().getTime() + 3,
         deviceName: 'Cảm biến',
         deviceType: 'sensor',
-        buttons: []
+        buttons: ['clock']
     },
     {
         deviceIconUrl: require('@/assets/img/icons/fan.png'),
         deviceId: new Date().getTime() + 3,
         deviceName: 'Quạt',
         deviceType: 'fan',
-        buttons: ['minus', 'plus', 'dry', 'water']
+        buttons: ['minus', 'plus', 'dry', 'water', 'clock']
     }
 ]

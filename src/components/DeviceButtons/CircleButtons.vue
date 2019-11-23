@@ -15,7 +15,11 @@
     <div class="flex space-around row">
       <device-button :icon="plusIcon" title="Giảm" v-if="showButton('plus')"  :onClickButton="() => {}" />
 
-      <device-button :icon="plusIcon" title="Giảm" v-if="showButton('plus')"  :onClickButton="() => {}" />
+      <device-button
+      :icon="clockIcon"
+      title="Hẹn giờ"
+      v-if="showButton('clock')" 
+      :onClickButton="() => clickButton('clock')" />
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@ import plusIcon from "@/assets/img/icons/plus.png";
 import nextIcon from "@/assets/img/icons/next.png";
 import backIcon from "@/assets/img/icons/back.png";
 import shutDownIcon from "@/assets/img/icons/shutdown.png";
+import clockIcon from "@/assets/img/icons/clock.png";
 
 import minusIcon from "@/assets/img/icons/minus.png";
 import { deviceTypes } from "@/config";
@@ -35,7 +40,8 @@ export default {
     buttons: {
       type: Array,
       default: []
-    }
+    },
+    onClickButton: Function
   },
   data() {
     return {
@@ -43,7 +49,8 @@ export default {
       shutDownIcon: shutDownIcon,
       minusIcon: minusIcon,
       backIcon,
-      nextIcon
+      nextIcon,
+      clockIcon
     };
   },
   components: {
@@ -53,6 +60,9 @@ export default {
   methods: {
     showButton(name) {
       return this.buttons.some(el => el === name);
+    },
+    clickButton(type) {
+      this.onClickButton(type)
     }
   }
 };

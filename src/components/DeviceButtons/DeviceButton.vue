@@ -1,12 +1,12 @@
 <template>
-  <div class="button-wrapper" @click="handleClickButton">
+  <div class="button-wrapper">
     <el-button
       type="primary"
       @click="handleClickButton"
       class="button"
       :style="{ width: size + 'px', height: size + 'px' }"
     >
-      <img :src="iconUrl" />
+      <img :src="iconUrl" :alt="new Date().getTime()"/>
     </el-button>
     <div class="text">{{ title }}</div>
   </div>
@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     new TintColor(this.icon, this.activeColor).run().then(newImage => {
-      this.iconUrl = newImage.url;
+      this.iconUrl = newImage.url
     });
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div>
     <week-timer />
-    <datetime />
+    <el-button type="primary" class="mt-15"> <i class="fa fa-floppy-o" aria-hidden="true"></i> {{ $t('root.save')}}</el-button>
   </div>
 </template>
 
