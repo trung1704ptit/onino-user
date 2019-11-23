@@ -19,8 +19,9 @@
 </template>
 
 <script>
-import WeekTimer from "@/components/WeekTimer";
-import DayTimer from '@/components/DayTimer';
+import WeekTimer from "./WeekTimer";
+import DayTimer from './DayTimer';
+import HourTimer from './HourTimer';
 
 export default {
   data() {
@@ -32,7 +33,8 @@ export default {
   },
   components: {
     WeekTimer,
-    DayTimer
+    DayTimer,
+    HourTimer
   }
 };
 </script>
