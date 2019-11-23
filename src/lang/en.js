@@ -119,7 +119,8 @@ export default {
     timeStart: 'Time start',
     timeEnd: 'Time end',
     currentTime: 'Current time',
-    setTimer: 'Set timer'
+    setTimer: 'Set timer',
+    setTimerByWeek: 'Set timer by week'
   },
   navbar: {
     dashboard: 'Dashboard',

@@ -119,7 +119,8 @@ export default {
     timeStart: 'Thời gian bắt đầu',
     timeEnd: 'Thời gian kết thúc',
     currentTime: 'Thời gian hiện tại',
-    setTimer: 'Cài đặt hẹn giờ'
+    setTimer: 'Cài đặt hẹn giờ',
+    setTimerByWeek: 'Hẹn giờ theo tuần'
   },
   navbar: {
     dashboard: 'Dashboard',

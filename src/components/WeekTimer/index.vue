@@ -3,23 +3,6 @@
     <div v-for="(day, index) in days" :key="index" class="inline-block mt-15 mb-15">
         <day :day="day" :handleClick="handleClick" />
     </div>
-
-
-    <p class="white-text">Thiết lập thời gian Bật/Tắt thiết bị</p>
-
-    <el-radio-group v-model="timerOption">
-        <el-radio :label="1" class="white-text">
-            {{ $t('root.currentTime') }}
-        </el-radio>
-        <el-radio :label="2" class="white-text">
-            {{ $t('root.setTimer') }}
-        </el-radio>
-    </el-radio-group>
-
-    <div class="flex space-between section" v-if="timerOption == 2">
-        <span class="time">{{ $t('root.timeStart') }}: </span>
-        <datetime type="time" v-model="startTime"></datetime>
-    </div>
 </div>
 </template>
 
@@ -42,8 +25,7 @@ export default {
         return {
             days: [2, 3, 4, 5, 6, 7, 8],
             selected: [],
-            startTime: '2019-11-15T05:15:00.000Z',
-            timerOption: 1
+            startTime: '2019-11-15T05:15:00.000Z'
         }
     },
     methods: {
