@@ -1,8 +1,11 @@
 <template>
 <router-link :to="href">
     <div class="card-panel box block block-shadow">
-        <div class="content">
+        <div class="content" v-if="viewAll">
             <svg-icon icon-class="list" /> {{ $t('root.viewAll')}}
+        </div>
+        <div class="content" v-if="addNew">
+            <i class="el-icon-plus" /> {{ $t('route.addNew')}}
         </div>
     </div>
 </router-link>
@@ -11,8 +14,10 @@
 <script>
     export default {
         props: {
-            href: String
-        }
+            href: String,
+            viewAll: Boolean,
+            addNew: Boolean
+        },
     }
 </script>
 

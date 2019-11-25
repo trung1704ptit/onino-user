@@ -11,7 +11,7 @@
                     <room :room="room" :base="'room/'" :dialogConfirmDelete="dialogConfirmDelete" :handleDelete="confirmDelete" class="box p-15 mb-15 block block-shadow slide" />
                 </slide>
                 <slide v-if="roomList.length < 6">
-                    <latest-block :href="'/room/tat-ca'" />
+                    <latest-block :href="'/room/tat-ca'" viewAll />
                 </slide>
             </carousel>
 

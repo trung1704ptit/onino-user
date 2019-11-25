@@ -9,6 +9,12 @@
             </el-col>
         </el-row>
 
+        <router-link to="/room/them-moi">
+            <el-button type="primary" class="mt-15">
+               <i class="el-icon-circle-plus" /> {{ $t('route.addNew')}}
+            </el-button>
+        </router-link>
+
         <el-dialog :title="$t('room.confirmDelete')" :visible.sync="dialogConfirmDelete">
             <div>{{ $t('room.confirmDeleteMessage') }}</div>
             <div slot="footer" class="dialog-footer">
@@ -33,6 +39,7 @@
 import Room from '@/components/Room'
 import i18n from '@/lang';
 import livingRoomBg from '@/assets/img/living-room.jpg';
+import LatestBlock from '@/components/LatestBlock';
 
 export default {
     beforeCreate: function () {
@@ -46,7 +53,8 @@ export default {
         }
     },
     components: {
-        Room
+        Room,
+        LatestBlock
     },
     mounted() {
         if (this.roomList.length === 0) {

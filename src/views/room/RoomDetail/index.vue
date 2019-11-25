@@ -2,22 +2,14 @@
   <div>
     <el-row :gutter="15" class="p-15">
       <el-col :xs="24" :sm="18">
-        <span class="mr-15" v-for="room in roomList" :key="room.id">
-          <router-link :to="'/room/chi-tiet/' + room.id">
-            <el-button
-              :type="roomDetail.id === room.id && 'primary'"
-              size="large"
-              class="uppercase"
-            >{{ room.name }}</el-button>
-          </router-link>
-        </span>
+        <room-list-navigation :roomList="roomList" :currentRoomId="roomDetail.id"/>
       </el-col>
 
       <el-col :sx="24" :sm="6">
         <!-- Button add form -->
         <el-button
           type="primary"
-          size="large"
+          size="small"
           @click.native.prevent="addDeviceForm = true"
           v-if="!addDeviceForm"
           style="float: right"
@@ -198,10 +190,20 @@
               </div>
             </div>
 
-            <p
-              v-if="roomDevices.length === 0"
-              class="white-text text-center"
-            >{{ $t('root.emptyList') }}</p>
+            <div v-if="roomDevices.length === 0" class="white-text text-center">
+              <p
+                class="white-text text-center"
+              >{{ $t('root.emptyList') }}</p>
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click.native.prevent="addDeviceForm = true"
+                  v-if="!addDeviceForm"
+                >
+                  <i class="el-icon-circle-plus" />
+                  {{ $t('room.addDevice') }}
+                </el-button>
+            </div>
           </div>
         </el-col>
       </el-row>
@@ -221,6 +223,7 @@ import DeviceIconForm from "./DeviceIconForm";
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
 import Control from "@/components/Control";
 import { deviceTypes } from "@/config";
+import RoomListNavigation from './RoomListNavigation';
 
 export default {
   components: {
@@ -228,7 +231,8 @@ export default {
     DeviceIconsPopup,
     DeviceIconForm,
     CircleButtons,
-    Control
+    Control,
+    RoomListNavigation
   },
   data() {
     const validateEmpty = (rule, value, callback) => {
@@ -555,6 +559,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "./styles.scss";
+// .VueCarousel-inner {
+//   justify-content: center;
+// }
 </style>
 
 <style lang="scss">
@@ -572,7 +579,4 @@ export default {
   color: #fff;
 }
 
-.VueCarousel-inner {
-  justify-content: center;
-}
 </style>

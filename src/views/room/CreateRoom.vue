@@ -98,7 +98,7 @@ export default {
                         groupIconUrl: this.groupIconUrl,
                         groupName: this.roomForm.roomName
                     }
-                    this.$store.dispatch('room/createRoom', data).then(() => {
+                    this.$store.dispatch('room/createRoom', data).then(response => {
                         this.$message({
                             message: i18n.t('room.createRoomSuccess'),
                             type: 'success',
@@ -109,6 +109,7 @@ export default {
                             this.$store.dispatch('room/getAllRoom');
                         }
                         this.creating = false;
+                        this.$router.push(`/room/chi-tiet/${response.id}`);
                     })
                 } else {
                     return false;

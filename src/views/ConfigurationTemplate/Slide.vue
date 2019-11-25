@@ -10,7 +10,7 @@
                 <block :className="index == 1 ? 'active-bg' : ''" />
             </slide>
             <slide v-if="roomList.length < 6">
-                <latest-block :href="'/cau-hinh/tat-ca'" />
+                <latest-block :href="'/cau-hinh/tat-ca'" viewAll />
             </slide>
         </carousel>
 
