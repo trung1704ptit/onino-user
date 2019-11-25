@@ -121,7 +121,8 @@ export default {
     currentTime: 'Current time',
     setTimer: 'Set timer',
     setTimerByWeek: 'Set timer by week',
-    setTimerByDay: 'set timer by day'
+    setTimerByDay: 'set timer by day',
+    reset: 'Reset'
   },
   navbar: {
     dashboard: 'Dashboard',

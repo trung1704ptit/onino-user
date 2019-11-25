@@ -15,13 +15,18 @@
       <i class="fa fa-floppy-o" aria-hidden="true"></i>
       {{ $t('root.save')}}
     </el-button>
+
+    <el-button type="primary" class="mt-15">
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+      {{ $t('root.reset') }}
+    </el-button>
   </div>
 </template>
 
 <script>
 import WeekTimer from "./WeekTimer";
-import DayTimer from './DayTimer';
-import HourTimer from './HourTimer';
+import DayTimer from "./DayTimer";
+import HourTimer from "./HourTimer";
 
 export default {
   data() {
