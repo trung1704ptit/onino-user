@@ -4,11 +4,11 @@
       type="primary"
       @click="handleClickButton"
       class="button"
-      :style="{ width: size + 'px', height: size + 'px', borderColor: 'var(--main-color)' }"
+      :style="{ width: size + 'px', height: size + 'px', borderColor: on ? activeColor : offlineColor }"
     >
-      <img :src="iconUrl" :alt="new Date().getTime()" />
+      <img :src="iconUrl" alt="power button" />
     </el-button>
-    <div class="text">{{ title }}</div>
+    <div class="text">{{ on ? 'Bật' : 'Tắt' }}</div>
   </div>
 </template>
 
@@ -30,10 +30,13 @@ export default {
       default: "Tăng"
     },
     onClickButton: Function,
-    offlineColor: String,
+    offlineColor: {
+        type: String,
+        default: "#e64242"
+    },
     activeColor: {
       type: String,
-      default: "#ffffff"
+      default: "#0588cb"
     },
     power: Boolean,
     on: {
@@ -51,33 +54,25 @@ export default {
     handleClickButton() {
       this.active = !this.active;
       this.onClickButton();
-
-      if (this.power) {
         this.on = !this.on;
         const isOn = this.on;
 
         if (isOn) {
-          new TintColor(this.iconUrl, this.offlineColor)
+          new TintColor(this.iconUrl, this.activeColor)
             .run()
             .then(newImage => {
               this.iconUrl = newImage.url;
             });
         } else {
-          new TintColor(this.iconUrl, "#ffffff").run().then(newImage => {
+          new TintColor(this.iconUrl, this.offlineColor).run().then(newImage => {
             this.iconUrl = newImage.url;
           });
         }
-      } else {
-        new TintColor(this.iconUrl, "#ffffff").run().then(newImage => {
-          this.iconUrl = newImage.url;
-        });
-      }
     }
   },
   mounted() {
     if (this.power) {
       new TintColor(this.icon, this.activeColor).run().then(newImage => {
-        console.log("active");
         this.iconUrl = newImage.url;
       });
     } else {

@@ -55,7 +55,7 @@ export default {
   },
   watch: {
     groupDevices: function (group) {
-      this.deviceSelected = group[0]
+      this.deviceSelected = group[0].on = false
     }
   }
 };

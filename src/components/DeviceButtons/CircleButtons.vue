@@ -3,6 +3,16 @@
     <p class="text-center white-text uppercase">{{ deviceSelected.deviceName }}</p>
 
     <div class="flex space-around row mt-15">
+      <power-button
+        :icon="require('@/assets/img/icons/shutdown.png')"
+        title="Bật / Tắt"
+        power
+        :on="deviceSelected.on"
+        :onClickButton="() => clickButton('power')"
+      />
+    </div>
+
+    <div class="flex space-around row mt-15">
       <device-button
         :icon="require('@/assets/img/icons/minus.png')"
         title="Giảm"
@@ -37,15 +47,6 @@
       />
 
       <device-button
-        :icon="require('@/assets/img/icons/shutdown.png')"
-        title="Bật / Tắt"
-        offlineColor="#e64242"
-        power
-        on
-        :onClickButton="() => clickButton('power')"
-      />
-
-      <device-button
         :icon="require('@/assets/img/icons/next.png')"
         title="Sang phải"
         :style="{display: showButton('next') ? 'block' : 'none'}"
@@ -68,6 +69,7 @@
 <script>
 import DeviceButton from "./DeviceButton";
 import { deviceTypes } from "@/config";
+import PowerButton from './PowerButton';
 
 export default {
   props: {
@@ -82,9 +84,9 @@ export default {
     return {};
   },
   components: {
-    DeviceButton
+    DeviceButton,
+    PowerButton
   },
-  mounted() {},
   methods: {
     showButton(name) {
       return this.buttons.some(el => el === name);
@@ -99,7 +101,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   .row {
-    margin-bottom: 20px;
+    margin: 10px 0 10px 0;
   }
 }
 </style>
