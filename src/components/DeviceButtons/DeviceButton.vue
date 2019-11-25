@@ -6,7 +6,7 @@
       class="button"
       :style="{ width: size + 'px', height: size + 'px' }"
     >
-      <img :src="iconUrl" :alt="new Date().getTime()"/>
+      <img :src="iconUrl" :alt="new Date().getTime()" />
     </el-button>
     <div class="text">{{ title }}</div>
   </div>
@@ -35,7 +35,11 @@ export default {
       type: String,
       default: "#ffffff"
     },
-    power: Boolean
+    power: Boolean,
+    on: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -47,17 +51,40 @@ export default {
     handleClickButton() {
       this.active = !this.active;
       this.onClickButton();
+
       if (this.power) {
-        // new TintColor(this.icon, this.offlineColor).run().then(newImage => {
-        //   this.iconUrl = newImage.url;
-        // });
+        this.on = !this.on;
+        const isOn = this.on;
+
+        if (isOn) {
+          new TintColor(this.iconUrl, this.offlineColor)
+            .run()
+            .then(newImage => {
+              this.iconUrl = newImage.url;
+            });
+        } else {
+          new TintColor(this.iconUrl, "#ffffff").run().then(newImage => {
+            this.iconUrl = newImage.url;
+          });
+        }
+      } else {
+        new TintColor(this.iconUrl, "#ffffff").run().then(newImage => {
+          this.iconUrl = newImage.url;
+        });
       }
     }
   },
   mounted() {
-    new TintColor(this.icon, this.activeColor).run().then(newImage => {
-      this.iconUrl = newImage.url
-    });
+    if (this.power) {
+      new TintColor(this.icon, this.activeColor).run().then(newImage => {
+        console.log("active");
+        this.iconUrl = newImage.url;
+      });
+    } else {
+      new TintColor(this.icon, this.activeColor).run().then(newImage => {
+        this.iconUrl = newImage.url;
+      });
+    }
   }
 };
 </script>

@@ -39,13 +39,13 @@ export const deviceTypes = [
         deviceId: new Date().getTime() + 3,
         deviceName: 'Cảm biến',
         deviceType: 'sensor',
-        buttons: ['clock']
+        buttons: []
     },
     {
         deviceIconUrl: require('@/assets/img/icons/fan.png'),
         deviceId: new Date().getTime() + 3,
         deviceName: 'Quạt',
         deviceType: 'fan',
-        buttons: ['minus', 'plus', 'dry', 'water', 'clock']
+        buttons: ['minus', 'plus', 'dry', 'water']
     }
 ]

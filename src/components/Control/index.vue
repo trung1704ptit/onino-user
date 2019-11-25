@@ -1,14 +1,17 @@
 <template>
-  <div class="box p-15">
-    <group-devices :groupDevices="groupDevices" />
-    <el-row :gutter="15" class="mt-15">
-      <el-col :xs="24" :sm="12">
-        <circle-buttons :buttons="buttons" class="box box-shadow p-15" :onClickButton="handleClickButton" />
-      </el-col>
-      <el-col :xs="24" :sm="12">
-        <timer class="box box-shadow p-15" />
-      </el-col>
-    </el-row>
+  <div class="bg-light p-15">
+    <group-devices :groupDevices="groupDevices" :handleSelect="handleSelect" :deviceSelected="deviceSelected"/>
+
+    <div class="control-wrapper">
+      <circle-buttons
+        :buttons="buttons"
+        class="box box-shadow p-15 m-15 control"
+        :onClickButton="handleClickButton"
+        :deviceSelected="deviceSelected"
+      />
+
+      <timer class="box box-shadow p-15 m-15 control" :deviceSelected="deviceSelected" />
+    </div>
   </div>
 </template>
 
@@ -20,10 +23,14 @@ import GroupDevices from "./GroupDevices";
 export default {
   data() {
     return {
-    }
+      deviceSelected: {}
+    };
   },
   props: {
-    groupDevices: Array,
+    groupDevices: {
+      type: Array,
+      default: []
+    },
     buttons: Array
   },
   components: {
@@ -34,8 +41,36 @@ export default {
   methods: {
     handleClickButton(type, value) {
       switch (type) {
+        case "power":
       }
+    },
+    handleSelect(device) {
+      this.deviceSelected = device;
+    }
+  },
+  mounted() {
+    if (this.groupDevices) {
+      this.deviceSelected = this.groupDevices[0];
+    }
+  },
+  watch: {
+    groupDevices: function (group) {
+      this.deviceSelected = group[0]
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.control-wrapper {
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+.control {
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+}
+</style>

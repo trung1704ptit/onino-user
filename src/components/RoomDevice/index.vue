@@ -3,7 +3,7 @@
     <div class="device-icon-wrap">
         <img :src="deviceIconUrl" class="device-icon" />
     </div>
-    <h5 class="title text-center">{{ device.deviceName }}</h5>
+    <p class="title text-center uppercase m-0">{{ device.deviceName }}</p>
     <el-switch v-if="hasSwitch" v-model="switchValue" class="switch" @click.native.prevent="() => {}" />
 </div>
 </template>
@@ -133,18 +133,18 @@ export default {
 
 .device-block {
     position: relative;
-    margin: 0px 5px 10px 0;
+    margin: 0px 3px 10px 3px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     max-width: 200px;
 
     .title {
-        margin-bottom: 0;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         margin-top: 10px;
+        font-size: 14px;
     }
 
     .switch {

@@ -1,38 +1,72 @@
 <template>
   <div class="wrapper">
+    <p class="text-center white-text uppercase">{{ deviceSelected.deviceName }}</p>
+
     <div class="flex space-around row mt-15">
-      <device-button :icon="minusIcon" title="Giảm" v-if="showButton('minus')" :onClickButton="() => {}"/>
-
-      <device-button :icon="plusIcon" title="Tăng" v-if="showButton('plus')"  :onClickButton="() => {}"/>
-    </div>
-    <div class="flex space-between row">
-      <device-button :icon="backIcon" title="Sang trái" v-if="showButton('back')"  :onClickButton="() => {}" />
-
-      <device-button :icon="shutDownIcon" title="Bật / Tắt" offlineColor="#e64242" power  :onClickButton="() => {}" />
-
-      <device-button :icon="nextIcon" title="Sang phải" v-if="showButton('next')"  :onClickButton="() => {}" />
-    </div>
-    <div class="flex space-around row">
-      <device-button :icon="plusIcon" title="Giảm" v-if="showButton('plus')"  :onClickButton="() => {}" />
+      <device-button
+        :icon="require('@/assets/img/icons/minus.png')"
+        title="Giảm"
+        v-if="showButton('minus')"
+        :style="{display: showButton('minus') ? 'block' : 'none'}"
+        :onClickButton="() => {}"
+      />
 
       <device-button
-      :icon="clockIcon"
-      title="Hẹn giờ"
-      v-if="showButton('clock')" 
-      :onClickButton="() => clickButton('clock')" />
+        :icon="require('@/assets/img/icons/up-arrow.png')"
+        title="Lên"
+        v-if="showButton('up')"
+        :style="{display: showButton('up') ? 'block' : 'none'}"
+        :onClickButton="() => {}"
+      />
+
+      <device-button
+        :icon="require('@/assets/img/icons/plus.png')"
+        title="Tăng"
+        :style="{display: showButton('plus') ? 'block' : 'none'}"
+        v-if="showButton('plus')"
+        :onClickButton="() => {}"
+      />
+    </div>
+    <div class="flex space-between row">
+      <device-button
+        :icon="require('@/assets/img/icons/back.png')"
+        title="Sang trái"
+        v-if="showButton('back')"
+        :style="{display: showButton('back') ? 'block' : 'none'}"
+        :onClickButton="() => {}"
+      />
+
+      <device-button
+        :icon="require('@/assets/img/icons/shutdown.png')"
+        title="Bật / Tắt"
+        offlineColor="#e64242"
+        power
+        on
+        :onClickButton="() => clickButton('power')"
+      />
+
+      <device-button
+        :icon="require('@/assets/img/icons/next.png')"
+        title="Sang phải"
+        :style="{display: showButton('next') ? 'block' : 'none'}"
+        :onClickButton="() => {}"
+        v-if="showButton('next')"
+      />
+    </div>
+    <div class="flex space-around row">
+      <device-button
+        :icon="require('@/assets/img/icons/up-arrow.png')"
+        title="Xuống"
+        :style="{display: showButton('down') ? 'block' : 'none'}"
+        :onClickButton="() => {}"
+        v-if="showButton('down')"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import DeviceButton from "./DeviceButton";
-import plusIcon from "@/assets/img/icons/plus.png";
-import nextIcon from "@/assets/img/icons/next.png";
-import backIcon from "@/assets/img/icons/back.png";
-import shutDownIcon from "@/assets/img/icons/shutdown.png";
-import clockIcon from "@/assets/img/icons/clock.png";
-
-import minusIcon from "@/assets/img/icons/minus.png";
 import { deviceTypes } from "@/config";
 
 export default {
@@ -41,17 +75,11 @@ export default {
       type: Array,
       default: []
     },
-    onClickButton: Function
+    onClickButton: Function,
+    deviceSelected: Object
   },
   data() {
-    return {
-      plusIcon: plusIcon,
-      shutDownIcon: shutDownIcon,
-      minusIcon: minusIcon,
-      backIcon,
-      nextIcon,
-      clockIcon
-    };
+    return {};
   },
   components: {
     DeviceButton
@@ -62,7 +90,7 @@ export default {
       return this.buttons.some(el => el === name);
     },
     clickButton(type) {
-      this.onClickButton(type)
+      this.onClickButton(type);
     }
   }
 };
@@ -70,9 +98,6 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  max-width: 500px;
-  margin: auto;
-
   .row {
     margin-bottom: 20px;
   }
