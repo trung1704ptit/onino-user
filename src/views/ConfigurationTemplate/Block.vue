@@ -89,7 +89,6 @@ export default {
 
     .card-panel-description {
         float: right;
-        font-weight: bold;
         margin: 26px;
         margin-left: 0px;
 

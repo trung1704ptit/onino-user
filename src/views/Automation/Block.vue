@@ -100,7 +100,6 @@ export default {
 
         .card-panel-text {
             font-size: 14px;
-            font-weight: bold;
         }
         .card-panel-subtitle {
             margin: 10px 0 0 0;

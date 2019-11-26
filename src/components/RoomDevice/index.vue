@@ -121,9 +121,8 @@ export default {
 .device-icon-wrap {
     width: 100%;
     display: flex;
-    margin-top: 25px;
+    margin-top: 10px;
 }
-
 .device-icon {
     width: 45px;
     height: 45px;
@@ -136,7 +135,7 @@ export default {
     margin: 0px 3px 10px 3px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    max-width: 200px;
+    max-width: 190px;
 
     .title {
         overflow: hidden;
