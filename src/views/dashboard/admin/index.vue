@@ -11,20 +11,19 @@
     <camera-slide />
   </div>
 </template>
-
 <script>
-import Vue from 'vue'
-import VueCarousel, { Carousel, Slide }  from 'vue-carousel';
-import CameraSlide from '@/views/camera/CameraSlide';
-import RoomSlide from '@/views/room/RoomSlide';
-import Weather from './components/Weather';
-import ConfigurationTemplateSlide from '@/views/ConfigurationTemplate/Slide';
-import AutomationSlide from '@/views/Automation/Slide';
+import Vue from "vue";
+import VueCarousel, { Carousel, Slide } from "vue-carousel";
+import CameraSlide from "@/views/camera/CameraSlide";
+import RoomSlide from "@/views/room/RoomSlide";
+import Weather from "./components/Weather";
+import ConfigurationTemplateSlide from "@/views/ConfigurationTemplate/Slide";
+import AutomationSlide from "@/views/Automation/Slide";
 
 Vue.use(VueCarousel);
 
 export default {
-  name: 'DashboardAdmin',
+  name: "DashboardAdmin",
   components: {
     Carousel,
     Slide,
@@ -33,8 +32,8 @@ export default {
     RoomSlide,
     ConfigurationTemplateSlide,
     AutomationSlide
-  },
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@
         <h2 class="text">{{ $t('configuration.configurationList')}}</h2>
         <el-row :gutter="10">
             <el-col :xs="24" :sm="6" v-for="(room, index) in roomList" :key="index">
-                <block />
+                <block grid />
             </el-col>
         </el-row>
 

@@ -49,3 +49,27 @@ export const deviceTypes = [
         buttons: ['minus', 'plus', 'dry', 'water']
     }
 ]
+
+
+export const provinces = [
+    {
+        key: 'hanoi',
+        city: 'Hà Nội',
+        url: '21d00105d82/hanoi/'
+    },
+    {
+        key: 'hung-yen',
+        city: 'Hưng Yên',
+        url: '20d85106d02/hung-yen/'
+    },
+    {
+        key: 'ho-chi-minh',
+        city: 'Hồ Chí Minh',
+        url: '10d75106d68/ho-chi-minh/'
+    },
+    {
+        key: '',
+        city: 'Hồ Chí Minh',
+        url: '10d75106d68/ho-chi-minh/'
+    },
+]

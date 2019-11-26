@@ -7,7 +7,7 @@
         </div>
         <carousel :per-page="1" :scrollPerPage="true" :perPageCustom="[[480, 1], [768, 3],[992, 5]]" :paginationEnabled="false" navigationEnabled navigationNextLabel='<i class="el-icon-arrow-right" />' navigationPrevLabel='<i class="el-icon-arrow-left" />'>
             <slide v-for="(item, index) in roomList" :key="index">
-                <block :className="index == 1 ? 'active-bg' : ''" />
+                <block :className="index == 1 ? 'active-bg' : ''" slide />
             </slide>
             <slide v-if="roomList.length < 6">
                 <latest-block :href="'/cau-hinh/tat-ca'" viewAll />

@@ -12,7 +12,7 @@
                 <i class="fa fa-trash-o" aria-hidden="true" :title="$t('root.delete')" @click.prevent="() => {}"></i>
                 <router-link :to="'/cau-hinh/cap-nhat/'"><i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i></router-link>
             </div>
-            <span class="card-panel-text text">Chuyển động</span>
+            <span class="card-panel-text text" :style="{ fontSize: grid ? '16px' : '14px'}">Chuyển động</span>
             <p class="card-panel-subtitle"><i>Có 2 thiết bị</i></p>
         </div>
     </div>
@@ -96,10 +96,6 @@ export default {
         .card-panel-toggle {
             margin-bottom: 12px;
             text-align: right;
-        }
-
-        .card-panel-text {
-            font-size: 14px;
         }
         .card-panel-subtitle {
             margin: 10px 0 0 0;
