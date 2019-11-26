@@ -1,6 +1,6 @@
 <template>
 <fragment>
-    <div class="box p-15 mr-15 block-shadow device-block block" @click="dialogVisible = true">
+    <div class="box block-shadow device-block block" @click="dialogVisible = true">
         <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
         <h5 class="title text-center">{{ device.deviceName }}</h5>
         <i class="fa fa-plus-circle add" aria-hidden="true" @click.stop.prevent="selectDevice = !selectDevice"></i>
@@ -66,7 +66,9 @@ export default {
     position: relative;
     display: inline-block;
     cursor: pointer;
-    width: 150px;
+    min-width: 150px;
+    max-width: 200px;
+    padding: 10px;
     margin: 15px 15px 15px 0;
 
     @media only screen and (max-width: 480px) {

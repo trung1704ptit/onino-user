@@ -99,7 +99,7 @@ export default {
         }
 
         .card-panel-text {
-            font-size: 20px;
+            font-size: 14px;
         }
     }
 }

@@ -77,7 +77,6 @@ export default {
 
     .card-panel-icon-wrapper {
         float: left;
-        margin: 14px 0 0 14px;
         padding: 16px;
         transition: all 0.38s ease-out;
         border-radius: 6px;
@@ -100,7 +99,7 @@ export default {
         }
 
         .card-panel-text {
-            font-size: 20px;
+            font-size: 14px;
             font-weight: bold;
         }
         .card-panel-subtitle {

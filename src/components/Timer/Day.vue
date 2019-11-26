@@ -34,7 +34,7 @@ export default {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 8px;
+    margin-right: 6px;
     cursor: pointer;
 
     &:hover {

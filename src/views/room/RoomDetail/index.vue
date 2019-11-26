@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="15" class="p-15">
       <el-col :xs="24" :sm="18">
-        <room-list-navigation :roomList="roomList" :currentRoomId="roomDetail.id"/>
+        <room-list-navigation :roomList="roomList" :currentRoomId="roomDetail.id" />
       </el-col>
 
       <el-col :sx="24" :sm="6">
@@ -142,7 +142,7 @@
           </div>
 
           <!-- List of devices -->
-          <div class="mt-15 mb-15">
+          <!-- <div class="mt-15 mb-15">
             <div class="flex">
               <div class="vertical-list" v-if="verticalDevices.length > 0">
                 <room-device
@@ -204,7 +204,15 @@
                   {{ $t('room.addDevice') }}
                 </el-button>
             </div>
-          </div>
+          </div>-->
+
+          <control
+            :roomDevices="roomDevices"
+            :groupDevices="groupDevices"
+            :groupSelected="groupSelected"
+            :deviceTypes="deviceTypes"
+            v-if="roomDevices.length > 0"
+          />
         </el-col>
       </el-row>
     </section>
@@ -221,9 +229,10 @@ import RoomDevice from "@/components/RoomDevice";
 import DeviceIconsPopup from "@/components/DeviceIconsPopup";
 import DeviceIconForm from "./DeviceIconForm";
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
-import Control from "@/components/Control";
+// import Control from "@/components/Control";
 import { deviceTypes } from "@/config";
-import RoomListNavigation from './RoomListNavigation';
+import RoomListNavigation from "./RoomListNavigation";
+import Control from "@/components/Control/Control";
 
 export default {
   components: {
@@ -279,14 +288,15 @@ export default {
       formAdded: [],
       isOpenDeviceIconsPopup: false,
       deviceUpdating: false,
-      hasNext: false,
-      hasPrevious: false,
-      horizontalDevices: [],
-      verticalDevices: [],
-      tempList: [],
+      // hasNext: false,
+      // hasPrevious: false,
+      // horizontalDevices: [],
+      // verticalDevices: [],
+      // tempList: [],
       roomList: [],
       groupDevices: [],
-      groupSelected: {}
+      groupSelected: {},
+      deviceTypes
     };
   },
 
@@ -335,31 +345,31 @@ export default {
 
       this.roomDevices = response.devices;
 
-      const groups = deviceTypes.filter(type =>
-        this.roomDevices.some(
-          item =>
-            item.deviceType.toLowerCase() === type.deviceType.toLowerCase()
-        )
-      );
+      // const groups = deviceTypes.filter(type =>
+      //   this.roomDevices.some(
+      //     item =>
+      //       item.deviceType.toLowerCase() === type.deviceType.toLowerCase()
+      //   )
+      // );
 
-      if (groups.length > 0) {
-        this.groupSelected = groups[0];
-        this.groupDevices = this.roomDevices.filter(
-          item => item.deviceType.toLowerCase() === groups[0].deviceType.toLowerCase()
-        );
-      }
+      // if (groups.length > 0) {
+      //   this.groupSelected = groups[0];
+      //   this.groupDevices = this.roomDevices.filter(
+      //     item => item.deviceType.toLowerCase() === groups[0].deviceType.toLowerCase()
+      //   );
+      // }
 
-      this.verticalDevices = groups.slice(0, 5);
+      // this.verticalDevices = groups.slice(0, 5);
 
-      groups.splice(0, 5);
-      this.horizontalDevices = groups;
+      // groups.splice(0, 5);
+      // this.horizontalDevices = groups;
 
-      if (this.verticalDevices.length > 5) {
-        this.hasPrevious = true;
-      }
-      if (this.horizontalDevices.length > 6) {
-        this.hasNext = true;
-      }
+      // if (this.verticalDevices.length > 5) {
+      //   this.hasPrevious = true;
+      // }
+      // if (this.horizontalDevices.length > 6) {
+      //   this.hasNext = true;
+      // }
     });
   },
   methods: {
@@ -394,25 +404,25 @@ export default {
 
             this.roomDevices = response.devices;
 
-            const groups = deviceTypes.filter(type =>
-              this.roomDevices.some(
-                item =>
-                  item.deviceType.toLowerCase() ===
-                  type.deviceType.toLowerCase()
-              )
-            );
+            // const groups = deviceTypes.filter(type =>
+            //   this.roomDevices.some(
+            //     item =>
+            //       item.deviceType.toLowerCase() ===
+            //       type.deviceType.toLowerCase()
+            //   )
+            // );
 
-            this.verticalDevices = groups.slice(0, 5);
+            // this.verticalDevices = groups.slice(0, 5);
 
-            groups.splice(0, 5);
-            this.horizontalDevices = groups;
+            // groups.splice(0, 5);
+            // this.horizontalDevices = groups;
 
-            if (this.verticalDevices.length > 5) {
-              this.hasPrevious = true;
-            }
-            if (this.horizontalDevices.length > 6) {
-              this.hasNext = true;
-            }
+            // if (this.verticalDevices.length > 5) {
+            //   this.hasPrevious = true;
+            // }
+            // if (this.horizontalDevices.length > 6) {
+            //   this.hasNext = true;
+            // }
           });
           this.deviceRegistered = false;
         })
@@ -490,25 +500,25 @@ export default {
 
             this.roomDevices = response.devices;
 
-            const groups = deviceTypes.filter(type =>
-              this.roomDevices.some(
-                item =>
-                  item.deviceType.toLowerCase() ===
-                  type.deviceType.toLowerCase()
-              )
-            );
+            // const groups = deviceTypes.filter(type =>
+            //   this.roomDevices.some(
+            //     item =>
+            //       item.deviceType.toLowerCase() ===
+            //       type.deviceType.toLowerCase()
+            //   )
+            // );
 
-            this.verticalDevices = groups.slice(0, 5);
+            // this.verticalDevices = groups.slice(0, 5);
 
-            groups.splice(0, 5);
-            this.horizontalDevices = groups;
+            // groups.splice(0, 5);
+            // this.horizontalDevices = groups;
 
-            if (this.verticalDevices.length > 5) {
-              this.hasPrevious = true;
-            }
-            if (this.horizontalDevices.length > 6) {
-              this.hasNext = true;
-            }
+            // if (this.verticalDevices.length > 5) {
+            //   this.hasPrevious = true;
+            // }
+            // if (this.horizontalDevices.length > 6) {
+            //   this.hasNext = true;
+            // }
           });
           this.deviceRegistered = false;
           this.addDeviceForm = false;
@@ -516,52 +526,49 @@ export default {
         .then(error => {
           console.log(error);
         });
-    },
-    handleNext() {
-      this.tempList.push(this.verticalDevices[0]);
-      this.verticalDevices.push(this.horizontalDevices[0]);
-      this.horizontalDevices.splice(0, 1);
-
-      if (this.horizontalDevices.length > 6) {
-        this.hasNext = true;
-      } else {
-        this.hasNext = false;
-      }
-      this.hasPrevious = true;
-      this.verticalDevices.splice(0, 1);
-    },
-    handlePrevious() {
-      const devicePoped = this.tempList.pop();
-      this.verticalDevices.unshift(devicePoped);
-
-      const deviceSendBack = this.verticalDevices.pop();
-      this.horizontalDevices.unshift(deviceSendBack);
-      if (this.tempList.length === 0) {
-        this.hasPrevious = false;
-      } else {
-        this.hasPrevious = true;
-      }
-      if (this.horizontalDevices.length > 6) {
-        this.hasNext = true;
-      } else {
-        this.hasNext = false;
-      }
-    },
-    handleSelectDevice(group) {
-      this.groupSelected = group;
-      this.groupDevices = this.roomDevices.filter(
-        item => item.deviceType.toLowerCase() === group.deviceType.toLowerCase()
-      );
     }
+    // handleNext() {
+    //   this.tempList.push(this.verticalDevices[0]);
+    //   this.verticalDevices.push(this.horizontalDevices[0]);
+    //   this.horizontalDevices.splice(0, 1);
+
+    //   if (this.horizontalDevices.length > 6) {
+    //     this.hasNext = true;
+    //   } else {
+    //     this.hasNext = false;
+    //   }
+    //   this.hasPrevious = true;
+    //   this.verticalDevices.splice(0, 1);
+    // },
+    // handlePrevious() {
+    //   const devicePoped = this.tempList.pop();
+    //   this.verticalDevices.unshift(devicePoped);
+
+    //   const deviceSendBack = this.verticalDevices.pop();
+    //   this.horizontalDevices.unshift(deviceSendBack);
+    //   if (this.tempList.length === 0) {
+    //     this.hasPrevious = false;
+    //   } else {
+    //     this.hasPrevious = true;
+    //   }
+    //   if (this.horizontalDevices.length > 6) {
+    //     this.hasNext = true;
+    //   } else {
+    //     this.hasNext = false;
+    //   }
+    // },
+    // handleSelectDevice(group) {
+    //   this.groupSelected = group;
+    //   this.groupDevices = this.roomDevices.filter(
+    //     item => item.deviceType.toLowerCase() === group.deviceType.toLowerCase()
+    //   );
+    // }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "./styles.scss";
-// .VueCarousel-inner {
-//   justify-content: center;
-// }
 </style>
 
 <style lang="scss">
@@ -578,5 +585,4 @@ export default {
 .link {
   color: #fff;
 }
-
 </style>
