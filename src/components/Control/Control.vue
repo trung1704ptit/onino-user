@@ -75,33 +75,8 @@ export default {
     CircleButtons,
     Actions
   },
-  mounted() {
-    const groups = this.deviceTypes.filter(type =>
-      this.roomDevices.some(
-        item => item.deviceType.toLowerCase() === type.deviceType.toLowerCase()
-      )
-    );
-
-
-    if (groups.length > 0) {
-      this.groupSelected = groups[0];
-      this.groupDevices = this.roomDevices.filter(
-        item =>
-          item.deviceType.toLowerCase() === groups[0].deviceType.toLowerCase()
-      );
-    }
-
-    this.verticalDevices = groups.slice(0, 5);
-
-    groups.splice(0, 5);
-    this.horizontalDevices = groups;
-
-    if (this.verticalDevices.length > 5) {
-      this.hasPrevious = true;
-    }
-    if (this.horizontalDevices.length > 6) {
-      this.hasNext = true;
-    }
+  created() {
+    this.initGroups(this.roomDevices);
   },
   methods: {
     handleNext() {
@@ -139,6 +114,39 @@ export default {
       this.groupDevices = this.roomDevices.filter(
         item => item.deviceType.toLowerCase() === group.deviceType.toLowerCase()
       );
+    },
+    initGroups(roomDevices) {
+      const groups = this.deviceTypes.filter(type =>
+        roomDevices.some(
+          item =>
+            item.deviceType.toLowerCase() === type.deviceType.toLowerCase()
+        )
+      );
+
+      if (groups.length > 0) {
+        this.groupSelected = groups[0];
+        this.groupDevices = roomDevices.filter(
+          item =>
+            item.deviceType.toLowerCase() === groups[0].deviceType.toLowerCase()
+        );
+      }
+
+      this.verticalDevices = groups.slice(0, 5);
+
+      groups.splice(0, 5);
+      this.horizontalDevices = groups;
+
+      if (this.verticalDevices.length > 5) {
+        this.hasPrevious = true;
+      }
+      if (this.horizontalDevices.length > 6) {
+        this.hasNext = true;
+      }
+    }
+  },
+  watch: {
+    roomDevices: function(val, oldVal) {
+      this.initGroups(val)
     }
   }
 };

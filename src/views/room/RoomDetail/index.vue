@@ -208,8 +208,6 @@
 
           <control
             :roomDevices="roomDevices"
-            :groupDevices="groupDevices"
-            :groupSelected="groupSelected"
             :deviceTypes="deviceTypes"
             v-if="roomDevices.length > 0"
           />
@@ -294,8 +292,6 @@ export default {
       // verticalDevices: [],
       // tempList: [],
       roomList: [],
-      groupDevices: [],
-      groupSelected: {},
       deviceTypes
     };
   },

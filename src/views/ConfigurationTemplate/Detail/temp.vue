@@ -23,7 +23,11 @@
         />
       </el-form-item>
 
-      <control :roomDevices="filterList" :deviceTypes="deviceTypes" v-if="filterList.length > 0" />
+      <div class="mt-15 selected-list" v-if="filterList.length > 0">
+            <div v-for="room in filterList" :key="room.id">
+                <room :room="room" v-if="room.devices.length > 0" :updateSelectedList="updateSelectedList" />
+            </div>
+      </div>
 
       <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
         <i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -39,8 +43,8 @@
       </el-button>
     </el-form>
 
-    <div class="p-15 mt-15 block-shadow form-wrapper app-form bg-light" v-if="addDevice">
-      <div>
+    <div v-if="addDevice" class="p-15 mt-15 block-shadow form-wrapper app-form bg-light">
+      <div class="p-15">
         <el-input
           ref="configurationName"
           v-model="search"
@@ -49,13 +53,13 @@
           type="text"
         />
       </div>
-      <p class="white-text m-0 mt-15">
+      <p class="white-text p-15">
         <i>Vui lòng nhấn vào thiết bị để thêm vào danh sách cấu hình</i>
       </p>
       <div class="room-list">
         <div v-for="room in roomList" :key="room.id">
           <room
-            :room="setDevicesWithRoomName(room)"
+            :room="room"
             v-if="room.devices.length > 0"
             :updateSelectedList="updateSelectedList"
           />
@@ -69,14 +73,12 @@
 import { isEmpty, validateEmpty } from "@/utils/validate";
 import i18n from "@/lang";
 import Room from "../Room";
-import Control from "@/components/Control/Control";
 import { deviceTypes } from "@/config";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    Room,
-    Control
+    Room
   },
   data() {
     return {
@@ -93,7 +95,7 @@ export default {
         ]
       },
       creating: false,
-      addDevice: true,
+      addDevice: false,
       search: "",
       groups: [],
       deviceList: [],
@@ -126,15 +128,34 @@ export default {
       });
     },
     updateSelectedList(device, room) {
+      // check room already exists or not
+      const index = this.filterList.findIndex(item => room.id === item.id);
       const roomIndex = this.roomList.findIndex(item => item.id === room.id);
 
-      const deviceIndex = this.filterList.findIndex(
-        item => item.deviceId === device.deviceId
-      );
+      if (index > -1) {
+        const currentRoom = this.filterList[index];
+        let currentDevices = currentRoom.devices;
 
-      if (deviceIndex > -1) {
+        // check device exist on list
+        const deviceIndex = currentDevices.findIndex(
+          item => item.deviceId === device.deviceId
+        );
+
+        if (deviceIndex > -1) {
+          currentDevices = currentDevices.filter(
+            item => item.deviceId !== device.deviceId
+          );
+          this.addDeviceToRoomList(device, roomIndex);
+        } else {
+          currentDevices.push(device);
+          this.removeDeviceFromRoomList(device, roomIndex);
+        }
+
+        this.filterList[index].devices = currentDevices;
       } else {
-        this.filterList.push(device);
+        // push room to list when room does not exists
+        this.filterList.push(room);
+
         this.removeDeviceFromRoomList(device, roomIndex);
       }
     },
@@ -149,20 +170,6 @@ export default {
       const currentRoom = this.roomList[roomIndex];
       currentRoom.devices.push(device);
       this.roomList[roomIndex] = currentRoom;
-    },
-    setDevicesWithRoomName(room) {
-      const devices = room.devices.map(item => {
-
-        return {
-          ...item,
-          roomName: room.name
-        };
-      });
-      const newRoom = {
-        ...room,
-        devices
-      };
-      return newRoom;
     }
   }
 };
