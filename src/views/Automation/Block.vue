@@ -30,6 +30,9 @@ import {
 import CountTo from 'vue-count-to'
 
 export default {
+    props: {
+        grid: Boolean
+    },
     components: {
         CountTo
     },
@@ -89,7 +92,7 @@ export default {
 
     .card-panel-description {
         float: right;
-        margin: 26px;
+        margin: 20px;
         margin-left: 0px;
         text-align: right;
 
