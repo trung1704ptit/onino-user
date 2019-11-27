@@ -69,7 +69,7 @@
 <script>
 import DeviceButton from "./DeviceButton";
 import { deviceTypes } from "@/config";
-import PowerButton from './PowerButton';
+import PowerButton from "./PowerButton";
 
 export default {
   props: {

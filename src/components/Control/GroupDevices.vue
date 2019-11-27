@@ -9,6 +9,8 @@
         inlineBlock
         :handleSelectDevice="handleClick"
         :active="deviceSelected.deviceId === device.deviceId"
+        hasMoreSetting
+        :handleDeleteDevice="handleDeleteDevice"
       />
     </fragment>
 
@@ -26,7 +28,7 @@
         <room-device
           :device="device"
           :width="'100%'"
-          :hasSwitch="true"
+          hasSwitch
           :handleSelectDevice="handleClick"
           :active="deviceSelected.deviceId === device.deviceId"
         />
@@ -36,7 +38,7 @@
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 import VueCarousel, { Carousel, Slide } from "vue-carousel";
 import RoomDevice from "@/components/RoomDevice";
 import { Fragment } from "vue-fragment";
@@ -47,7 +49,8 @@ export default {
   props: {
     groupDevices: Array,
     handleSelect: Function,
-    deviceSelected: Object
+    deviceSelected: Object,
+    handleDeleteDevice: Function
   },
   components: {
     Carousel,

@@ -26,6 +26,7 @@
         v-if="groupDevices.length > 0"
         :groupDevices="groupDevices"
         :buttons="groupSelected.buttons"
+        :handleDeleteDevice="handleDeleteDevice"
       />
     </div>
     <div class="horizontal-list flex" v-if="horizontalDevices.length > 0">
@@ -57,7 +58,8 @@ import Actions from "./Actions";
 export default {
   props: {
     roomDevices: Array,
-    deviceTypes: Array
+    deviceTypes: Array,
+    handleDeleteDevice: Function
   },
   data() {
     return {

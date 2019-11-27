@@ -1,6 +1,11 @@
 <template>
   <div class="bg-light p-15">
-    <group-devices :groupDevices="groupDevices" :handleSelect="handleSelect" :deviceSelected="deviceSelected"/>
+    <group-devices
+      :groupDevices="groupDevices"
+      :handleSelect="handleSelect"
+      :deviceSelected="deviceSelected"
+      :handleDeleteDevice="handleDeleteDevice"
+    />
 
     <div class="control-wrapper">
       <circle-buttons
@@ -19,6 +24,7 @@
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
 import Timer from "@/components/Timer";
 import GroupDevices from "./GroupDevices";
+import LangSelect from "@/components/LangSelect";
 
 export default {
   data() {
@@ -31,12 +37,14 @@ export default {
       type: Array,
       default: []
     },
-    buttons: Array
+    buttons: Array,
+    handleDeleteDevice: Function
   },
   components: {
     CircleButtons,
     GroupDevices,
-    Timer
+    Timer,
+    LangSelect
   },
   methods: {
     handleClickButton(type, value) {
@@ -54,7 +62,7 @@ export default {
     }
   },
   watch: {
-    groupDevices: function (group) {
+    groupDevices: function(group) {
       this.deviceSelected = group[0];
     }
   }
