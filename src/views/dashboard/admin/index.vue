@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
+import Vue from 'vue';
 import VueCarousel, { Carousel, Slide } from "vue-carousel";
 import CameraSlide from "@/views/camera/CameraSlide";
 import RoomSlide from "@/views/room/RoomSlide";

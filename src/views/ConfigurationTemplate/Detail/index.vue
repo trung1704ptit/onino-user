@@ -99,13 +99,13 @@ export default {
       deviceList: [],
       filterList: [],
       deviceTypes
-    };
+    }
   },
   mounted() {
     if (!this.roomList || this.roomList.length === 0) {
       this.$store.dispatch("room/getAllRoom").then(response => {
-        this.groups = response;
-      });
+        this.groups = response
+      })
     }
   },
   computed: {
@@ -121,51 +121,50 @@ export default {
       this.$refs.form.validate(valid => {
         if (valid) {
         } else {
-          return false;
+          return false
         }
-      });
+      })
     },
     updateSelectedList(device, room) {
       const roomIndex = this.roomList.findIndex(item => item.id === room.id);
 
       const deviceIndex = this.filterList.findIndex(
         item => item.deviceId === device.deviceId
-      );
+      )
 
       if (deviceIndex > -1) {
       } else {
-        this.filterList.push(device);
-        this.removeDeviceFromRoomList(device, roomIndex);
+        this.filterList.push(device)
+        this.removeDeviceFromRoomList(device, roomIndex)
       }
     },
     removeDeviceFromRoomList(device, roomIndex) {
-      const currentRoom = this.roomList[roomIndex];
+      const currentRoom = this.roomList[roomIndex]
       currentRoom.devices = currentRoom.devices.filter(
         item => item.deviceId !== device.deviceId
-      );
-      this.roomList[roomIndex] = currentRoom;
+      )
+      this.roomList[roomIndex] = currentRoom
     },
     addDeviceToRoomList(device, roomIndex) {
-      const currentRoom = this.roomList[roomIndex];
-      currentRoom.devices.push(device);
-      this.roomList[roomIndex] = currentRoom;
+      const currentRoom = this.roomList[roomIndex]
+      currentRoom.devices.push(device)
+      this.roomList[roomIndex] = currentRoom
     },
     setDevicesWithRoomName(room) {
       const devices = room.devices.map(item => {
-
         return {
           ...item,
           roomName: room.name
-        };
-      });
+        }
+      })
       const newRoom = {
         ...room,
         devices
-      };
-      return newRoom;
+      }
+      return newRoom
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
