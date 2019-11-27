@@ -3,7 +3,7 @@
     <carousel
       :per-page="1"
       :scrollPerPage="true"
-      :perPageCustom="[[480, 2], [768, 6], [992, 10]]"
+      :perPageCustom="[[480, 2], [992, 7]]"
       :paginationEnabled="false"
     >
       <slide v-for="(room, index) in roomList" :key="index" style="padding-right: 8px">

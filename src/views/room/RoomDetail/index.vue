@@ -1,11 +1,11 @@
 <template>
   <div>
     <el-row :gutter="15" class="p-15">
-      <el-col :xs="24" :sm="18">
+      <el-col :xs="24" :sm="21">
         <room-list-navigation :roomList="roomList" :currentRoomId="roomDetail.id" />
       </el-col>
 
-      <el-col :sx="24" :sm="6">
+      <el-col :sx="24" :sm="3">
         <!-- Button add form -->
         <el-button
           type="primary"
@@ -141,71 +141,6 @@
             </div>
           </div>
 
-          <!-- List of devices -->
-          <!-- <div class="mt-15 mb-15">
-            <div class="flex">
-              <div class="vertical-list" v-if="verticalDevices.length > 0">
-                <room-device
-                  v-for="(device, index) in verticalDevices"
-                  :key="device.deviceId + index"
-                  :device="device"
-                  :inlineBlock="false"
-                  hasSwitch
-                  :handleSelectDevice="handleSelectDevice"
-                  :active="groupSelected && groupSelected.deviceType && groupSelected.deviceType.toLowerCase() === device.deviceType.toLowerCase()"
-                />
-                <div
-                  v-if="hasPrevious"
-                  class="arrow-btn"
-                  style="transform: translate(-50%, 0); top: 20px; left: 50%; padding: 0 20px"
-                  @click="handlePrevious"
-                >
-                  <i class="el-icon-arrow-up" />
-                </div>
-              </div>
-
-              <control
-                class="control"
-                v-if="groupDevices.length > 0"
-                :groupDevices="groupDevices"
-                :buttons="groupSelected.buttons"
-              />
-            </div>
-            <div class="horizontal-list flex" v-if="horizontalDevices.length > 0">
-              <room-device
-                v-for="(device, index) in horizontalDevices"
-                :key="device.deviceId + index"
-                :handleEditDevice="handleClickEditDevice"
-                :device="device"
-                :inlineBlock="true"
-                hasSwitch
-              />
-              <div
-                v-if="hasNext"
-                class="arrow-btn"
-                style="transform: translate(0, -50%); top: 50%; right: 20px"
-                @click="handleNext"
-              >
-                <i class="el-icon-arrow-right" />
-              </div>
-            </div>
-
-            <div v-if="roomDevices.length === 0" class="white-text text-center">
-              <p
-                class="white-text text-center"
-              >{{ $t('root.emptyList') }}</p>
-                <el-button
-                  type="primary"
-                  size="small"
-                  @click.native.prevent="addDeviceForm = true"
-                  v-if="!addDeviceForm"
-                >
-                  <i class="el-icon-circle-plus" />
-                  {{ $t('room.addDevice') }}
-                </el-button>
-            </div>
-          </div>-->
-
           <control
             :roomDevices="roomDevices"
             :deviceTypes="deviceTypes"
@@ -227,7 +162,6 @@ import RoomDevice from "@/components/RoomDevice";
 import DeviceIconsPopup from "@/components/DeviceIconsPopup";
 import DeviceIconForm from "./DeviceIconForm";
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
-// import Control from "@/components/Control";
 import { deviceTypes } from "@/config";
 import RoomListNavigation from "./RoomListNavigation";
 import Control from "@/components/Control/Control";
@@ -286,11 +220,6 @@ export default {
       formAdded: [],
       isOpenDeviceIconsPopup: false,
       deviceUpdating: false,
-      // hasNext: false,
-      // hasPrevious: false,
-      // horizontalDevices: [],
-      // verticalDevices: [],
-      // tempList: [],
       roomList: [],
       deviceTypes
     };
@@ -340,32 +269,6 @@ export default {
       const devices = response.devices;
 
       this.roomDevices = response.devices;
-
-      // const groups = deviceTypes.filter(type =>
-      //   this.roomDevices.some(
-      //     item =>
-      //       item.deviceType.toLowerCase() === type.deviceType.toLowerCase()
-      //   )
-      // );
-
-      // if (groups.length > 0) {
-      //   this.groupSelected = groups[0];
-      //   this.groupDevices = this.roomDevices.filter(
-      //     item => item.deviceType.toLowerCase() === groups[0].deviceType.toLowerCase()
-      //   );
-      // }
-
-      // this.verticalDevices = groups.slice(0, 5);
-
-      // groups.splice(0, 5);
-      // this.horizontalDevices = groups;
-
-      // if (this.verticalDevices.length > 5) {
-      //   this.hasPrevious = true;
-      // }
-      // if (this.horizontalDevices.length > 6) {
-      //   this.hasNext = true;
-      // }
     });
   },
   methods: {
@@ -399,26 +302,6 @@ export default {
             const devices = response.devices;
 
             this.roomDevices = response.devices;
-
-            // const groups = deviceTypes.filter(type =>
-            //   this.roomDevices.some(
-            //     item =>
-            //       item.deviceType.toLowerCase() ===
-            //       type.deviceType.toLowerCase()
-            //   )
-            // );
-
-            // this.verticalDevices = groups.slice(0, 5);
-
-            // groups.splice(0, 5);
-            // this.horizontalDevices = groups;
-
-            // if (this.verticalDevices.length > 5) {
-            //   this.hasPrevious = true;
-            // }
-            // if (this.horizontalDevices.length > 6) {
-            //   this.hasNext = true;
-            // }
           });
           this.deviceRegistered = false;
         })
@@ -495,26 +378,6 @@ export default {
             const devices = response.devices;
 
             this.roomDevices = response.devices;
-
-            // const groups = deviceTypes.filter(type =>
-            //   this.roomDevices.some(
-            //     item =>
-            //       item.deviceType.toLowerCase() ===
-            //       type.deviceType.toLowerCase()
-            //   )
-            // );
-
-            // this.verticalDevices = groups.slice(0, 5);
-
-            // groups.splice(0, 5);
-            // this.horizontalDevices = groups;
-
-            // if (this.verticalDevices.length > 5) {
-            //   this.hasPrevious = true;
-            // }
-            // if (this.horizontalDevices.length > 6) {
-            //   this.hasNext = true;
-            // }
           });
           this.deviceRegistered = false;
           this.addDeviceForm = false;
@@ -523,42 +386,6 @@ export default {
           console.log(error);
         });
     }
-    // handleNext() {
-    //   this.tempList.push(this.verticalDevices[0]);
-    //   this.verticalDevices.push(this.horizontalDevices[0]);
-    //   this.horizontalDevices.splice(0, 1);
-
-    //   if (this.horizontalDevices.length > 6) {
-    //     this.hasNext = true;
-    //   } else {
-    //     this.hasNext = false;
-    //   }
-    //   this.hasPrevious = true;
-    //   this.verticalDevices.splice(0, 1);
-    // },
-    // handlePrevious() {
-    //   const devicePoped = this.tempList.pop();
-    //   this.verticalDevices.unshift(devicePoped);
-
-    //   const deviceSendBack = this.verticalDevices.pop();
-    //   this.horizontalDevices.unshift(deviceSendBack);
-    //   if (this.tempList.length === 0) {
-    //     this.hasPrevious = false;
-    //   } else {
-    //     this.hasPrevious = true;
-    //   }
-    //   if (this.horizontalDevices.length > 6) {
-    //     this.hasNext = true;
-    //   } else {
-    //     this.hasNext = false;
-    //   }
-    // },
-    // handleSelectDevice(group) {
-    //   this.groupSelected = group;
-    //   this.groupDevices = this.roomDevices.filter(
-    //     item => item.deviceType.toLowerCase() === group.deviceType.toLowerCase()
-    //   );
-    // }
   }
 };
 </script>
