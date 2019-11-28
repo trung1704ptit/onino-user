@@ -3,7 +3,7 @@
     <div class="device-icon-wrap">
       <img :src="device.deviceIconUrl" class="device-icon" />
     </div>
-    <h5 class="title text-center">{{ device.deviceName }}</h5>
+    <p class="title text-center">{{ device.deviceName }}</p>
     <i
       class="fa fa-plus-circle add"
       aria-hidden="true"
@@ -49,8 +49,8 @@ export default {
 }
 
 .device-icon {
-  width: 60px;
-  height: 50px;
+  width: 50px;
+  height: 40px;
   margin: auto;
   object-fit: contain;
 }
@@ -74,6 +74,7 @@ export default {
 
   .title {
     margin-bottom: 0;
+    font-size: 14px;
   }
 }
 

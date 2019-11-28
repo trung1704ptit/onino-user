@@ -9,7 +9,7 @@
     <div class="device-icon-wrap">
       <img :src="deviceIconUrl" class="device-icon" />
     </div>
-    <p class="title text-center uppercase m-0">{{ device.deviceName }}</p>
+    <p class="title text-center uppercase m-0" :style="{fontSize: fontSize + 'px', lineHeight: fontSize + 4 + 'px' }">{{ device.deviceName }}</p>
     <el-switch
       v-if="hasSwitch"
       v-model="switchValue"
@@ -46,7 +46,7 @@ export default {
     breakPoint: Boolean,
     width: {
       type: String,
-      default: "180px"
+      default: "170px"
     },
     hasSwitch: {
       type: Boolean,
@@ -58,7 +58,11 @@ export default {
     },
     active: Boolean,
     inlineBlock: Boolean,
-    handleSelectDevice: Function
+    handleSelectDevice: Function,
+    fontSize: {
+      type: Number,
+      default: 12
+    }
   },
   data() {
     return {
@@ -153,8 +157,8 @@ export default {
   margin-top: 10px;
 }
 .device-icon {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   margin: auto;
   object-fit: contain;
 }
@@ -164,7 +168,7 @@ export default {
   margin: 0px 3px 10px 3px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  max-width: 190px;
+  max-width: 180px;
 
   .title {
     overflow: hidden;
@@ -172,7 +176,6 @@ export default {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
-    font-size: 14px;
   }
 
   .action {

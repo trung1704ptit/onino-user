@@ -19,7 +19,7 @@
             <i class="fa fa-pencil-square-o" aria-hidden="true" :title="$t('root.edit')"></i>
           </router-link>
         </div>
-        <span class="card-panel-text text" :style="{ fontSize: grid ? '16px' : '14px'}">Buổi sáng</span>
+        <span class="card-panel-text text uppercase" :style="{ fontSize: grid ? '16px' : '14px'}">Buổi sáng</span>
       </div>
     </div>
   </router-link>

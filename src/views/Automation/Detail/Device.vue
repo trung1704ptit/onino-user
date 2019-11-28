@@ -1,7 +1,7 @@
 <template>
 <div class="box p-15 mr-15 block-shadow device-block block" @click="handleClick">
     <div class="device-icon-wrap"><img :src="device.deviceIconUrl" class="device-icon" /></div>
-    <h5 class="title text-center">{{ device.deviceName }}</h5>
+    <p class="title text-center">{{ device.deviceName }}</p>
     <i class="fa fa-sliders icon" aria-hidden="true"></i>
 </div>
 </template>

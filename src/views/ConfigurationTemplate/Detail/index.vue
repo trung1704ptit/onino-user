@@ -23,50 +23,58 @@
         />
       </el-form-item>
 
-      <control
-        :roomDevices="filterList"
-        :deviceTypes="deviceTypes"
-        v-if="filterList.length > 0"
-        :handleDeleteDevice="handleDeleteDevice"
-      />
-
-      <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-        {{ $t('root.save') }}
-      </el-button>
-      <el-button v-if="!addDevice" type="primary" @click="addDevice = !addDevice">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-        {{ $t('room.addDevice') }}
-      </el-button>
-      <el-button v-if="addDevice" @click="addDevice = !addDevice">
-        <i class="el-icon-circle-close" aria-hidden="true"></i>
-        {{ $t('root.cancel') }}
-      </el-button>
-    </el-form>
-
-    <div class="p-15 mt-15 block-shadow form-wrapper app-form bg-light" v-if="addDevice">
-      <div>
-        <el-input
-          ref="configurationName"
-          v-model="search"
-          :placeholder="$t('room.deviceName')"
-          name="configurationName"
-          type="text"
-        />
-      </div>
-      <p class="white-text m-0 mt-15">
-        <i>Vui lòng nhấn vào thiết bị để thêm vào danh sách cấu hình</i>
-      </p>
-      <div class="room-list">
-        <div v-for="room in roomList" :key="room.id">
-          <room
-            :room="setDevicesWithRoomName(room)"
-            v-if="room.devices.length > 0"
-            :updateSelectedList="updateSelectedList"
+      <el-row :gutter="15">
+        <el-col :xs="24" :lg="12">
+          <div class="p-15 mt-15 block-shadow form-wrapper app-form bg-light" v-if="addDevice">
+            <div>
+              <el-input
+                ref="configurationName"
+                v-model="search"
+                :placeholder="$t('room.deviceName')"
+                name="configurationName"
+                type="text"
+              />
+            </div>
+            <p class="white-text m-0 mt-15">
+              <i>Vui lòng nhấn vào thiết bị để thêm vào danh sách cấu hình</i>
+            </p>
+            <div class="room-list">
+              <div v-for="room in roomList" :key="room.id">
+                <room
+                  :room="setDevicesWithRoomName(room)"
+                  v-if="room.devices.length > 0"
+                  :updateSelectedList="updateSelectedList"
+                />
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :xs="24" :lg="12">
+          <control
+            :roomDevices="filterList"
+            :deviceTypes="deviceTypes"
+            v-if="filterList.length > 0"
+            :handleDeleteDevice="handleDeleteDevice"
+            :isShowButtons="false"
           />
-        </div>
+        </el-col>
+      </el-row>
+
+      <div class="mt-15">
+        <el-button :loading="creating" type="primary" @click.native.prevent="handleCreateRoom">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          {{ $t('root.save') }}
+        </el-button>
+        <el-button v-if="!addDevice" type="primary" @click="addDevice = !addDevice">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+          {{ $t('room.addDevice') }}
+        </el-button>
+        <el-button v-if="addDevice" @click="addDevice = !addDevice">
+          <i class="el-icon-circle-close" aria-hidden="true"></i>
+          {{ $t('root.cancel') }}
+        </el-button>
       </div>
-    </div>
+    </el-form>
   </section>
 </template>
 

@@ -13,6 +13,7 @@
         class="box box-shadow p-15 m-15 control"
         :onClickButton="handleClickButton"
         :deviceSelected="deviceSelected"
+        v-if="isShowButtons"
       />
 
       <timer class="box box-shadow p-15 m-15 control" :deviceSelected="deviceSelected" />
@@ -38,7 +39,8 @@ export default {
       default: []
     },
     buttons: Array,
-    handleDeleteDevice: Function
+    handleDeleteDevice: Function,
+    isShowButtons: Boolean
   },
   components: {
     CircleButtons,
