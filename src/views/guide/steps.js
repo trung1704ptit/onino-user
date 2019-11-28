@@ -1,9 +1,11 @@
+import i18n from '@/lang';
+
 const steps = [
   {
     element: '#hamburger-container',
     popover: {
       title: 'Hamburger',
-      description: 'Open && Close sidebar',
+      description: i18n.t('guide.sideBar'),
       position: 'bottom'
     }
   },
@@ -11,7 +13,7 @@ const steps = [
     element: '#breadcrumb-container',
     popover: {
       title: 'Breadcrumb',
-      description: 'Indicate the current page location',
+      description: i18n.t('guide.breadcrumb'),
       position: 'bottom'
     }
   },
@@ -19,23 +21,15 @@ const steps = [
     element: '#header-search',
     popover: {
       title: 'Page Search',
-      description: 'Page search, quick navigation',
+      description: i18n.t('guide.searchDescription'),
       position: 'left'
     }
   },
-  {
+  { 
     element: '#screenfull',
     popover: {
       title: 'Screenfull',
-      description: 'Set the page into fullscreen',
-      position: 'left'
-    }
-  },
-  {
-    element: '#size-select',
-    popover: {
-      title: 'Switch Size',
-      description: 'Switch the system size',
+      description: i18n.t('guide.fullScreen'),
       position: 'left'
     }
   },
@@ -43,7 +37,7 @@ const steps = [
     element: '#tags-view-container',
     popover: {
       title: 'Tags view',
-      description: 'The history of the page you visited',
+      description: i18n.t('guide.tagsViewDescription'),
       position: 'bottom'
     },
     padding: 0

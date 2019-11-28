@@ -190,7 +190,12 @@ export default {
   },
   guide: {
     description: 'Let us show to you how to use this application',
-    button: 'Show Guide'
+    button: 'Show Guide',
+    sideBar: 'Open && Close sidebar',
+    breadcrumb: 'Indicate the current page location',
+    fullScreen: 'Set the page into fullscreen',
+    tagsViewDescription: 'The history of the page you visited',
+    searchDescription: 'Page search, quick navigation'
   },
   components: {
     documentation: 'Documentation',

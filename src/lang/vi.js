@@ -190,7 +190,12 @@ export default {
   },
   guide: {
     description: 'Hãy để chúng tôi hướng dẫn cho bạn cách sử dụng ứng dụng',
-    button: 'Hướng dẫn'
+    button: 'Hướng dẫn',
+    sideBar: 'Đóng mở cửa sổ bên',
+    breadcrumb: 'Biểu thị vị trí trang hiện tại',
+    fullScreen: 'Cài đặt toàn màn hình',
+    tagsViewDescription: 'Xem lịch sử các trang mà bạn đã xem',
+    searchDescription: 'Tìm kiếm nhanh trên thanh công cụ'
   },
   components: {
     documentation: 'Documentation',
