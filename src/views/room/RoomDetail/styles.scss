@@ -27,6 +27,10 @@
 }
 .vertical-list {
     position: relative;
+    float: left;
+    @media screen and (max-width: 768px) {
+        float: unset
+    }
 }
 .bg-light {
     padding: 15px;

@@ -1,22 +1,15 @@
 <template>
-  <div class="bg-light p-15">
-    <group-devices
-      :groupDevices="groupDevices"
-      :handleSelect="handleSelect"
-      :deviceSelected="deviceSelected"
-      :handleDeleteDevice="handleDeleteDevice"
-    />
-
-    <div class="control-wrapper">
+  <div>
+    <div class="actions-wrapper">
       <circle-buttons
         :buttons="buttons"
-        class="box box-shadow p-15 m-15 control"
+        class="box box-shadow p-15 actions"
         :onClickButton="handleClickButton"
         :deviceSelected="deviceSelected"
         v-if="isShowButtons"
       />
 
-      <timer class="box box-shadow p-15 m-15 control" :deviceSelected="deviceSelected" />
+      <timer class="box box-shadow p-15 actions" :deviceSelected="deviceSelected" />
     </div>
   </div>
 </template>
@@ -24,15 +17,9 @@
 <script>
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
 import Timer from "@/components/Timer";
-import GroupDevices from "./GroupDevices";
 import LangSelect from "@/components/LangSelect";
 
 export default {
-  data() {
-    return {
-      deviceSelected: {}
-    };
-  },
   props: {
     groupDevices: {
       type: Array,
@@ -40,11 +27,11 @@ export default {
     },
     buttons: Array,
     handleDeleteDevice: Function,
-    isShowButtons: Boolean
+    isShowButtons: Boolean,
+    deviceSelected: Object
   },
   components: {
     CircleButtons,
-    GroupDevices,
     Timer,
     LangSelect
   },
@@ -53,31 +40,22 @@ export default {
       switch (type) {
         case "power":
       }
-    },
-    handleSelect(device) {
-      this.deviceSelected = device;
-    }
-  },
-  mounted() {
-    if (this.groupDevices) {
-      this.deviceSelected = this.groupDevices[0];
-    }
-  },
-  watch: {
-    groupDevices: function(group) {
-      this.deviceSelected = group[0];
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.control-wrapper {
+.actions-wrapper {
   @media screen and (min-width: 768px) {
     display: flex;
   }
 }
-.control {
+.actions {
   width: 100%;
+  margin: 15px;
+  @media screen and (max-width: 768px) {
+    margin: 15px 0;
+  }
 }
 </style>

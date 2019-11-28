@@ -9,7 +9,12 @@
     <div class="device-icon-wrap">
       <img :src="deviceIconUrl" class="device-icon" />
     </div>
-    <p class="title text-center uppercase m-0" :style="{fontSize: fontSize + 'px', lineHeight: fontSize + 4 + 'px' }">{{ device.deviceName }}</p>
+    <p class="title text-center uppercase m-0" :style="{fontSize: fontSize + 'px', lineHeight: fontSize + 4 + 'px' }" v-if="!isEditDevice">{{ device.deviceName }}</p>
+    <div v-if="isEditDevice">
+      <input  v-model="device.deviceName" class="input"/>
+      <el-button size="small" type="primary">{{ $t('root.save')}} </el-button>
+      <el-button size="small" type="secondary" @click="handleCancelEdit">{{ $t('root.cancel')}} </el-button>
+    </div>
     <el-switch
       v-if="hasSwitch"
       v-model="switchValue"
@@ -68,7 +73,8 @@ export default {
     return {
       switchValue: false,
       slideValue: 50,
-      deviceIconUrl: ""
+      deviceIconUrl: "",
+      isEditDevice: false
     };
   },
   mounted() {
@@ -140,7 +146,12 @@ export default {
     handleSelectAction(command) {
         if (command === 'delete') {
             this.handleDeleteDevice(this.device);
+        } else if (command === 'edit') {
+          this.isEditDevice = true;
         }
+    },
+    handleCancelEdit() {
+      this.isEditDevice = false;
     }
   }
 };
@@ -183,6 +194,14 @@ export default {
     top: 8px;
     right: 8px;
   }
+}
+.input {
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: none;
+  max-width: 100%;
+  font-size: 13px;
+  margin: 5px 0;
 }
 
 .dropdown-menu {

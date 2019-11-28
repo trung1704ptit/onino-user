@@ -1,13 +1,13 @@
 <template>
   <div class="mt-15 mb-15">
-    <div class="flex">
+    <div>
       <div class="vertical-list" v-if="verticalDevices.length > 0">
         <room-device
           v-for="(device, index) in verticalDevices"
           :key="device.deviceId + index"
           :device="device"
           :inlineBlock="false"
-        :hasSwitch="hasSwitch"
+          :hasSwitch="hasSwitch"
           :handleSelectDevice="handleSelectDevice"
           :active="groupSelected && groupSelected.deviceType && groupSelected.deviceType.toLowerCase() === device.deviceType.toLowerCase()"
         />
@@ -21,12 +21,20 @@
         </div>
       </div>
 
+      <group-devices
+        :groupDevices="groupDevices"
+        :handleSelect="handleSelect"
+        :deviceSelected="deviceSelected"
+        :handleDeleteDevice="handleDeleteDevice"
+      />
+
       <actions
         class="control"
         v-if="groupDevices.length > 0"
         :groupDevices="groupDevices"
         :buttons="groupSelected.buttons"
         :handleDeleteDevice="handleDeleteDevice"
+        :deviceSelected="deviceSelected"
         :isShowButtons="isShowButtons"
       />
     </div>
@@ -55,6 +63,7 @@
 import RoomDevice from "@/components/RoomDevice";
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
 import Actions from "./Actions";
+import GroupDevices from "./GroupDevices";
 
 export default {
   props: {
@@ -75,16 +84,23 @@ export default {
       hasNext: false,
       hasPrevious: false,
       groupSelected: [],
-      groupDevices: []
+      groupDevices: [],
+      deviceSelected: {}
     };
   },
   components: {
     RoomDevice,
+    GroupDevices,
     CircleButtons,
     Actions
   },
   created() {
     this.initGroups(this.roomDevices);
+  },
+  mounted() {
+    if (this.groupDevices) {
+      this.deviceSelected = this.groupDevices[0];
+    }
   },
   methods: {
     handleNext() {
@@ -150,12 +166,28 @@ export default {
       if (this.horizontalDevices.length > 6) {
         this.hasNext = true;
       }
+    },
+    handleSelect(device) {
+      this.deviceSelected = device;
     }
   },
   watch: {
     roomDevices: function(val, oldVal) {
-      this.initGroups(val)
+      this.initGroups(val);
+    },
+    groupDevices: function(group) {
+      this.deviceSelected = group[0];
     }
   }
 };
 </script>
+
+<style lang="scss">
+.vertical-list {
+  position: relative;
+  float: left;
+  @media screen and (max-width: 768px) {
+    float: unset;
+  }
+}
+</style>
