@@ -3,13 +3,13 @@
     <carousel
       :per-page="1"
       :scrollPerPage="true"
-      :perPageCustom="[[480, 2], [992, 7]]"
+      :perPageCustom="[[480, 2], [992, 8]]"
       :paginationEnabled="false"
     >
       <slide v-for="(room, index) in roomList" :key="index" style="padding-right: 8px">
         <router-link :to="'/room/chi-tiet/' + room.id" style="width: 100%">
           <el-button
-            :type="currentRoomId === room.id && 'primary'"
+            :type="currentRoomId === room.id ? 'primary' : ''"
             size="small"
             class="uppercase"
             style="width: 100%"

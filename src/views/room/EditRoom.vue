@@ -1,5 +1,6 @@
 <template>
   <section class="bg-light m-15">
+    <room-list-navigation v-if="roomList && roomDetail" :roomList="roomList" :currentRoomId="roomDetail.id" />
     <h4 class="text">{{ $t('room.groupIcon') }}</h4>
 
     <div class="room-list">
@@ -51,12 +52,11 @@
 
 <script>
 import TintColor from "@/utils/tint-color";
-
 import { isEmpty } from "@/utils/validate";
 import i18n from "@/lang";
-
 import { mapGetters } from "vuex";
 
+import RoomListNavigation from "./RoomListNavigation";
 import DeviceIcon from "./DeviceIcon";
 
 export default {
@@ -72,7 +72,8 @@ export default {
       groupIcons: [],
       groupIconUrl: "",
       roomDetail: {
-        name: ""
+        name: "",
+        id: ""
       },
       roomRules: {
         name: [
@@ -83,7 +84,8 @@ export default {
           }
         ]
       },
-      creating: false
+      creating: false,
+      roomList: []
     };
   },
 
@@ -111,6 +113,7 @@ export default {
     }
 
     if (roomList && roomList.length > 0) {
+      this.roomList = roomList;
       const roomDetail = roomList.filter(item => item.id === roomId)[0];
 
       if (roomDetail) {
@@ -119,6 +122,7 @@ export default {
       }
     } else {
       this.$store.dispatch("room/getAllRoom").then(response => {
+        this.roomList = response;
         const roomDetail = response.filter(item => item.id === roomId)[0];
 
         if (roomDetail) {
@@ -129,7 +133,8 @@ export default {
     }
   },
   components: {
-    DeviceIcon
+    DeviceIcon,
+    RoomListNavigation
   },
   methods: {
     handleSelect(item) {

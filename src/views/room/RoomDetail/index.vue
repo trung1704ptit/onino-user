@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="15" class="p-15">
       <el-col :xs="24" :sm="21">
-        <room-list-navigation :roomList="roomList" :currentRoomId="roomDetail.id" />
+        <room-list-navigation :roomList="roomList" :currentRoomId="roomDetail.id || ''" />
       </el-col>
 
       <el-col :sx="24" :sm="3">
@@ -165,7 +165,7 @@ import DeviceIconsPopup from "@/components/DeviceIconsPopup";
 import DeviceIconForm from "./DeviceIconForm";
 import CircleButtons from "@/components/DeviceButtons/CircleButtons";
 import { deviceTypes } from "@/config";
-import RoomListNavigation from "./RoomListNavigation";
+import RoomListNavigation from "../RoomListNavigation";
 import Control from "@/components/Control/Control";
 
 export default {

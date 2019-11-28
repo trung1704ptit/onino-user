@@ -12,20 +12,15 @@
   </div>
 </template>
 <script>
-import Vue from 'vue';
-import VueCarousel, { Carousel, Slide } from "vue-carousel";
 import CameraSlide from "@/views/camera/CameraSlide";
 import RoomSlide from "@/views/room/RoomSlide";
 import Weather from "./components/Weather";
 import ConfigurationTemplateSlide from "@/views/ConfigurationTemplate/Slide";
 import AutomationSlide from "@/views/Automation/Slide";
 
-Vue.use(VueCarousel);
-
 export default {
   name: "DashboardAdmin",
   components: {
-    Carousel,
     Slide,
     Weather,
     CameraSlide,

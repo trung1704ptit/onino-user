@@ -38,12 +38,9 @@
 </template>
 
 <script>
-import Vue from "vue";
-import VueCarousel, { Carousel, Slide } from "vue-carousel";
 import RoomDevice from "@/components/RoomDevice";
 import { Fragment } from "vue-fragment";
 
-Vue.use(VueCarousel);
 
 export default {
   props: {
@@ -53,13 +50,11 @@ export default {
     handleDeleteDevice: Function
   },
   components: {
-    Carousel,
     RoomDevice,
     Fragment
   },
   methods: {
     handleClick(device) {
-      this.deviceSelected = device;
       this.handleSelect(device);
     }
   }
