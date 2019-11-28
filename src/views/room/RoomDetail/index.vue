@@ -145,6 +145,8 @@
             :roomDevices="roomDevices"
             :deviceTypes="deviceTypes"
             v-if="roomDevices.length > 0"
+            isShowButtons
+            hasSwitch
           />
         </el-col>
       </el-row>

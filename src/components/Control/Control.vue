@@ -7,7 +7,7 @@
           :key="device.deviceId + index"
           :device="device"
           :inlineBlock="false"
-          hasSwitch
+        :hasSwitch="hasSwitch"
           :handleSelectDevice="handleSelectDevice"
           :active="groupSelected && groupSelected.deviceType && groupSelected.deviceType.toLowerCase() === device.deviceType.toLowerCase()"
         />
@@ -37,7 +37,7 @@
         :handleEditDevice="handleClickEditDevice"
         :device="device"
         :inlineBlock="true"
-        hasSwitch
+        :hasSwitch="hasSwitch"
       />
       <div
         v-if="hasNext"
@@ -61,7 +61,11 @@ export default {
     roomDevices: Array,
     deviceTypes: Array,
     handleDeleteDevice: Function,
-    isShowButtons: Boolean
+    isShowButtons: Boolean,
+    hasSwitch: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
