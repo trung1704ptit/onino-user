@@ -6,7 +6,7 @@
       class="button"
       :style="{ width: size + 'px', height: size + 'px', borderColor: 'var(--main-color)' }"
     >
-      <img :src="iconUrl" :alt="new Date().getTime()" />
+      <img :src="iconUrl" alt="icon" />
     </el-button>
     <div class="text">{{ title }}</div>
   </div>

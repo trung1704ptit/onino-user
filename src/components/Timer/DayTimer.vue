@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <div class="flex mt-15">
-      <span class="time mr-15">{{ $t('root.timeStart') }}:</span>
+      <span class="time mr-15 normal-text">{{ $t('root.timeStart') }}:</span>
 
       <datetime type="datetime" v-model="startTime" input-id="startDate">
         <template slot="button-cancel">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="flex mt-15">
-      <span class="time mr-15">{{ $t('root.timeEnd') }}:</span>
+      <span class="time mr-15 normal-text">{{ $t('root.timeEnd') }}:</span>
 
       <datetime type="datetime" v-model="endTime" input-id="startDate">
         <template slot="button-cancel">

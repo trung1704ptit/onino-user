@@ -269,6 +269,7 @@ export default {
   max-width: 100%;
   font-size: 13px;
   margin: 5px 0;
+  color: #000 !important;
 }
 
 .dropdown-menu {

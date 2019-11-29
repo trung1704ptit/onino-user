@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .device-icon {
-    padding: 10px 15px;
+    padding: 10px;
     border: 2px solid transparent;
     border-radius: 4px;
     display: inline-block;
@@ -97,8 +97,8 @@ export default {
     }
 
     img {
-        width: 50px;
-        height: 50px;
+        width: 30px;
+        height: 30px;
     }
 }
 </style>
